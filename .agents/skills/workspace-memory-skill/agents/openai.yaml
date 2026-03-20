@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workspace Memory"
+  short_description: "Repo-local team memory for agent workflows"
+  default_prompt: "Use $workspace-memory-skill to create or maintain repo-local workspace memory for this project."

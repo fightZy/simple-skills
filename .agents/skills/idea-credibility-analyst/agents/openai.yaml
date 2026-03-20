@@ -1,0 +1,5 @@
+version: 1
+interface:
+  display_name: Idea Credibility Analyst
+  short_description: Clarify an idea through dialogue, research alternatives and market signals, assess crowdedness, and recommend continue, pivot, or stop.
+  default_prompt: Evaluate the user's product, startup, feature, or workflow idea by interviewing until understanding is high, researching similar products and community discussion, comparing alternatives, assessing crowdedness, and making a continue, pivot, or stop recommendation.

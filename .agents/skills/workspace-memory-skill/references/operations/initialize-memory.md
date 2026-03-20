@@ -1,0 +1,46 @@
+# Initialize Memory
+
+Use this operation when the workspace does not yet have a memory tree, or when the user wants to reseed the default structure.
+
+## Script
+
+`python3 scripts/init_memory.py`
+
+## What The Script Owns
+
+- creates the directory structure
+- creates generated navigation and summary files
+- writes frontmatter for generated files
+
+## Semantic Inputs
+
+Required:
+- workspace root
+
+Optional:
+- memory directory path if the project does not use `docs/memory`
+- whether to overwrite seeded files
+
+## Command Pattern
+
+```bash
+python3 scripts/init_memory.py --root <workspace> [--memory-dir docs/memory] [--force]
+```
+
+## Resulting Files
+
+- generated navigation file such as `docs/memory/index.md`
+- `docs/memory/summaries/recent.md`
+- `docs/memory/summaries/archive.md`
+- empty directories for `sessions/`, `summaries/topics/`, and `crystals/`
+
+## Templates
+
+- generated index: [templates/generated-index.md](../templates/generated-index.md)
+- generated recent summary: [templates/generated-recent.md](../templates/generated-recent.md)
+- archive summary: [templates/archive-summary.md](../templates/archive-summary.md)
+
+## Notes
+
+- Do not manually recreate these generated files if the script can do it.
+- If the repository already has an established memory root, preserve that convention.
