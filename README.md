@@ -44,3 +44,7 @@ npx skills add <owner>/<repo> --skill workspace-memory-skill
 After installation, the runtime behavior is defined by each skill's [`SKILL.md`](./.agents/skills/idea-credibility-analyst/SKILL.md).
 
 Use the linked README files above for a human-readable overview of purpose, capabilities, and usage scenarios.
+
+## License
+
+This repository is licensed under the [MIT License](./LICENSE).
