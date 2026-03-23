@@ -4,7 +4,15 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from memory_ops import bullet_list, slugify, today_iso, write_text, yaml_list, yaml_scalar
+from memory_ops import (
+    bullet_list,
+    resolve_path,
+    slugify,
+    today_iso,
+    write_text,
+    yaml_list,
+    yaml_scalar,
+)
 
 
 TEMPLATE = """---
@@ -41,7 +49,7 @@ applies_to:{applies_to}
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Create a workspace-memory crystal.")
-    parser.add_argument("--root", default=".", help="Workspace root directory.")
+    parser.add_argument("--root", required=True, help="Workspace root directory.")
     parser.add_argument("--memory-dir", default="docs/memory", help="Memory directory relative to the workspace root.")
     parser.add_argument("--path", help="Explicit crystal file path.")
     parser.add_argument("--title", required=True, help="Crystal title.")
@@ -68,7 +76,7 @@ def main() -> int:
     root = Path(args.root).resolve()
     slug = slugify(args.title)
     if args.path:
-        target = Path(args.path)
+        target = resolve_path(root, args.path)
     else:
         target = root / args.memory_dir / "crystals" / f"crystal-{slug}.md"
 
