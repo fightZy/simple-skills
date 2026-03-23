@@ -4,7 +4,15 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from memory_ops import dump_frontmatter, parse_frontmatter, resolve_path, slugify, today_iso, update_section
+from memory_ops import (
+    dump_frontmatter,
+    metadata_list,
+    parse_frontmatter,
+    resolve_path,
+    slugify,
+    today_iso,
+    update_section,
+)
 
 
 def main() -> int:
@@ -14,8 +22,18 @@ def main() -> int:
     parser.add_argument("--path", help="Explicit topic-summary file path.")
     parser.add_argument("--topic", help="Topic name used to resolve the default summary path.")
     parser.add_argument("--summary", help="Replace the topic summary one-line summary.")
+    parser.add_argument("--add-tag", action="append", default=[], help="Tag to add.")
+    parser.add_argument("--set-tag", action="append", default=[], help="Replace tags with the provided values.")
+    parser.add_argument("--add-source-id", action="append", default=[], help="Source id to add.")
+    parser.add_argument("--set-source-id", action="append", default=[], help="Replace source ids with the provided values.")
     parser.add_argument("--append-current-state", action="append", default=[], help="Current-state bullet to append.")
     parser.add_argument("--replace-current-state", action="append", default=[], help="Replace current-state bullets.")
+    parser.add_argument("--append-key-decision", action="append", default=[], help="Key-decision bullet to append.")
+    parser.add_argument("--replace-key-decision", action="append", default=[], help="Replace key-decision bullets.")
+    parser.add_argument("--append-relevant-crystal", action="append", default=[], help="Relevant-crystal bullet to append.")
+    parser.add_argument("--replace-relevant-crystal", action="append", default=[], help="Replace relevant-crystal bullets.")
+    parser.add_argument("--append-source-trail", action="append", default=[], help="Source-trail bullet to append.")
+    parser.add_argument("--replace-source-trail", action="append", default=[], help="Replace source-trail bullets.")
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
@@ -36,12 +54,31 @@ def main() -> int:
 
     if args.summary:
         metadata["summary"] = args.summary
+    metadata_list(metadata, "tags", set_items=args.set_tag, add_items=args.add_tag)
+    metadata_list(
+        metadata,
+        "source_ids",
+        set_items=args.set_source_id,
+        add_items=args.add_source_id,
+    )
     metadata["updated_at"] = today_iso()
 
     if args.replace_current_state:
         body = update_section(body, "Current State", args.replace_current_state, mode="replace")
     if args.append_current_state:
         body = update_section(body, "Current State", args.append_current_state, mode="append")
+    if args.replace_key_decision:
+        body = update_section(body, "Key Decisions", args.replace_key_decision, mode="replace")
+    if args.append_key_decision:
+        body = update_section(body, "Key Decisions", args.append_key_decision, mode="append")
+    if args.replace_relevant_crystal:
+        body = update_section(body, "Relevant Crystals", args.replace_relevant_crystal, mode="replace")
+    if args.append_relevant_crystal:
+        body = update_section(body, "Relevant Crystals", args.append_relevant_crystal, mode="append")
+    if args.replace_source_trail:
+        body = update_section(body, "Source Trail", args.replace_source_trail, mode="replace")
+    if args.append_source_trail:
+        body = update_section(body, "Source Trail", args.append_source_trail, mode="append")
 
     target.write_text(dump_frontmatter(metadata, body), encoding="utf-8")
     print(f"update {target}")

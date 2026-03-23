@@ -96,6 +96,28 @@ def parse_bullets(text: str) -> list[str]:
     return normalize_list(bullets)
 
 
+def metadata_list(
+    metadata: dict[str, object],
+    key: str,
+    set_items: list[str] | None = None,
+    add_items: list[str] | None = None,
+) -> list[str]:
+    if set_items:
+        result = normalize_list(set_items)
+    else:
+        current = metadata.get(key, [])
+        if isinstance(current, list):
+            result = normalize_list([str(item) for item in current])
+        elif current:
+            result = normalize_list([str(current)])
+        else:
+            result = []
+    if add_items:
+        result = normalize_list(result + add_items)
+    metadata[key] = result
+    return result
+
+
 def yaml_scalar(value: str) -> str:
     return "'" + value.replace("'", "''") + "'"
 

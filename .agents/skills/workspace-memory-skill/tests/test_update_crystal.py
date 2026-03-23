@@ -96,3 +96,41 @@ def test_update_crystal_rejects_memory_type_mismatch(tmp_path: Path) -> None:
 
     assert result.returncode != 0
     assert "memory_type" in result.stderr or "memory_type" in result.stdout
+
+
+def test_update_crystal_updates_metadata_lists_and_sections(tmp_path: Path) -> None:
+    crystal_path = tmp_path / "docs" / "memory" / "crystals" / "crystal-repo-local-markdown-first.md"
+    write_crystal(crystal_path)
+    script = Path(__file__).resolve().parent.parent / "scripts" / "update_crystal.py"
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "--path",
+            str(crystal_path),
+            "--add-tag",
+            "memory",
+            "--add-tag",
+            "memory",
+            "--add-source-id",
+            "session:2026-03-24:crystal-maintenance",
+            "--add-applies-to",
+            "docs/memory/**",
+            "--replace-why-it-matters",
+            "Make durable guidance easier to retrieve.",
+            "--append-note",
+            "Keep updates section-scoped.",
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr
+    text = crystal_path.read_text(encoding="utf-8")
+    assert text.count("'memory'") == 1
+    assert "session:2026-03-24:crystal-maintenance" in text
+    assert "'docs/memory/**'" in text
+    assert "- Make durable guidance easier to retrieve." in text
+    assert "- Keep updates section-scoped." in text
