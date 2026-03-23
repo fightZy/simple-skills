@@ -30,6 +30,8 @@ Pick the narrowest operation that matches the request:
   Read [references/maintenance.md](references/maintenance.md)
 - Extract durable knowledge:
   Read [references/operations/crystal-maintenance.md](references/operations/crystal-maintenance.md)
+- Maintain topic summaries:
+  Read [references/operations/topic-summary-maintenance.md](references/operations/topic-summary-maintenance.md)
 
 ## Core Rules
 
@@ -46,11 +48,15 @@ Script-supported today:
 - initialization via `scripts/init_memory.py`
 - session capture via `scripts/record_session.py`
 - recent-to-archive compression via `scripts/refine_memory.py`
+- crystal creation via `scripts/create_crystal.py`
+- crystal updates via `scripts/update_crystal.py`
+- topic-summary creation via `scripts/create_topic_summary.py`
+- topic-summary updates via `scripts/update_topic_summary.py`
 
 Manual or partial today:
 - query routing is still reference-driven
-- crystal creation and updates are still manual
-- topic-summary generation is still manual
+- broader maintenance and deduplication flows are still reference-driven
+- derived-file lineage and freshness are still partial
 
 ## Expected Outputs
 

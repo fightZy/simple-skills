@@ -20,5 +20,6 @@ Read [schema.md](schema.md) for shared fields, type-specific fields, and which v
 - Template files below are body-first. Do not treat the example bodies as instructions to hand-write metadata.
 - `session` files are first-party records and should not carry `source_ids` by default.
 - `crystal` files use `knowledge_type`, not `crystal_type`.
+- `crystal` and `topic-summary` files now have script-supported create/update flows; prefer those scripts over hand-writing frontmatter.
 - If a crystal applies only to part of the workspace, use `applies_to` with file globs or concrete paths.
 - Generated summary or index files may include generator metadata, but they are not authoritative sources.

@@ -156,7 +156,19 @@ There is no dedicated query script yet. Querying is currently reference-driven, 
 
 ### 5. Maintain crystals
 
-Crystal creation and maintenance are still manual. The intended future direction is to script metadata generation for crystals too.
+Crystal creation and maintenance are script-supported through:
+- `scripts/create_crystal.py`
+- `scripts/update_crystal.py`
+
+The current implementation is intentionally narrow: updates operate on known metadata fields and known sections.
+
+### 6. Maintain topic summaries
+
+Topic summary creation and maintenance are script-supported through:
+- `scripts/create_topic_summary.py`
+- `scripts/update_topic_summary.py`
+
+This gives the skill a first complete write path for both durable knowledge and aggregated topic views.
 
 ## Why `index.md` Still Exists
 
@@ -175,10 +187,12 @@ Implemented:
 - `scripts/init_memory.py`
 - `scripts/record_session.py`
 - `scripts/refine_memory.py`
+- `scripts/create_crystal.py`
+- `scripts/update_crystal.py`
+- `scripts/create_topic_summary.py`
+- `scripts/update_topic_summary.py`
 
 Partially designed but not fully implemented:
-- crystal creation script
-- topic summary generation script
 - query script based on metadata-first retrieval
 - stronger source tracking in derived files
 
@@ -190,10 +204,10 @@ These parts are not yet complete:
    Retrieval is still guided by references, not by a dedicated query script.
 
 2. Crystal write path
-   Crystals have a schema and template, but no dedicated creation/update script yet.
+   The first scripted write path now exists, but broader maintenance and deduplication flows are still manual.
 
 3. Topic summaries
-   Topic summaries have a template, but no maintained generation flow.
+   The first scripted creation/update flow now exists, but richer aggregation logic is still manual.
 
 4. Derived-file freshness
    `recent.md` and `archive.md` are updated by existing scripts, but broader derived indexes are not yet built.
@@ -218,13 +232,13 @@ The skill is intentionally not doing these yet:
 If the skill continues to evolve, the most natural next moves are:
 
 1. Add a crystal creation/update script
-   This would bring crystal metadata under the same discipline as sessions.
+   Done in the current implementation batch.
 
 2. Add a query script
    This would let the agent ask for snapshots, filtered retrieval, and related memory without manual traversal.
 
 3. Add topic-summary generation
-   This would make topic aggregation less manual.
+   The first maintenance scripts now exist; the next step would be richer generation and refresh workflows.
 
 4. Improve derived lineage
    Keep `source_ids` accurate for archive and summary generation paths.
