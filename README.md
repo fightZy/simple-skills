@@ -1,29 +1,45 @@
 # Simple Skills
 
-This repository contains two reusable skills for agent workflows. It is a small public skills repo focused on two practical problems: evaluating whether an idea is worth pursuing, and preserving durable workspace memory across agent sessions.
+Reusable AI agent skills for idea validation, startup research, and workspace memory.
+
+This repository contains installable skills for the `skills.sh` ecosystem and for coding agents such as Codex, Claude Code, Cursor, Cline, OpenCode, and Goose. The current skills focus on two practical jobs:
+
+- validating whether a product, startup, feature, or workflow idea is worth pursuing
+- preserving durable workspace memory across repeated agent sessions inside a repository
+
+Install from GitHub with `npx skills add fightZy/simple-skills`.
+
+## Why This Repo Exists
+
+Many agent workflows fail for one of two reasons:
+
+- teams build ideas before checking whether the market is too crowded or the positioning is too weak
+- teams lose project context between sessions and keep re-explaining the same decisions, conventions, and follow-ups
+
+This repo packages both workflows as reusable agent skills so they can be installed, shared, and reused across projects.
 
 ## Skills
 
 ### Idea Credibility Analyst
 
-A skill for evaluating whether a product, startup, feature, or workflow idea is worth pursuing.
+A reusable AI agent skill for idea validation, startup research, competitor analysis, and market crowdedness assessment.
 
-It helps an agent move from vague discussion to structured judgment. The skill is designed for situations where the user does not just want brainstorming, but wants a sharper answer to whether an idea has enough differentiation, demand, and room to justify further work.
+It helps an agent move from vague discussion to structured judgment. The skill is designed for cases where the user does not just want brainstorming, but wants a sharper answer about differentiation, demand, alternatives, and whether there is enough room to continue.
 
 Core capabilities:
 
 - focused clarification instead of broad questionnaires
-- competitor and alternative research
+- competitor research and alternative analysis
 - market crowdedness assessment
 - structured comparison of positioning, maturity, and gaps
 - final `continue` / `pivot` / `stop` recommendation
 
 Typical use cases:
 
-- validating a startup or SaaS concept
+- validating a startup, SaaS, or AI product concept
 - pressure-testing a feature before building it
 - checking whether a workflow automation idea has a real wedge
-- understanding whether a space is too crowded or still has room
+- understanding whether a market is too crowded or still has room
 
 Docs:
 
@@ -33,7 +49,7 @@ Docs:
 
 ### Workspace Memory Skill
 
-A skill for maintaining repo-local workspace memory across agent sessions.
+A reusable AI agent skill for repo-local workspace memory, project context preservation, and long-lived team knowledge.
 
 It is designed for small teams or solo builders who work repeatedly in the same repository and want project context to persist across conversations. Instead of relying on scattered chat history, this skill keeps memory inside the workspace with structured files, summaries, and durable knowledge artifacts.
 
@@ -51,6 +67,7 @@ Typical use cases:
 - reducing repeated explanation in an active repo
 - maintaining recent summaries and archived history
 - building lightweight long-term project memory without external infrastructure
+- keeping coding agents aligned on decisions, conventions, and prior work
 
 Docs:
 
@@ -60,10 +77,16 @@ Docs:
 
 ## Install
 
-List the skills available in this repository:
+List the installable skills available in this GitHub repository:
 
 ```bash
 npx skills add fightZy/simple-skills --list
+```
+
+Install the full repository:
+
+```bash
+npx skills add fightZy/simple-skills
 ```
 
 Install a specific skill from the repo:
@@ -73,9 +96,28 @@ npx skills add fightZy/simple-skills --skill idea-credibility-analyst
 npx skills add fightZy/simple-skills --skill workspace-memory-skill
 ```
 
+These commands work with the `skills` CLI and are intended for skill-compatible agents and editors.
+
 ## Usage
 
 After installation, each skill runs according to its own `SKILL.md`. Use the doc links above to understand scope, capabilities, and scenarios before installing or invoking a skill.
+
+## Keywords
+
+Useful search terms for this repository:
+
+- AI agent skills
+- skills.sh repository
+- Codex skills
+- Claude Code skills
+- Cursor skills
+- Cline skills
+- idea validation skill
+- startup research skill
+- competitor analysis skill
+- workspace memory skill
+- project memory for coding agents
+- reusable prompt engineering workflows
 
 Abbreviation guide:
 
