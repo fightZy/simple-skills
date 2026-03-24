@@ -125,6 +125,9 @@ The main runtime pieces are:
 - `scripts/`
   Deterministic helpers for initialization, session capture, and recent-memory refinement
 
+Development-only assets stay outside the installable skill directory.
+Tests for this skill live under `tests/workspace-memory-skill/` at the repository root so the runtime skill payload stays limited to files an agent actually needs to read or execute.
+
 ## Workflow Model
 
 ### 1. Initialize memory

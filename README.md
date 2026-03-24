@@ -96,6 +96,8 @@ npx skills add fightZy/simple-skills --skill idea-credibility-analyst
 npx skills add fightZy/simple-skills --skill workspace-memory-skill
 ```
 
+Repository-level tests live under `tests/`. Installable skill payloads stay under `.agents/skills/` and should not include development-only test files.
+
 These commands work with the `skills` CLI and are intended for skill-compatible agents and editors.
 
 ## Usage

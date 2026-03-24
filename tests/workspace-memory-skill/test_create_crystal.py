@@ -7,7 +7,12 @@ from pathlib import Path
 
 def test_create_crystal_writes_expected_file(tmp_path: Path) -> None:
     script = (
-        Path(__file__).resolve().parent.parent / "scripts" / "create_crystal.py"
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+        / "create_crystal.py"
     )
 
     result = subprocess.run(
@@ -49,7 +54,12 @@ def test_create_crystal_writes_expected_file(tmp_path: Path) -> None:
 
 def test_create_crystal_requires_root_argument(tmp_path: Path) -> None:
     script = (
-        Path(__file__).resolve().parent.parent / "scripts" / "create_crystal.py"
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+        / "create_crystal.py"
     )
 
     result = subprocess.run(
@@ -77,7 +87,12 @@ def test_create_crystal_requires_root_argument(tmp_path: Path) -> None:
 
 def test_create_crystal_resolves_relative_path_from_root(tmp_path: Path) -> None:
     script = (
-        Path(__file__).resolve().parent.parent / "scripts" / "create_crystal.py"
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+        / "create_crystal.py"
     )
     runner = tmp_path / "runner"
     runner.mkdir()
@@ -112,7 +127,12 @@ def test_create_crystal_resolves_relative_path_from_root(tmp_path: Path) -> None
 
 def test_create_crystal_deduplicates_repeated_list_inputs(tmp_path: Path) -> None:
     script = (
-        Path(__file__).resolve().parent.parent / "scripts" / "create_crystal.py"
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+        / "create_crystal.py"
     )
 
     result = subprocess.run(

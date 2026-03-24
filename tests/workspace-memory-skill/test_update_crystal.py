@@ -53,7 +53,12 @@ def test_update_crystal_append_statement_keeps_existing_content(tmp_path: Path) 
     )
     write_crystal(crystal_path)
     script = (
-        Path(__file__).resolve().parent.parent / "scripts" / "update_crystal.py"
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+        / "update_crystal.py"
     )
 
     result = subprocess.run(
@@ -84,7 +89,12 @@ def test_update_crystal_rejects_memory_type_mismatch(tmp_path: Path) -> None:
     )
     crystal_path.write_text(text, encoding="utf-8")
     script = (
-        Path(__file__).resolve().parent.parent / "scripts" / "update_crystal.py"
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+        / "update_crystal.py"
     )
 
     result = subprocess.run(
@@ -101,7 +111,14 @@ def test_update_crystal_rejects_memory_type_mismatch(tmp_path: Path) -> None:
 def test_update_crystal_updates_metadata_lists_and_sections(tmp_path: Path) -> None:
     crystal_path = tmp_path / "docs" / "memory" / "crystals" / "crystal-repo-local-markdown-first.md"
     write_crystal(crystal_path)
-    script = Path(__file__).resolve().parent.parent / "scripts" / "update_crystal.py"
+    script = (
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+        / "update_crystal.py"
+    )
 
     result = subprocess.run(
         [
@@ -144,7 +161,14 @@ def test_update_crystal_rejects_missing_required_metadata(tmp_path: Path) -> Non
         "source_ids: []",
     )
     crystal_path.write_text(text, encoding="utf-8")
-    script = Path(__file__).resolve().parent.parent / "scripts" / "update_crystal.py"
+    script = (
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+        / "update_crystal.py"
+    )
 
     result = subprocess.run(
         [sys.executable, str(script), "--path", str(crystal_path), "--summary", "Updated"],

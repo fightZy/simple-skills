@@ -7,7 +7,12 @@ from pathlib import Path
 
 def test_create_topic_summary_uses_default_topic_path(tmp_path: Path) -> None:
     script = (
-        Path(__file__).resolve().parent.parent / "scripts" / "create_topic_summary.py"
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+        / "create_topic_summary.py"
     )
 
     result = subprocess.run(

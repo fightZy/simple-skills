@@ -5,7 +5,13 @@ import sys
 from pathlib import Path
 
 
-SCRIPTS_DIR = Path(__file__).resolve().parent.parent / "scripts"
+SCRIPTS_DIR = (
+    Path(__file__).resolve().parents[2]
+    / ".agents"
+    / "skills"
+    / "workspace-memory-skill"
+    / "scripts"
+)
 
 
 def run_script(*args: str) -> subprocess.CompletedProcess[str]:

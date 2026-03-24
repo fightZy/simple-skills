@@ -4,7 +4,16 @@ from pathlib import Path
 import sys
 
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
+sys.path.insert(
+    0,
+    str(
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+    ),
+)
 
 from memory_ops import dump_frontmatter, parse_frontmatter, update_section  # noqa: E402
 

@@ -45,7 +45,10 @@ def test_update_topic_summary_append_deduplicates_entries(tmp_path: Path) -> Non
     )
     write_topic_summary(topic_path)
     script = (
-        Path(__file__).resolve().parent.parent
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
         / "scripts"
         / "update_topic_summary.py"
     )
@@ -78,7 +81,10 @@ def test_update_topic_summary_preserves_created_at(tmp_path: Path) -> None:
     )
     write_topic_summary(topic_path)
     script = (
-        Path(__file__).resolve().parent.parent
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
         / "scripts"
         / "update_topic_summary.py"
     )
@@ -109,7 +115,10 @@ def test_update_topic_summary_updates_metadata_and_multiple_sections(tmp_path: P
     )
     write_topic_summary(topic_path)
     script = (
-        Path(__file__).resolve().parent.parent
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
         / "scripts"
         / "update_topic_summary.py"
     )
@@ -154,7 +163,14 @@ def test_update_topic_summary_rejects_missing_required_metadata(tmp_path: Path) 
         "topic: ''",
     )
     topic_path.write_text(text, encoding="utf-8")
-    script = Path(__file__).resolve().parent.parent / "scripts" / "update_topic_summary.py"
+    script = (
+        Path(__file__).resolve().parents[2]
+        / ".agents"
+        / "skills"
+        / "workspace-memory-skill"
+        / "scripts"
+        / "update_topic_summary.py"
+    )
 
     result = subprocess.run(
         [sys.executable, str(script), "--path", str(topic_path), "--summary", "Updated"],
