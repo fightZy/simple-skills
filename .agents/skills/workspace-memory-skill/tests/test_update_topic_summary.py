@@ -142,3 +142,26 @@ def test_update_topic_summary_updates_metadata_and_multiple_sections(tmp_path: P
     assert "session:2026-03-24:topic-summary-maintenance" in text
     assert "- Keep topic summaries concise and high-signal." in text
     assert "- crystal:implementation-patterns" in text
+
+
+def test_update_topic_summary_rejects_missing_required_metadata(tmp_path: Path) -> None:
+    topic_path = (
+        tmp_path / "docs" / "memory" / "summaries" / "topics" / "workspace-memory.md"
+    )
+    write_topic_summary(topic_path)
+    text = topic_path.read_text(encoding="utf-8").replace(
+        "topic: 'workspace memory'",
+        "topic: ''",
+    )
+    topic_path.write_text(text, encoding="utf-8")
+    script = Path(__file__).resolve().parent.parent / "scripts" / "update_topic_summary.py"
+
+    result = subprocess.run(
+        [sys.executable, str(script), "--path", str(topic_path), "--summary", "Updated"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode != 0
+    assert "topic" in result.stderr or "topic" in result.stdout

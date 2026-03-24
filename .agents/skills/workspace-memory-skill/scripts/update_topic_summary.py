@@ -10,8 +10,10 @@ from memory_ops import (
     parse_frontmatter,
     resolve_path,
     slugify,
+    TOPIC_SUMMARY_SECTION_ORDER,
     today_iso,
     update_section,
+    validate_required_metadata,
 )
 
 
@@ -62,23 +64,39 @@ def main() -> int:
         add_items=args.add_source_id,
     )
     metadata["updated_at"] = today_iso()
+    try:
+        validate_required_metadata(
+            metadata,
+            [
+                "id",
+                "memory_type",
+                "title",
+                "summary",
+                "created_at",
+                "updated_at",
+                "topic",
+                "source_ids",
+            ],
+        )
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
 
     if args.replace_current_state:
-        body = update_section(body, "Current State", args.replace_current_state, mode="replace")
+        body = update_section(body, "Current State", args.replace_current_state, mode="replace", section_order=TOPIC_SUMMARY_SECTION_ORDER)
     if args.append_current_state:
-        body = update_section(body, "Current State", args.append_current_state, mode="append")
+        body = update_section(body, "Current State", args.append_current_state, mode="append", section_order=TOPIC_SUMMARY_SECTION_ORDER)
     if args.replace_key_decision:
-        body = update_section(body, "Key Decisions", args.replace_key_decision, mode="replace")
+        body = update_section(body, "Key Decisions", args.replace_key_decision, mode="replace", section_order=TOPIC_SUMMARY_SECTION_ORDER)
     if args.append_key_decision:
-        body = update_section(body, "Key Decisions", args.append_key_decision, mode="append")
+        body = update_section(body, "Key Decisions", args.append_key_decision, mode="append", section_order=TOPIC_SUMMARY_SECTION_ORDER)
     if args.replace_relevant_crystal:
-        body = update_section(body, "Relevant Crystals", args.replace_relevant_crystal, mode="replace")
+        body = update_section(body, "Relevant Crystals", args.replace_relevant_crystal, mode="replace", section_order=TOPIC_SUMMARY_SECTION_ORDER)
     if args.append_relevant_crystal:
-        body = update_section(body, "Relevant Crystals", args.append_relevant_crystal, mode="append")
+        body = update_section(body, "Relevant Crystals", args.append_relevant_crystal, mode="append", section_order=TOPIC_SUMMARY_SECTION_ORDER)
     if args.replace_source_trail:
-        body = update_section(body, "Source Trail", args.replace_source_trail, mode="replace")
+        body = update_section(body, "Source Trail", args.replace_source_trail, mode="replace", section_order=TOPIC_SUMMARY_SECTION_ORDER)
     if args.append_source_trail:
-        body = update_section(body, "Source Trail", args.append_source_trail, mode="append")
+        body = update_section(body, "Source Trail", args.append_source_trail, mode="append", section_order=TOPIC_SUMMARY_SECTION_ORDER)
 
     target.write_text(dump_frontmatter(metadata, body), encoding="utf-8")
     print(f"update {target}")

@@ -5,6 +5,7 @@ import argparse
 from pathlib import Path
 
 from memory_ops import (
+    CRYSTAL_SECTION_ORDER,
     dump_frontmatter,
     metadata_list,
     parse_frontmatter,
@@ -12,6 +13,7 @@ from memory_ops import (
     slugify,
     today_iso,
     update_section,
+    validate_required_metadata,
 )
 
 
@@ -73,27 +75,43 @@ def main() -> int:
         add_items=args.add_applies_to,
     )
     metadata["updated_at"] = today_iso()
+    try:
+        validate_required_metadata(
+            metadata,
+            [
+                "id",
+                "memory_type",
+                "title",
+                "summary",
+                "created_at",
+                "updated_at",
+                "knowledge_type",
+                "source_ids",
+            ],
+        )
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
 
     if args.replace_statement:
-        body = update_section(body, "Statement", args.replace_statement, mode="replace")
+        body = update_section(body, "Statement", args.replace_statement, mode="replace", section_order=CRYSTAL_SECTION_ORDER)
     if args.append_statement:
-        body = update_section(body, "Statement", args.append_statement, mode="append")
+        body = update_section(body, "Statement", args.append_statement, mode="append", section_order=CRYSTAL_SECTION_ORDER)
     if args.replace_why_it_matters:
-        body = update_section(body, "Why It Matters", args.replace_why_it_matters, mode="replace")
+        body = update_section(body, "Why It Matters", args.replace_why_it_matters, mode="replace", section_order=CRYSTAL_SECTION_ORDER)
     if args.append_why_it_matters:
-        body = update_section(body, "Why It Matters", args.append_why_it_matters, mode="append")
+        body = update_section(body, "Why It Matters", args.append_why_it_matters, mode="append", section_order=CRYSTAL_SECTION_ORDER)
     if args.replace_when_to_apply:
-        body = update_section(body, "When To Apply", args.replace_when_to_apply, mode="replace")
+        body = update_section(body, "When To Apply", args.replace_when_to_apply, mode="replace", section_order=CRYSTAL_SECTION_ORDER)
     if args.append_when_to_apply:
-        body = update_section(body, "When To Apply", args.append_when_to_apply, mode="append")
+        body = update_section(body, "When To Apply", args.append_when_to_apply, mode="append", section_order=CRYSTAL_SECTION_ORDER)
     if args.replace_note:
-        body = update_section(body, "Notes", args.replace_note, mode="replace")
+        body = update_section(body, "Notes", args.replace_note, mode="replace", section_order=CRYSTAL_SECTION_ORDER)
     if args.append_note:
-        body = update_section(body, "Notes", args.append_note, mode="append")
+        body = update_section(body, "Notes", args.append_note, mode="append", section_order=CRYSTAL_SECTION_ORDER)
     if args.replace_provenance:
-        body = update_section(body, "Provenance", args.replace_provenance, mode="replace")
+        body = update_section(body, "Provenance", args.replace_provenance, mode="replace", section_order=CRYSTAL_SECTION_ORDER)
     if args.append_provenance:
-        body = update_section(body, "Provenance", args.append_provenance, mode="append")
+        body = update_section(body, "Provenance", args.append_provenance, mode="append", section_order=CRYSTAL_SECTION_ORDER)
 
     target.write_text(dump_frontmatter(metadata, body), encoding="utf-8")
     print(f"update {target}")

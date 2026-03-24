@@ -134,3 +134,24 @@ def test_update_crystal_updates_metadata_lists_and_sections(tmp_path: Path) -> N
     assert "'docs/memory/**'" in text
     assert "- Make durable guidance easier to retrieve." in text
     assert "- Keep updates section-scoped." in text
+
+
+def test_update_crystal_rejects_missing_required_metadata(tmp_path: Path) -> None:
+    crystal_path = tmp_path / "docs" / "memory" / "crystals" / "invalid-crystal.md"
+    write_crystal(crystal_path)
+    text = crystal_path.read_text(encoding="utf-8").replace(
+        "source_ids:\n  - 'session:2026-03-23:workspace-memory-design'",
+        "source_ids: []",
+    )
+    crystal_path.write_text(text, encoding="utf-8")
+    script = Path(__file__).resolve().parent.parent / "scripts" / "update_crystal.py"
+
+    result = subprocess.run(
+        [sys.executable, str(script), "--path", str(crystal_path), "--summary", "Updated"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode != 0
+    assert "source_ids" in result.stderr or "source_ids" in result.stdout

@@ -5,6 +5,21 @@ from datetime import date
 from pathlib import Path
 import re
 
+CRYSTAL_SECTION_ORDER = [
+    "Statement",
+    "Why It Matters",
+    "When To Apply",
+    "Provenance",
+    "Notes",
+]
+
+TOPIC_SUMMARY_SECTION_ORDER = [
+    "Current State",
+    "Key Decisions",
+    "Relevant Crystals",
+    "Source Trail",
+]
+
 
 def today_iso() -> str:
     return str(date.today())
@@ -118,6 +133,19 @@ def metadata_list(
     return result
 
 
+def validate_required_metadata(
+    metadata: dict[str, object], required_fields: list[str]
+) -> None:
+    for field in required_fields:
+        value = metadata.get(field)
+        if isinstance(value, list):
+            if not value:
+                raise ValueError(f"Required metadata field is empty: {field}")
+            continue
+        if value is None or not str(value).strip():
+            raise ValueError(f"Required metadata field is empty: {field}")
+
+
 def yaml_scalar(value: str) -> str:
     return "'" + value.replace("'", "''") + "'"
 
@@ -143,9 +171,20 @@ def resolve_path(root: Path, target: str) -> Path:
     return root / path
 
 
-def split_section(text: str, heading: str) -> tuple[str, str, str]:
+def split_section(
+    text: str, heading: str, section_order: list[str] | None = None
+) -> tuple[str, str, str]:
     marker = f"## {heading}\n"
     if marker not in text:
+        if section_order and heading in section_order:
+            heading_index = section_order.index(heading)
+            for next_heading in section_order[heading_index + 1 :]:
+                next_marker = f"\n## {next_heading}\n"
+                insert_at = text.find(next_marker)
+                if insert_at != -1:
+                    before = text[: insert_at + 1].rstrip()
+                    after = text[insert_at + 1 :]
+                    return before + f"\n\n{marker}", "", after
         return text.rstrip() + f"\n\n{marker}", "", ""
     before, after = text.split(marker, 1)
     next_header = "\n## "
@@ -155,8 +194,20 @@ def split_section(text: str, heading: str) -> tuple[str, str, str]:
     return before + marker, after[:split_index].strip("\n"), after[split_index:]
 
 
-def update_section(text: str, heading: str, entries: list[str], mode: str) -> str:
-    prefix, section_body, suffix = split_section(text, heading)
+def update_section(
+    text: str,
+    heading: str,
+    entries: list[str],
+    mode: str,
+    section_order: list[str] | None = None,
+) -> str:
+    if section_order is None:
+        if heading in CRYSTAL_SECTION_ORDER:
+            section_order = CRYSTAL_SECTION_ORDER
+        elif heading in TOPIC_SUMMARY_SECTION_ORDER:
+            section_order = TOPIC_SUMMARY_SECTION_ORDER
+
+    prefix, section_body, suffix = split_section(text, heading, section_order)
     if mode == "append":
         combined = parse_bullets(section_body) + normalize_list(entries)
         new_body = bullet_list(combined)
