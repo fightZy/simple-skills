@@ -78,12 +78,15 @@ source_ids: []
 - None yet.
 """
 
+CONFIG_TEMPLATE = 'content_language = "{content_language}"\n'
 
-def build_files(today: str) -> dict[str, str]:
+
+def build_files(today: str, content_language: str) -> dict[str, str]:
     return {
         "index.md": INDEX_TEMPLATE.format(today=today),
         "summaries/recent.md": RECENT_TEMPLATE.format(today=today),
         "summaries/archive.md": ARCHIVE_TEMPLATE.format(today=today),
+        "config.toml": CONFIG_TEMPLATE.format(content_language=content_language),
     }
 
 
@@ -108,6 +111,12 @@ def main() -> int:
         action="store_true",
         help="Overwrite existing seeded files.",
     )
+    parser.add_argument(
+        "--content-language",
+        default="en",
+        choices=["en", "zh-CN"],
+        help="Body language for workspace-memory content. Headings remain in English.",
+    )
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
@@ -123,7 +132,7 @@ def main() -> int:
         directory.mkdir(parents=True, exist_ok=True)
         print(f"mkdir {directory}")
 
-    for rel_path, content in build_files(today).items():
+    for rel_path, content in build_files(today, args.content_language).items():
         print(write_file(memory_dir / rel_path, content, args.force))
 
     return 0

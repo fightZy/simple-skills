@@ -64,3 +64,4 @@ python3 scripts/update_crystal.py \
 - Do not use `scope`; use `applies_to` when narrowing the area of relevance.
 - Crystals are durable knowledge, not raw session transcripts.
 - Update scripts operate at metadata and section granularity, not as free-form text patchers.
+- Keep the scripted English headings unchanged. Write body prose in the configured `content_language`, or English if the config is missing.

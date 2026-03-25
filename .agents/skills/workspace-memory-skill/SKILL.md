@@ -13,6 +13,7 @@ Prefer script-generated metadata. The agent should focus on semantic inputs and 
 
 Read [references/layout.md](references/layout.md) for the memory tree.
 Read [references/templates.md](references/templates.md) for schema and body-template navigation.
+Read [references/config.md](references/config.md) for memory-language configuration.
 
 ## Routing
 
@@ -41,6 +42,9 @@ Pick the narrowest operation that matches the request:
 - Prefer updating existing files over creating near-duplicates.
 - Do not invent unsupported scripts. If an operation card says the flow is currently manual, follow the manual flow.
 - Use script `--help` output as the final parameter contract when there is any ambiguity.
+- Read `docs/memory/config.toml` before authoring body content when the memory tree exists.
+- Keep filenames ASCII and keep memory headings in their scripted English form.
+- Write body prose in the configured `content_language`. If the config is missing, default to English.
 
 ## Current Automation Boundary
 
@@ -53,6 +57,7 @@ Script-supported today:
 - crystal updates via `scripts/update_crystal.py`
 - topic-summary creation via `scripts/create_topic_summary.py`
 - topic-summary updates via `scripts/update_topic_summary.py`
+- language-policy validation via `scripts/check_memory_language.py`
 
 Manual or partial today:
 - broader maintenance and deduplication flows are still reference-driven

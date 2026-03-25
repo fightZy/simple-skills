@@ -65,3 +65,4 @@ python3 scripts/update_topic_summary.py \
 
 - Topic summaries are aggregated views, not first-party session records.
 - Update scripts operate at metadata and section granularity, not as free-form text patchers.
+- Keep the scripted English headings unchanged. Write body prose in the configured `content_language`, or English if the config is missing.

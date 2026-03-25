@@ -77,3 +77,4 @@ The body sections are:
 - Session files do not carry `source_ids` by default because they are primary sources.
 - The script refreshes `summaries/recent.md` lineage metadata so the generated summary stays traceable to its session entries.
 - Use `python3 scripts/record_session.py --help` as the final parameter contract.
+- Keep the scripted English headings unchanged. Write the body prose in `docs/memory/config.toml`'s `content_language`, or English if the config is missing.

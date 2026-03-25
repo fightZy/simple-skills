@@ -133,3 +133,37 @@ source_ids:
     ]
     assert archive_metadata["updated_at"] == str(date.today())
     assert archive_metadata["source_ids"] == ["session:2026-03-21:c"]
+
+
+def test_init_memory_writes_default_english_content_language(tmp_path: Path) -> None:
+    script = SCRIPTS_DIR / "init_memory.py"
+
+    result = run_script(
+        str(script),
+        "--root",
+        str(tmp_path),
+    )
+
+    config_path = tmp_path / "docs" / "memory" / "config.toml"
+
+    assert result.returncode == 0, result.stderr
+    assert config_path.exists()
+    assert config_path.read_text(encoding="utf-8") == 'content_language = "en"\n'
+
+
+def test_init_memory_allows_explicit_content_language(tmp_path: Path) -> None:
+    script = SCRIPTS_DIR / "init_memory.py"
+
+    result = run_script(
+        str(script),
+        "--root",
+        str(tmp_path),
+        "--content-language",
+        "zh-CN",
+    )
+
+    config_path = tmp_path / "docs" / "memory" / "config.toml"
+
+    assert result.returncode == 0, result.stderr
+    assert config_path.exists()
+    assert config_path.read_text(encoding="utf-8") == 'content_language = "zh-CN"\n'
