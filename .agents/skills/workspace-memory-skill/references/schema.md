@@ -60,6 +60,7 @@ Additional fields:
 
 Additional fields:
 - `generator`: optional but recommended
+- `source_ids`: recommended when the summary is derived from explicit session entries
 
 ### `generated-index`
 

@@ -141,6 +141,7 @@
 - 创建 session 文件路径
 - 生成 session metadata
 - 更新 `summaries/recent.md`
+- 刷新 `summaries/recent.md` 的 lineage metadata
 
 agent 应该聚焦于：
 
@@ -155,14 +156,28 @@ agent 应该聚焦于：
 - 保持 recent memory 规模较小
 - 把较旧的 recent 项移动到 archive history
 - 收缩待处理 follow-ups，使其与保留的活跃上下文相匹配
+- 重建 recent 和 archive summaries 的 `source_ids`
 
 ### 4. 查询 memory
 
-目前还没有专门的 query 脚本。当前查询主要依赖 reference-driven 的方式，按照操作卡和查询参考文档里描述的分层读取顺序执行。
+查询检索现在已经由脚本支持：
+- `scripts/query_memory.py`
+
+第一版仍然是 metadata-first 和分层检索。它返回候选 memory files，而不是在脚本内直接合成最终答案。
 
 ### 5. 维护 crystals
 
-Crystal 的创建和维护目前仍然是手工的。未来预期的方向，是也为 crystals 的 metadata 生成提供脚本支持。
+Crystal 的创建和维护现在已经由脚本支持：
+- `scripts/create_crystal.py`
+- `scripts/update_crystal.py`
+
+当前实现仍然保持收敛：更新只作用于已知 metadata 字段和已知 sections。
+
+### 6. 维护 topic summaries
+
+Topic summary 的创建和维护现在已经由脚本支持：
+- `scripts/create_topic_summary.py`
+- `scripts/update_topic_summary.py`
 
 ## 为什么 `index.md` 仍然存在
 
@@ -183,32 +198,35 @@ Crystal 的创建和维护目前仍然是手工的。未来预期的方向，是
 - `scripts/init_memory.py`
 - `scripts/record_session.py`
 - `scripts/refine_memory.py`
+- `scripts/query_memory.py`
+- `scripts/create_crystal.py`
+- `scripts/update_crystal.py`
+- `scripts/create_topic_summary.py`
+- `scripts/update_topic_summary.py`
 
 已部分设计、但尚未完整实现：
 
-- crystal creation script
-- topic summary generation script
-- 基于 metadata-first retrieval 的 query script
-- 更强的 derived files source tracking
+- broader derived-file freshness beyond recent/archive
+- 更丰富的 query ranking 和 answer synthesis
 
 ## 当前已知缺口
 
 这些部分目前还没有完成：
 
 1. Query automation
-   检索仍由 references 引导，而不是由专门的 query script 完成。
+   第一版 query CLI 已经支持 lineage-aware retrieval，但它仍然返回候选文件，而不是直接合成答案。
 
 2. Crystal write path
-   Crystals 已经有 schema 和 template，但还没有专门的创建 / 更新脚本。
+   第一版 scripted write path 已经存在，但更广泛的维护和去重流程仍然主要依赖手工判断。
 
 3. Topic summaries
-   Topic summaries 已经有 template，但还没有持续维护的生成流程。
+   第一版创建 / 更新脚本已经存在，但更丰富的聚合和刷新流程仍然主要依赖手工判断。
 
 4. Derived-file freshness
-   `recent.md` 和 `archive.md` 会由现有脚本更新，但更广泛的派生索引还没有建立。
+   `recent.md` 和 `archive.md` 现在会刷新 `updated_at` 和 `source_ids`，但更广泛的派生索引还没有建立。
 
 5. Source lineage completeness
-   某些派生文件在概念上定义了 `source_ids`，但并不是所有更新路径都会维护它们。
+   generated summaries 现在会维护 `source_ids`，但 lineage 还没有被用来自动刷新 topic summaries 或 crystals。
 
 6. 既有 memory 的迁移
    当前脚本更偏向新建或轻度结构化的 memory，而不是从任意现有笔记批量迁移。
@@ -228,16 +246,19 @@ Crystal 的创建和维护目前仍然是手工的。未来预期的方向，是
 如果这个 skill 继续演进，最自然的下一步包括：
 
 1. 添加 crystal 创建 / 更新脚本
-   这样可以让 crystal metadata 和 sessions 一样受到同样的约束。
+   已在当前实现批次中完成。
 
 2. 添加 query script
-   这样 agent 就可以请求快照、过滤检索以及相关 memory，而不需要手工遍历。
+   已在当前实现批次中完成。
 
 3. 添加 topic-summary generation
    这样可以减少主题汇总的手工工作。
 
 4. 改进 derived lineage
-   让 archive 和 summary 生成路径中的 `source_ids` 保持准确。
+   recent 和 archive summaries 已在当前实现批次中完成。
+
+5. 改进 richer ranking
+   下一步更自然的方向，是在 lineage overlap 之外继续增强多个派生候选之间的排序。
 
 ## 未来变更的工作原则
 

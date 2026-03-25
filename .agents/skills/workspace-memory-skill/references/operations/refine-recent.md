@@ -11,6 +11,8 @@ Use this operation when `summaries/recent.md` has become noisy and older recent 
 - reading the current recent summary
 - moving older recent entries into archive history
 - shrinking pending follow-ups to match the retained recent entries
+- rebuilding `source_ids` for recent and archive summaries
+- refreshing `updated_at` on rewritten derived summaries
 
 ## Semantic Inputs
 
@@ -40,4 +42,5 @@ python3 scripts/refine_memory.py \
 
 - This is structural compression, not semantic crystal extraction.
 - If the refined result suggests durable knowledge, update crystals separately.
+- Archive and recent lineage are derived mechanically from the retained summary entries.
 - Use `python3 scripts/refine_memory.py --help` as the final parameter contract.

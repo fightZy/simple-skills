@@ -6,6 +6,13 @@ from datetime import date
 from pathlib import Path
 import re
 
+from memory_ops import (
+    dump_frontmatter,
+    parse_frontmatter,
+    source_ids_from_summary_entries,
+    split_section,
+)
+
 
 SESSION_TEMPLATE = """---
 id: {session_id}
@@ -51,6 +58,7 @@ summary: Auto-generated view of active recent sessions and pending follow-ups.
 created_at: {today}
 updated_at: {today}
 generator: record_session.py
+source_ids: []
 ---
 
 # Recent Memory
@@ -175,6 +183,7 @@ def main() -> int:
     root = Path(args.root).resolve()
     memory_dir = root / args.memory_dir
     session_date = args.date
+    today = str(date.today())
     year, month, _day = session_date.split("-", 2)
     slug = slugify(args.topic)
     session_id = f"session:{session_date}:{slug}"
@@ -212,7 +221,7 @@ def main() -> int:
     if recent_path.exists():
         recent_text = recent_path.read_text(encoding="utf-8")
     else:
-        recent_text = RECENT_TEMPLATE.format(today=session_date)
+        recent_text = RECENT_TEMPLATE.format(today=today)
 
     next_step = args.follow_up[0].strip() if args.follow_up else "Review the session file if more detail is needed."
     related_files = ", ".join(args.related_file) if args.related_file else "none"
@@ -223,6 +232,16 @@ def main() -> int:
     else:
         updated_recent = insert_recent_entry(recent_text, entry)
     updated_recent = update_pending_follow_ups(updated_recent, args.follow_up)
+    recent_metadata, recent_body = parse_frontmatter(updated_recent)
+    _recent_prefix, recent_entries_body, _recent_suffix = split_section(
+        recent_body, "Recent Sessions"
+    )
+    recent_entries = [
+        line for line in recent_entries_body.splitlines() if line.strip()
+    ]
+    recent_metadata["updated_at"] = today
+    recent_metadata["source_ids"] = source_ids_from_summary_entries(recent_entries)
+    updated_recent = dump_frontmatter(recent_metadata, recent_body)
     recent_path.write_text(updated_recent, encoding="utf-8")
     print(f"update {recent_path}")
 

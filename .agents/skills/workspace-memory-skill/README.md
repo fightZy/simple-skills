@@ -140,6 +140,7 @@ The skill uses `scripts/record_session.py` to:
 - create the session file path
 - generate session metadata
 - update `summaries/recent.md`
+- refresh `summaries/recent.md` lineage metadata
 
 The agent should focus on:
 - topic
@@ -152,10 +153,15 @@ The skill uses `scripts/refine_memory.py` to:
 - keep recent memory small
 - move older recent entries into archive history
 - shrink pending follow-ups to match retained active context
+- rebuild derived `source_ids` for recent and archive summaries
 
 ### 4. Query memory
 
-There is no dedicated query script yet. Querying is currently reference-driven, using the layered read order described in the operation cards and querying reference.
+Query retrieval is now script-supported through:
+- `scripts/query_memory.py`
+
+The first version is metadata-first and layered. It returns relevant memory files by query type instead of trying to synthesize a final answer inside the script.
+It now also uses lineage overlap to promote related topic summaries and crystals above raw sessions when the evidence is traceable.
 
 ### 5. Maintain crystals
 
@@ -190,21 +196,22 @@ Implemented:
 - `scripts/init_memory.py`
 - `scripts/record_session.py`
 - `scripts/refine_memory.py`
+- `scripts/query_memory.py`
 - `scripts/create_crystal.py`
 - `scripts/update_crystal.py`
 - `scripts/create_topic_summary.py`
 - `scripts/update_topic_summary.py`
 
 Partially designed but not fully implemented:
-- query script based on metadata-first retrieval
-- stronger source tracking in derived files
+- broader derived-file freshness beyond recent/archive
+- richer query ranking and answer synthesis
 
 ## Known Gaps
 
 These parts are not yet complete:
 
 1. Query automation
-   Retrieval is still guided by references, not by a dedicated query script.
+   The first query CLI now supports lineage-aware retrieval, but it still returns candidate files rather than synthesized answers.
 
 2. Crystal write path
    The first scripted write path now exists, but broader maintenance and deduplication flows are still manual.
@@ -213,10 +220,10 @@ These parts are not yet complete:
    The first scripted creation/update flow now exists, but richer aggregation logic is still manual.
 
 4. Derived-file freshness
-   `recent.md` and `archive.md` are updated by existing scripts, but broader derived indexes are not yet built.
+   `recent.md` and `archive.md` now refresh `updated_at` and `source_ids`, but broader derived indexes are not yet built.
 
 5. Source lineage completeness
-   Some derived files define `source_ids` conceptually, but not all update paths maintain them yet.
+   Generated summaries now maintain `source_ids`, but lineage is still not used to auto-refresh topic summaries or crystals.
 
 6. Migration of existing memory
    Current scripts are oriented around fresh or lightly structured memory, not bulk migration from arbitrary existing notes.
@@ -238,13 +245,16 @@ If the skill continues to evolve, the most natural next moves are:
    Done in the current implementation batch.
 
 2. Add a query script
-   This would let the agent ask for snapshots, filtered retrieval, and related memory without manual traversal.
+   Done in the current implementation batch.
 
 3. Add topic-summary generation
    The first maintenance scripts now exist; the next step would be richer generation and refresh workflows.
 
 4. Improve derived lineage
-   Keep `source_ids` accurate for archive and summary generation paths.
+   Done for recent and archive summaries in the current implementation batch.
+
+5. Improve richer ranking
+   The next step is better ranking across multiple competing derived candidates, not just lineage overlap.
 
 ## Working Principle For Future Changes
 

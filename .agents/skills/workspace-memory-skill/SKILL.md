@@ -48,15 +48,15 @@ Script-supported today:
 - initialization via `scripts/init_memory.py`
 - session capture via `scripts/record_session.py`
 - recent-to-archive compression via `scripts/refine_memory.py`
+- query retrieval via `scripts/query_memory.py`
 - crystal creation via `scripts/create_crystal.py`
 - crystal updates via `scripts/update_crystal.py`
 - topic-summary creation via `scripts/create_topic_summary.py`
 - topic-summary updates via `scripts/update_topic_summary.py`
 
 Manual or partial today:
-- query routing is still reference-driven
 - broader maintenance and deduplication flows are still reference-driven
-- derived-file lineage and freshness are still partial
+- broader derived-file freshness beyond recent/archive is still partial
 
 ## Expected Outputs
 

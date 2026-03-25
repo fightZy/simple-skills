@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 
@@ -12,6 +13,10 @@ SCRIPTS_DIR = (
     / "workspace-memory-skill"
     / "scripts"
 )
+
+sys.path.insert(0, str(SCRIPTS_DIR))
+
+from memory_ops import parse_frontmatter  # noqa: E402
 
 
 def run_script(*args: str) -> subprocess.CompletedProcess[str]:
@@ -30,6 +35,8 @@ def test_record_session_still_updates_recent_summary(tmp_path: Path) -> None:
         str(script),
         "--root",
         str(tmp_path),
+        "--date",
+        "2026-03-24",
         "--topic",
         "workspace-memory-maintenance",
         "--goal",
@@ -49,6 +56,11 @@ def test_record_session_still_updates_recent_summary(tmp_path: Path) -> None:
     text = recent_path.read_text(encoding="utf-8")
     assert "workspace-memory-maintenance" in text
     assert "Add topic summary update coverage." in text
+    metadata, _body = parse_frontmatter(text)
+    assert metadata["updated_at"] == str(date.today())
+    assert metadata["source_ids"] == [
+        "session:2026-03-24:workspace-memory-maintenance"
+    ]
 
 
 def test_refine_memory_still_archives_old_entries(tmp_path: Path) -> None:
@@ -64,6 +76,10 @@ summary: Auto-generated view of active recent sessions and pending follow-ups.
 created_at: 2026-03-23
 updated_at: 2026-03-23
 generator: record_session.py
+source_ids:
+  - 'session:2026-03-23:a'
+  - 'session:2026-03-22:b'
+  - 'session:2026-03-21:c'
 ---
 
 # Recent Memory
@@ -107,3 +123,13 @@ generator: record_session.py
     assert "[a]" in recent_text
     assert "[b]" in recent_text
     assert "[c]" in archive_text
+    recent_metadata, _recent_body = parse_frontmatter(recent_text)
+    archive_metadata, _archive_body = parse_frontmatter(archive_text)
+    assert recent_metadata["created_at"] == "2026-03-23"
+    assert recent_metadata["updated_at"] == str(date.today())
+    assert recent_metadata["source_ids"] == [
+        "session:2026-03-23:a",
+        "session:2026-03-22:b",
+    ]
+    assert archive_metadata["updated_at"] == str(date.today())
+    assert archive_metadata["source_ids"] == ["session:2026-03-21:c"]

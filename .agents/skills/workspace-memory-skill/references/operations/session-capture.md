@@ -75,4 +75,5 @@ The body sections are:
 
 - The script generates metadata. Do not hand-write session frontmatter unless fixing a broken file.
 - Session files do not carry `source_ids` by default because they are primary sources.
+- The script refreshes `summaries/recent.md` lineage metadata so the generated summary stays traceable to its session entries.
 - Use `python3 scripts/record_session.py --help` as the final parameter contract.

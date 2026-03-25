@@ -4,6 +4,7 @@ Use for compressed historical summaries under `summaries/archive.md` or split ar
 
 Metadata should follow [../schema.md](../schema.md).
 Generated archive files should prefer script-owned frontmatter.
+Archive summaries should maintain `source_ids` for the archived session entries they represent.
 
 ```md
 # Archived Memory

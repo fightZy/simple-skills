@@ -42,6 +42,7 @@ summary: Auto-generated view of active recent sessions and pending follow-ups.
 created_at: {today}
 updated_at: {today}
 generator: init_memory.py
+source_ids: []
 ---
 
 # Recent Memory

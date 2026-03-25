@@ -2,7 +2,10 @@
 from __future__ import annotations
 
 import argparse
+from datetime import date
 from pathlib import Path
+
+from memory_ops import dump_frontmatter, parse_frontmatter, source_ids_from_summary_entries
 
 
 DEFAULT_RECENT = """---
@@ -13,6 +16,7 @@ summary: Auto-generated view of active recent sessions and pending follow-ups.
 created_at: 1970-01-01
 updated_at: 1970-01-01
 generator: refine_memory.py
+source_ids: []
 ---
 
 # Recent Memory
@@ -155,6 +159,10 @@ def main() -> int:
         collect_recent_follow_ups(keep_entries),
         "- None yet.",
     )
+    recent_metadata, recent_body = parse_frontmatter(recent_text)
+    recent_metadata["updated_at"] = str(date.today())
+    recent_metadata["source_ids"] = source_ids_from_summary_entries(keep_entries)
+    recent_text = dump_frontmatter(recent_metadata, recent_body)
     recent_path.write_text(recent_text, encoding="utf-8")
     print(f"update {recent_path}")
 
@@ -173,6 +181,12 @@ def main() -> int:
             + rebuild_bullet_section(merged_archive_entries, "- None yet.")
             + archive_rest
         ).rstrip() + "\n"
+    archive_metadata, archive_body = parse_frontmatter(archive_text)
+    archive_metadata["updated_at"] = str(date.today())
+    archive_metadata["source_ids"] = source_ids_from_summary_entries(
+        merged_archive_entries
+    )
+    archive_text = dump_frontmatter(archive_metadata, archive_body)
     archive_path.write_text(archive_text, encoding="utf-8")
     print(f"update {archive_path}")
 

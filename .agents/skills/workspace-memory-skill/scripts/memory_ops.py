@@ -20,6 +20,10 @@ TOPIC_SUMMARY_SECTION_ORDER = [
     "Source Trail",
 ]
 
+SUMMARY_ENTRY_SESSION_RE = re.compile(
+    r"^-?\s*(?P<session_date>\d{4}-\d{2}-\d{2})\s+\[(?P<topic>[^\]]+)\]:"
+)
+
 
 def today_iso() -> str:
     return str(date.today())
@@ -223,6 +227,24 @@ def write_text(path: Path, content: str, force: bool = False) -> None:
         raise FileExistsError(f"Target already exists: {path}")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
+
+
+def session_id_from_summary_entry(entry: str) -> str | None:
+    match = SUMMARY_ENTRY_SESSION_RE.match(entry.strip())
+    if match is None:
+        return None
+    session_date = match.group("session_date")
+    topic = slugify(match.group("topic"))
+    return f"session:{session_date}:{topic}"
+
+
+def source_ids_from_summary_entries(entries: list[str]) -> list[str]:
+    source_ids: list[str] = []
+    for entry in entries:
+        source_id = session_id_from_summary_entry(entry)
+        if source_id is not None:
+            source_ids.append(source_id)
+    return normalize_list(source_ids)
 
 
 def _unquote(value: str) -> str:

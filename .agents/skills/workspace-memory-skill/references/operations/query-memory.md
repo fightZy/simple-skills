@@ -4,7 +4,9 @@ Use this operation when the user wants prior context, norms, historical rational
 
 ## Current State
 
-There is no dedicated query script yet. Retrieval is currently reference-driven.
+Query retrieval is script-supported through:
+
+- `python3 scripts/query_memory.py`
 
 ## Read Order
 
@@ -20,6 +22,34 @@ For deeper retrieval guidance, read [querying.md](../querying.md).
 
 Stop at the shallowest layer that gives a reliable answer. Do not open multiple session files by default when a recent summary or crystal already answers the question.
 
+## Command Patterns
+
+Current state:
+
+```bash
+python3 scripts/query_memory.py \
+  --root <workspace> \
+  --query-type current-state \
+  --topic "<topic>"
+```
+
+Norms:
+
+```bash
+python3 scripts/query_memory.py \
+  --root <workspace> \
+  --query-type norms \
+  --tag "<tag>"
+```
+
+Exact id:
+
+```bash
+python3 scripts/query_memory.py \
+  --root <workspace> \
+  --id "<memory:id>"
+```
+
 ## Related Templates
 
 - topic summary: [templates/topic-summary.md](../templates/topic-summary.md)
@@ -28,5 +58,6 @@ Stop at the shallowest layer that gives a reliable answer. Do not open multiple 
 
 ## Notes
 
-- Do not invent a `query_memory.py` flow until the script exists.
+- The first query script is metadata-first and returns candidate files, not synthesized answers.
+- It prefers lineage-related topic summaries and crystals when their `source_ids` overlap matched session evidence.
 - If memory is insufficient, say what was searched and what source should be checked next.
