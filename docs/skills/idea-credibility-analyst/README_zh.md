@@ -49,13 +49,13 @@
 
 ## 目录内容
 
-- [`SKILL.md`](./SKILL.md)：主 skill 说明
+- [`SKILL.md`](../../../.agents/skills/idea-credibility-analyst/SKILL.md)：主 skill 说明
 - [`README.md`](./README.md)：英文介绍
-- [`agents/openai.yaml`](./agents/openai.yaml)：agent 元数据
-- [`references/interview-playbook.md`](./references/interview-playbook.md)：访谈引导
-- [`references/rubric.md`](./references/rubric.md)：评估标准
-- [`references/report-template.md`](./references/report-template.md)：输出模板
+- [`agents/openai.yaml`](../../../.agents/skills/idea-credibility-analyst/agents/openai.yaml)：agent 元数据
+- [`references/interview-playbook.md`](../../../.agents/skills/idea-credibility-analyst/references/interview-playbook.md)：访谈引导
+- [`references/rubric.md`](../../../.agents/skills/idea-credibility-analyst/references/rubric.md)：评估标准
+- [`references/report-template.md`](../../../.agents/skills/idea-credibility-analyst/references/report-template.md)：输出模板
 
 ## 说明
 
-这个文件是中文介绍页，实际运行规则仍以 [`SKILL.md`](./SKILL.md) 为准。
+这个文件是中文介绍页，实际运行规则仍以 [`SKILL.md`](../../../.agents/skills/idea-credibility-analyst/SKILL.md) 为准。

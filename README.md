@@ -43,8 +43,8 @@ Typical use cases:
 
 Docs:
 
-- [`ICA-EN`](./.agents/skills/idea-credibility-analyst/README.md): English overview
-- [`ICA-ZH`](./.agents/skills/idea-credibility-analyst/README_zh.md): 中文说明
+- [`ICA-EN`](./docs/skills/idea-credibility-analyst/README.md): English overview
+- [`ICA-ZH`](./docs/skills/idea-credibility-analyst/README_zh.md): 中文说明
 - [`ICA-SKILL`](./.agents/skills/idea-credibility-analyst/SKILL.md): runtime instructions
 
 ### Workspace Memory Skill
@@ -71,8 +71,8 @@ Typical use cases:
 
 Docs:
 
-- [`WMS-EN`](./.agents/skills/workspace-memory-skill/README.md): English overview
-- [`WMS-ZH`](./.agents/skills/workspace-memory-skill/README_zh.md): 中文说明
+- [`WMS-EN`](./docs/skills/workspace-memory-skill/README.md): English overview
+- [`WMS-ZH`](./docs/skills/workspace-memory-skill/README_zh.md): 中文说明
 - [`WMS-SKILL`](./.agents/skills/workspace-memory-skill/SKILL.md): runtime instructions
 
 ## Install

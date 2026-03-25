@@ -49,13 +49,13 @@ Typical questions it helps answer:
 
 ## Skill Contents
 
-- [`SKILL.md`](./SKILL.md): main runtime instructions
+- [`SKILL.md`](../../../.agents/skills/idea-credibility-analyst/SKILL.md): main runtime instructions
 - [`README_zh.md`](./README_zh.md): Chinese introduction
-- [`agents/openai.yaml`](./agents/openai.yaml): agent-facing metadata
-- [`references/interview-playbook.md`](./references/interview-playbook.md): stronger discovery flow
-- [`references/rubric.md`](./references/rubric.md): evaluation criteria
-- [`references/report-template.md`](./references/report-template.md): response structure
+- [`agents/openai.yaml`](../../../.agents/skills/idea-credibility-analyst/agents/openai.yaml): agent-facing metadata
+- [`references/interview-playbook.md`](../../../.agents/skills/idea-credibility-analyst/references/interview-playbook.md): stronger discovery flow
+- [`references/rubric.md`](../../../.agents/skills/idea-credibility-analyst/references/rubric.md): evaluation criteria
+- [`references/report-template.md`](../../../.agents/skills/idea-credibility-analyst/references/report-template.md): response structure
 
 ## Notes
 
-This README is a high-level introduction. The actual operating instructions live in [`SKILL.md`](./SKILL.md).
+This README is a high-level introduction. The actual operating instructions live in [`SKILL.md`](../../../.agents/skills/idea-credibility-analyst/SKILL.md).

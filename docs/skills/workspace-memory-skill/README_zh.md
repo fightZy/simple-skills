@@ -1,6 +1,6 @@
 # Workspace Memory Skill
 
-本文档面向这个 skill 的维护者，不用于运行时路由。运行时入口仍然是 [`SKILL.md`](./SKILL.md)。
+本文档面向这个 skill 的维护者，不用于运行时路由。运行时入口仍然是 [`SKILL.md`](../../../.agents/skills/workspace-memory-skill/SKILL.md)。
 
 ## 这个 Skill 是什么
 
