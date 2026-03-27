@@ -1,0 +1,38 @@
+{
+  "case_id": "experience-lineage-promotion",
+  "query": {
+    "query_type": "experience",
+    "topic": "rollback",
+    "limit": 5
+  },
+  "memory_files": [
+    {
+      "path": "docs/memory/index.md",
+      "text": "---\nid: 'generated-index:workspace-memory'\nmemory_type: generated-index\ntitle: 'workspace memory index'\nsummary: 'Top-level entry point for the workspace memory tree.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'init_memory.py'\n---\n\n# Workspace Memory\n"
+    },
+    {
+      "path": "docs/memory/summaries/recent.md",
+      "text": "---\nid: 'generated-summary:recent'\nmemory_type: generated-summary\ntitle: 'recent memory summary'\nsummary: 'Recent retrieval work includes ranking experiments, rollback analysis, and derived-file promotion.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'record_session.py'\nsource_ids:\n  - 'session:2026-03-21:rollback-ranking-experiment'\n  - 'session:2026-03-24:follow-up-notes'\n---\n\n# Recent Memory\n\n## Recent Sessions\n- 2026-03-21 [rollback-ranking-experiment]: Investigated why a ranking experiment had to be rolled back.\n- 2026-03-24 [follow-up-notes]: Captured follow-up notes after the rollback.\n"
+    },
+    {
+      "path": "docs/memory/summaries/topics/workspace-memory-retrieval.md",
+      "text": "---\nid: 'topic-summary:workspace-memory-retrieval'\nmemory_type: topic-summary\ntitle: 'Workspace memory retrieval status'\nsummary: 'Derived files should be promoted when they summarize the same decisions captured in supporting sessions.'\ncreated_at: 2026-03-22\nupdated_at: 2026-03-27\ntopic: 'workspace memory retrieval'\nsource_ids:\n  - 'session:2026-03-21:rollback-ranking-experiment'\n  - 'session:2026-03-24:follow-up-notes'\ntags:\n  - 'workspace-memory'\n  - 'retrieval'\n---\n\n# Topic Summary: workspace memory retrieval\n\n## Key Decisions\n- Preserve derived summaries as the preferred read path when they already explain the decision trail.\n- Use lineage overlap to keep relevant summaries visible even when the query only names an incident from a source session.\n\n## Source Trail\n- session:2026-03-21:rollback-ranking-experiment\n- session:2026-03-24:follow-up-notes\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-21-rollback-ranking-experiment.md",
+      "text": "---\nid: 'session:2026-03-21:rollback-ranking-experiment'\nmemory_type: session\ntitle: 'rollback-ranking-experiment'\nsummary: 'Rolled back an aggressive ranking experiment after it surfaced irrelevant sessions ahead of summaries.'\nsession_date: 2026-03-21\ncreated_at: 2026-03-21\nupdated_at: 2026-03-21\ntags:\n  - 'workspace-memory'\n  - 'rollback'\n  - 'ranking'\n---\n\n# Session: rollback-ranking-experiment\n\n## Goal\nUnderstand why an experimental ranker promoted raw sessions ahead of derived summaries.\n\n## Key Decisions\n- Keep the baseline retrieval path conservative until lineage-based promotion is stable.\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-24-follow-up-notes.md",
+      "text": "---\nid: 'session:2026-03-24:follow-up-notes'\nmemory_type: session\ntitle: 'follow-up-notes'\nsummary: 'Captured cleanup tasks after the rollback investigation.'\nsession_date: 2026-03-24\ncreated_at: 2026-03-24\nupdated_at: 2026-03-24\ntags:\n  - 'workspace-memory'\n  - 'follow-up'\n---\n\n# Session: follow-up-notes\n\n## Follow-up\n- Add benchmark cases that prove lineage can recover the right summary for incident-specific queries.\n"
+    }
+  ],
+  "expected_candidate_ids": [
+    "topic-summary:workspace-memory-retrieval"
+  ],
+  "expected_top_id": "topic-summary:workspace-memory-retrieval",
+  "expected_layers": [
+    "topic-summary"
+  ],
+  "bucket": "lineage"
+}

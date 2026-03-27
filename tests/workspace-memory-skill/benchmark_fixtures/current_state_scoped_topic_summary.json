@@ -1,0 +1,39 @@
+{
+  "case_id": "current-state-scoped-topic-summary",
+  "query": {
+    "query_type": "current-state",
+    "topic": "maintenance",
+    "limit": 5
+  },
+  "memory_files": [
+    {
+      "path": "docs/memory/index.md",
+      "text": "---\nid: 'generated-index:workspace-memory'\nmemory_type: generated-index\ntitle: 'workspace memory index'\nsummary: 'Top-level entry point for the workspace memory tree and its generated summaries.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'init_memory.py'\n---\n\n# Workspace Memory\n\n## Start Here\n- Read the recent summary for active work.\n- Read a topic summary before dropping to sessions.\n"
+    },
+    {
+      "path": "docs/memory/summaries/recent.md",
+      "text": "---\nid: 'generated-summary:recent'\nmemory_type: generated-summary\ntitle: 'recent memory summary'\nsummary: 'Active work covers retrieval ranking follow-ups and benchmark fixture cleanup.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'record_session.py'\nsource_ids:\n  - 'session:2026-03-27:benchmark-fixture-planning'\n---\n\n# Recent Memory\n\n## Active Context\n- Retrieval ranking is under active review.\n- Benchmark fixtures are still being expanded.\n"
+    },
+    {
+      "path": "docs/memory/summaries/topics/workspace-memory-maintenance.md",
+      "text": "---\nid: 'topic-summary:workspace-memory-maintenance'\nmemory_type: topic-summary\ntitle: 'Workspace memory maintenance status'\nsummary: 'Maintenance automation is scripted, schema-scoped, and covered by durable rules.'\ncreated_at: 2026-03-26\nupdated_at: 2026-03-27\ntopic: 'workspace memory maintenance'\nsource_ids:\n  - 'session:2026-03-23:maintenance-automation-review'\ntags:\n  - 'workspace-memory'\n  - 'maintenance'\n---\n\n# Topic Summary: workspace memory maintenance\n\n## Current State\n- Maintenance scripts update typed metadata and canonical sections only.\n- The maintenance path no longer needs generic workspace status to answer this query.\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-23-maintenance-automation-review.md",
+      "text": "---\nid: 'session:2026-03-23:maintenance-automation-review'\nmemory_type: session\ntitle: 'maintenance-automation-review'\nsummary: 'Reviewed the maintenance flow and extracted the schema-scoped update rule.'\nsession_date: 2026-03-23\ncreated_at: 2026-03-23\nupdated_at: 2026-03-23\ntags:\n  - 'workspace-memory'\n  - 'maintenance'\n---\n\n# Session: maintenance-automation-review\n\n## Key Decisions\n- Maintenance automation should stay schema-scoped.\n"
+    }
+  ],
+  "expected_candidate_ids": [
+    "topic-summary:workspace-memory-maintenance"
+  ],
+  "expected_top_id": "topic-summary:workspace-memory-maintenance",
+  "expected_layers": [
+    "topic-summary"
+  ],
+  "bucket": "current-state-scoped",
+  "forbidden_candidate_ids": [
+    "generated-index:workspace-memory",
+    "generated-summary:recent",
+    "session:2026-03-23:maintenance-automation-review"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workspace Memory Benchmark Authoring"
+  short_description: "Add or refine workspace-memory benchmark fixtures"
+  default_prompt: "Use $workspace-memory-benchmark-authoring to add or refine self-built workspace-memory benchmark fixtures without changing runtime retrieval code unless the user explicitly asks."

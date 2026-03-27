@@ -75,6 +75,26 @@ Docs:
 - [`WMS-ZH`](./docs/skills/workspace-memory-skill/README_zh.md): 中文说明
 - [`WMS-SKILL`](./.agents/skills/workspace-memory-skill/SKILL.md): runtime instructions
 
+### Workspace Memory Benchmark Authoring
+
+A companion skill for `workspace-memory-skill` that teaches agents how to expand self-built benchmark fixtures safely, including subagent-assisted drafting constrained to the benchmark fixture directory.
+
+Docs:
+
+- [`WMBA-EN`](./docs/skills/workspace-memory-benchmark-authoring/README.md): English overview
+- [`WMBA-ZH`](./docs/skills/workspace-memory-benchmark-authoring/README_zh.md): 中文说明
+- [`WMBA-SKILL`](./.agents/skills/workspace-memory-benchmark-authoring/SKILL.md): runtime instructions
+
+### Workspace Memory Benchmark Analysis
+
+A companion skill for `workspace-memory-skill` that teaches agents how to run benchmark commands, interpret retrieval failures by bucket, and turn those results into targeted optimization guidance.
+
+Docs:
+
+- [`WMAN-EN`](./docs/skills/workspace-memory-benchmark-analysis/README.md): English overview
+- [`WMAN-ZH`](./docs/skills/workspace-memory-benchmark-analysis/README_zh.md): 中文说明
+- [`WMAN-SKILL`](./.agents/skills/workspace-memory-benchmark-analysis/SKILL.md): runtime instructions
+
 ## Install
 
 List the installable skills available in this GitHub repository:
@@ -94,6 +114,8 @@ Install a specific skill from the repo:
 ```bash
 npx skills add fightZy/simple-skills --skill idea-credibility-analyst
 npx skills add fightZy/simple-skills --skill workspace-memory-skill
+npx skills add fightZy/simple-skills --skill workspace-memory-benchmark-authoring
+npx skills add fightZy/simple-skills --skill workspace-memory-benchmark-analysis
 ```
 
 Repository-level tests live under `tests/`. Installable skill payloads stay under `.agents/skills/` and should not include development-only test files.
@@ -103,6 +125,41 @@ These commands work with the `skills` CLI and are intended for skill-compatible 
 ## Usage
 
 After installation, each skill runs according to its own `SKILL.md`. Use the doc links above to understand scope, capabilities, and scenarios before installing or invoking a skill.
+
+## Benchmarking Workspace Memory
+
+The workspace-memory skill now includes a repository-level benchmark harness for retrieval evaluation. This harness lives outside the installable skill payload and exercises the real runtime query script through subprocess calls.
+
+Repo-owned benchmark fixtures live in `tests/workspace-memory-skill/benchmark_fixtures/`. They cover:
+
+- current-state layered retrieval
+- experience retrieval with lineage promotion
+- norms queries that should prefer crystals
+- exact-id lookup
+- sparse or negative retrieval behavior
+
+Run the retrieval benchmark suite:
+
+```bash
+python -m scripts.benchmarks.workspace_memory.runner tests/workspace-memory-skill/benchmark_fixtures
+```
+
+Run the focused benchmark tests:
+
+```bash
+python -m pytest tests/workspace-memory-skill/test_workspace_memory_benchmark.py -q
+```
+
+The benchmark harness also includes:
+
+- an optional fixed-LLM QA adapter boundary for end-to-end evaluation
+- a `LoCoMo` adapter that converts external records into the repository's internal benchmark case schema
+
+Current boundary:
+
+- retrieval benchmarking is implemented and covered by tests
+- fixed-LLM QA is scaffolded but only runs when model configuration is supplied
+- `LoCoMo` support is adapter-based and intended for staged integration, not leaderboard-compatible claims in this first batch
 
 ## Keywords
 
@@ -118,6 +175,9 @@ Useful search terms for this repository:
 - startup research skill
 - competitor analysis skill
 - workspace memory skill
+- workspace memory benchmark
+- retrieval benchmark authoring
+- retrieval benchmark analysis
 - project memory for coding agents
 - reusable prompt engineering workflows
 

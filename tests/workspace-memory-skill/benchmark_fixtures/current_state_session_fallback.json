@@ -1,0 +1,41 @@
+{
+  "case_id": "current-state-session-fallback-when-topic-summary-missing",
+  "query": {
+    "query_type": "current-state",
+    "topic": "rollback",
+    "limit": 5
+  },
+  "memory_files": [
+    {
+      "path": "docs/memory/index.md",
+      "text": "---\nid: 'generated-index:workspace-memory'\nmemory_type: generated-index\ntitle: 'workspace memory index'\nsummary: 'Top-level entry point for the workspace memory tree and its generated summaries.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'init_memory.py'\n---\n\n# Workspace Memory\n\n## Start Here\n- Read the recent summary for active work.\n- Read a topic summary before dropping to sessions when a higher-level file matches.\n"
+    },
+    {
+      "path": "docs/memory/summaries/recent.md",
+      "text": "---\nid: 'generated-summary:recent'\nmemory_type: generated-summary\ntitle: 'recent memory summary'\nsummary: 'Active work covers maintenance automation follow-ups and benchmark fixture cleanup.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'record_session.py'\nsource_ids:\n  - 'session:2026-03-27:maintenance-follow-up'\n---\n\n# Recent Memory\n\n## Active Context\n- Maintenance automation follow-ups are still open.\n- Benchmark fixtures need better coverage for retrieval fallbacks.\n"
+    },
+    {
+      "path": "docs/memory/summaries/topics/workspace-memory-maintenance.md",
+      "text": "---\nid: 'topic-summary:workspace-memory-maintenance'\nmemory_type: topic-summary\ntitle: 'Workspace memory maintenance status'\nsummary: 'Maintenance automation is focused on schema-scoped updates and summary refreshes.'\ncreated_at: 2026-03-26\nupdated_at: 2026-03-27\ntopic: 'workspace memory maintenance'\nsource_ids:\n  - 'session:2026-03-27:maintenance-follow-up'\ntags:\n  - 'workspace-memory'\n  - 'maintenance'\n---\n\n# Topic Summary: workspace memory maintenance\n\n## Current State\n- Maintenance work is centered on schema-safe updates.\n- No incident review is required for this maintenance track.\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-22-rollback-ranking-investigation.md",
+      "text": "---\nid: 'session:2026-03-22:rollback-ranking-investigation'\nmemory_type: session\ntitle: 'rollback-ranking-investigation'\nsummary: 'Investigated why a ranking change had to be rolled back after it promoted irrelevant sessions ahead of summaries.'\nsession_date: 2026-03-22\ncreated_at: 2026-03-22\nupdated_at: 2026-03-22\ntags:\n  - 'workspace-memory'\n  - 'rollback'\n  - 'ranking'\n---\n\n# Session: rollback-ranking-investigation\n\n## Goal\nUnderstand the rollback path for an unsafe ranking change.\n\n## Key Decisions\n- Keep a session fallback when explicit filters do not match any topic summary.\n- Preserve higher-level files as the default path when they do match.\n"
+    }
+  ],
+  "expected_candidate_ids": [
+    "generated-index:workspace-memory",
+    "generated-summary:recent",
+    "session:2026-03-22:rollback-ranking-investigation"
+  ],
+  "expected_top_id": "generated-index:workspace-memory",
+  "expected_layers": [
+    "generated-index",
+    "generated-summary",
+    "session"
+  ],
+  "bucket": "current-state-fallback",
+  "forbidden_candidate_ids": [
+    "topic-summary:workspace-memory-maintenance"
+  ]
+}

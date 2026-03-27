@@ -1,0 +1,48 @@
+{
+  "case_id": "experience-sparse-negative",
+  "query": {
+    "query_type": "experience",
+    "topic": "handshake",
+    "limit": 5
+  },
+  "memory_files": [
+    {
+      "path": "docs/memory/index.md",
+      "text": "---\nid: 'generated-index:workspace-memory'\nmemory_type: generated-index\ntitle: 'workspace memory index'\nsummary: 'Top-level entry point for the memory tree.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'init_memory.py'\n---\n\n# Workspace Memory\n"
+    },
+    {
+      "path": "docs/memory/summaries/recent.md",
+      "text": "---\nid: 'generated-summary:recent'\nmemory_type: generated-summary\ntitle: 'recent memory summary'\nsummary: 'Recent work covers ranking, maintenance automation, and benchmark planning.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'record_session.py'\nsource_ids:\n  - 'session:2026-03-23:maintenance-automation-review'\n  - 'session:2026-03-27:benchmark-fixture-planning'\n---\n\n# Recent Memory\n\n## Active Context\n- No handshake-specific work has been recorded.\n"
+    },
+    {
+      "path": "docs/memory/summaries/topics/workspace-memory.md",
+      "text": "---\nid: 'topic-summary:workspace-memory'\nmemory_type: topic-summary\ntitle: 'Workspace memory status'\nsummary: 'Query retrieval, maintenance automation, and language policy are the active themes.'\ncreated_at: 2026-03-24\nupdated_at: 2026-03-27\ntopic: 'workspace memory'\nsource_ids:\n  - 'session:2026-03-23:maintenance-automation-review'\n  - 'session:2026-03-27:benchmark-fixture-planning'\ntags:\n  - 'workspace-memory'\n  - 'retrieval'\n---\n\n# Topic Summary: workspace memory\n\n## Current State\n- The subsystem is focused on retrieval and maintenance automation.\n"
+    },
+    {
+      "path": "docs/memory/crystals/crystal-query-stays-metadata-first.md",
+      "text": "---\nid: 'crystal:query-stays-metadata-first'\nmemory_type: crystal\ntitle: 'Query retrieval stays metadata-first'\nsummary: 'The first retrieval layer should rank candidate memory files, not synthesize free-form answers.'\ncreated_at: 2026-03-24\nupdated_at: 2026-03-27\nknowledge_type: rule\nsource_ids:\n  - 'session:2026-03-23:maintenance-automation-review'\ntags:\n  - 'workspace-memory'\n  - 'retrieval'\napplies_to:\n  - 'docs/memory/**'\n---\n\n# Crystal: Query retrieval stays metadata-first\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-23-maintenance-automation-review.md",
+      "text": "---\nid: 'session:2026-03-23:maintenance-automation-review'\nmemory_type: session\ntitle: 'maintenance-automation-review'\nsummary: 'Reviewed the maintenance flow and extracted the schema-scoped update rule.'\nsession_date: 2026-03-23\ncreated_at: 2026-03-23\nupdated_at: 2026-03-23\ntags:\n  - 'workspace-memory'\n  - 'automation'\n---\n\n# Session: maintenance-automation-review\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-27-benchmark-fixture-planning.md",
+      "text": "---\nid: 'session:2026-03-27:benchmark-fixture-planning'\nmemory_type: session\ntitle: 'benchmark-fixture-planning'\nsummary: 'Drafted self-built retrieval benchmark cases for workspace memory.'\nsession_date: 2026-03-27\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ntags:\n  - 'workspace-memory'\n  - 'benchmark'\n---\n\n# Session: benchmark-fixture-planning\n"
+    }
+  ],
+  "expected_candidate_ids": [
+    "generated-summary:recent"
+  ],
+  "expected_top_id": "generated-summary:recent",
+  "expected_layers": [
+    "generated-summary"
+  ],
+  "bucket": "negative",
+  "forbidden_candidate_ids": [
+    "topic-summary:workspace-memory",
+    "crystal:query-stays-metadata-first",
+    "session:2026-03-23:maintenance-automation-review",
+    "session:2026-03-27:benchmark-fixture-planning"
+  ]
+}

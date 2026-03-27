@@ -1,0 +1,41 @@
+{
+  "case_id": "experience-lineage-beats-direct-keyword-noise",
+  "query": {
+    "query_type": "experience",
+    "topic": "rollback",
+    "limit": 5
+  },
+  "memory_files": [
+    {
+      "path": "docs/memory/summaries/recent.md",
+      "text": "---\nid: 'generated-summary:recent'\nmemory_type: generated-summary\ntitle: 'recent memory summary'\nsummary: 'Recent work covers retrieval safety, rollback analysis, and benchmark curation.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'record_session.py'\nsource_ids:\n  - 'session:2026-03-21:rollback-ranking-experiment'\n---\n\n# Recent Memory\n\n## Active Context\n- Retrieval changes should not surface noisy derived files ahead of evidence-backed summaries.\n"
+    },
+    {
+      "path": "docs/memory/summaries/topics/workspace-memory-retrieval-status.md",
+      "text": "---\nid: 'topic-summary:workspace-memory-retrieval-status'\nmemory_type: topic-summary\ntitle: 'Workspace memory retrieval status'\nsummary: 'Derived summaries should stay visible when supporting sessions carry the concrete incident details.'\ncreated_at: 2026-03-22\nupdated_at: 2026-03-27\ntopic: 'workspace memory retrieval'\nsource_ids:\n  - 'session:2026-03-21:rollback-ranking-experiment'\ntags:\n  - 'workspace-memory'\n  - 'retrieval'\n---\n\n# Topic Summary: workspace memory retrieval\n\n## Key Decisions\n- Keep evidence-backed summaries ahead of raw sessions when lineage confirms they explain the same incident.\n"
+    },
+    {
+      "path": "docs/memory/summaries/topics/rollback-hygiene.md",
+      "text": "---\nid: 'topic-summary:rollback-hygiene'\nmemory_type: topic-summary\ntitle: 'Rollback hygiene checklist'\nsummary: 'Rollback hygiene follow-ups include naming cleanup, review notes, and checklists.'\ncreated_at: 2026-03-24\nupdated_at: 2026-03-27\ntopic: 'rollback hygiene'\nsource_ids:\n  - 'session:2026-03-24:cleanup-follow-ups'\ntags:\n  - 'workspace-memory'\n  - 'operations'\n---\n\n# Topic Summary: rollback hygiene\n\n## Current State\n- Cleanup notes mention rollback repeatedly but do not explain the ranking incident itself.\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-21-rollback-ranking-experiment.md",
+      "text": "---\nid: 'session:2026-03-21:rollback-ranking-experiment'\nmemory_type: session\ntitle: 'rollback-ranking-experiment'\nsummary: 'Rolled back an aggressive ranking experiment after it surfaced noisy derived files.'\nsession_date: 2026-03-21\ncreated_at: 2026-03-21\nupdated_at: 2026-03-21\ntags:\n  - 'workspace-memory'\n  - 'rollback'\n  - 'ranking'\n---\n\n# Session: rollback-ranking-experiment\n\n## Goal\nUnderstand why a rollback-triggering incident promoted the wrong summary candidates.\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-24-cleanup-follow-ups.md",
+      "text": "---\nid: 'session:2026-03-24:cleanup-follow-ups'\nmemory_type: session\ntitle: 'cleanup-follow-ups'\nsummary: 'Captured cleanup work after the retrieval incident was already understood.'\nsession_date: 2026-03-24\ncreated_at: 2026-03-24\nupdated_at: 2026-03-24\ntags:\n  - 'workspace-memory'\n  - 'cleanup'\n---\n\n# Session: cleanup-follow-ups\n\n## Follow-up\n- Renamed benchmark files and cleaned notes after the main incident analysis.\n"
+    }
+  ],
+  "expected_candidate_ids": [
+    "topic-summary:workspace-memory-retrieval-status"
+  ],
+  "expected_top_id": "topic-summary:workspace-memory-retrieval-status",
+  "expected_layers": [
+    "topic-summary"
+  ],
+  "bucket": "lineage-disambiguation",
+  "forbidden_candidate_ids": [
+    "topic-summary:rollback-hygiene"
+  ]
+}

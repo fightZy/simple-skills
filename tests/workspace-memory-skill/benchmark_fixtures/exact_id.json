@@ -1,0 +1,41 @@
+{
+  "case_id": "exact-id-single-record",
+  "query": {
+    "query_type": "current-state",
+    "id": "crystal:workspace-memory-maintenance-stays-schema-scoped",
+    "limit": 5
+  },
+  "memory_files": [
+    {
+      "path": "docs/memory/index.md",
+      "text": "---\nid: 'generated-index:workspace-memory'\nmemory_type: generated-index\ntitle: 'workspace memory index'\nsummary: 'Entry point for the memory tree.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'init_memory.py'\n---\n\n# Workspace Memory\n"
+    },
+    {
+      "path": "docs/memory/summaries/recent.md",
+      "text": "---\nid: 'generated-summary:recent'\nmemory_type: generated-summary\ntitle: 'recent memory summary'\nsummary: 'Recent work included maintenance reviews and benchmark planning.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'record_session.py'\nsource_ids:\n  - 'session:2026-03-23:maintenance-automation-review'\n  - 'session:2026-03-27:benchmark-fixture-planning'\n---\n\n# Recent Memory\n"
+    },
+    {
+      "path": "docs/memory/summaries/topics/workspace-memory-maintenance.md",
+      "text": "---\nid: 'topic-summary:workspace-memory-maintenance'\nmemory_type: topic-summary\ntitle: 'Workspace memory maintenance status'\nsummary: 'Maintenance automation is scripted, and norms are linked from a crystal.'\ncreated_at: 2026-03-23\nupdated_at: 2026-03-27\ntopic: 'workspace memory maintenance'\nsource_ids:\n  - 'session:2026-03-23:maintenance-automation-review'\ntags:\n  - 'workspace-memory'\n  - 'automation'\n---\n\n# Topic Summary: workspace memory maintenance\n"
+    },
+    {
+      "path": "docs/memory/crystals/crystal-workspace-memory-maintenance-stays-schema-scoped.md",
+      "text": "---\nid: 'crystal:workspace-memory-maintenance-stays-schema-scoped'\nmemory_type: crystal\ntitle: 'Workspace memory maintenance stays schema-scoped'\nsummary: 'Maintenance automation should update known metadata fields and canonical sections instead of applying free-form Markdown patches.'\ncreated_at: 2026-03-23\nupdated_at: 2026-03-27\nknowledge_type: rule\nsource_ids:\n  - 'session:2026-03-23:maintenance-automation-review'\ntags:\n  - 'workspace-memory'\n  - 'automation'\napplies_to:\n  - 'docs/memory/**'\n---\n\n# Crystal: Workspace memory maintenance stays schema-scoped\n\n## Statement\n- Update typed metadata and stable sections only.\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-23-maintenance-automation-review.md",
+      "text": "---\nid: 'session:2026-03-23:maintenance-automation-review'\nmemory_type: session\ntitle: 'maintenance-automation-review'\nsummary: 'Reviewed the maintenance flow and extracted the schema-scoped update rule.'\nsession_date: 2026-03-23\ncreated_at: 2026-03-23\nupdated_at: 2026-03-23\ntags:\n  - 'workspace-memory'\n  - 'automation'\n---\n\n# Session: maintenance-automation-review\n"
+    }
+  ],
+  "expected_candidate_ids": [
+    "crystal:workspace-memory-maintenance-stays-schema-scoped"
+  ],
+  "expected_top_id": "crystal:workspace-memory-maintenance-stays-schema-scoped",
+  "expected_layers": [
+    "crystal"
+  ],
+  "bucket": "exact-id",
+  "forbidden_candidate_ids": [
+    "topic-summary:workspace-memory-maintenance"
+  ]
+}

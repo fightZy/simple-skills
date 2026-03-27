@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workspace Memory Benchmark Analysis"
+  short_description: "Run and interpret workspace-memory benchmark results"
+  default_prompt: "Use $workspace-memory-benchmark-analysis to run workspace-memory benchmark commands, interpret retrieval failures by bucket, and recommend the smallest next optimization."

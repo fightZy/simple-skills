@@ -128,6 +128,19 @@ The main runtime pieces are:
 Development-only assets stay outside the installable skill directory.
 Tests for this skill live under `tests/workspace-memory-skill/` at the repository root so the runtime skill payload stays limited to files an agent actually needs to read or execute.
 
+## Benchmark Companions
+
+Benchmark maintenance is now intentionally split away from the runtime memory skill.
+
+Use companion skills for repository benchmark work:
+
+- `workspace-memory-benchmark-authoring`
+  Add or refine self-built benchmark fixtures, including subagent-assisted fixture drafting under `tests/workspace-memory-skill/benchmark_fixtures/`.
+- `workspace-memory-benchmark-analysis`
+  Run benchmark commands, read bucketed results, and map failures back to likely retrieval defects.
+
+This keeps the runtime skill focused on memory operations inside a workspace, while benchmark maintenance remains discoverable without polluting the main routing layer.
+
 ## Workflow Model
 
 ### 1. Initialize memory
@@ -201,10 +214,12 @@ Implemented:
 - `scripts/update_crystal.py`
 - `scripts/create_topic_summary.py`
 - `scripts/update_topic_summary.py`
+- repository benchmark harness under `scripts/benchmarks/workspace_memory/`
 
 Partially designed but not fully implemented:
 - broader derived-file freshness beyond recent/archive
 - richer query ranking and answer synthesis
+- fixed-LLM benchmark execution beyond the current adapter scaffold
 
 ## Known Gaps
 
@@ -255,6 +270,9 @@ If the skill continues to evolve, the most natural next moves are:
 
 5. Improve richer ranking
    The next step is better ranking across multiple competing derived candidates, not just lineage overlap.
+
+6. Expand benchmark coverage and analysis
+   Companion benchmark skills now exist; the next step is to use bucketed fixtures and analysis outputs to guide retrieval improvements more systematically.
 
 ## Working Principle For Future Changes
 

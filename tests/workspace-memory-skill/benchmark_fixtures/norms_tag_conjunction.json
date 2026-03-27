@@ -1,0 +1,49 @@
+{
+  "case_id": "norms-requires-all-tags-not-any-tag",
+  "query": {
+    "query_type": "norms",
+    "tag": [
+      "workspace-memory",
+      "automation"
+    ],
+    "limit": 5
+  },
+  "memory_files": [
+    {
+      "path": "docs/memory/index.md",
+      "text": "---\nid: 'generated-index:workspace-memory'\nmemory_type: generated-index\ntitle: 'workspace memory index'\nsummary: 'Workspace memory tree for durable team knowledge.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'init_memory.py'\n---\n\n# Workspace Memory\n"
+    },
+    {
+      "path": "docs/memory/summaries/topics/workspace-memory-maintenance-guardrails.md",
+      "text": "---\nid: 'topic-summary:workspace-memory-maintenance-guardrails'\nmemory_type: topic-summary\ntitle: 'Workspace memory maintenance guardrails'\nsummary: 'Maintenance automation relies on schema-scoped updates and durable rules captured in crystals.'\ncreated_at: 2026-03-24\nupdated_at: 2026-03-27\ntopic: 'workspace memory maintenance guardrails'\nsource_ids:\n  - 'session:2026-03-24:maintenance-guardrail-review'\ntags:\n  - 'workspace-memory'\n  - 'automation'\n---\n\n# Topic Summary: workspace memory maintenance guardrails\n\n## Current State\n- Maintenance automation exists for typed memory files.\n- Querying norms should land on a crystal that carries the durable guardrail.\n"
+    },
+    {
+      "path": "docs/memory/crystals/crystal-workspace-memory-maintenance-stays-schema-scoped.md",
+      "text": "---\nid: 'crystal:workspace-memory-maintenance-stays-schema-scoped'\nmemory_type: crystal\ntitle: 'Workspace memory maintenance stays schema-scoped'\nsummary: 'Maintenance automation should update known metadata fields and canonical sections instead of applying free-form Markdown patches.'\ncreated_at: 2026-03-24\nupdated_at: 2026-03-27\nknowledge_type: rule\nsource_ids:\n  - 'session:2026-03-24:maintenance-guardrail-review'\ntags:\n  - 'workspace-memory'\n  - 'automation'\napplies_to:\n  - 'docs/memory/**'\n---\n\n# Crystal: Workspace memory maintenance stays schema-scoped\n\n## Statement\n- Update typed metadata and stable sections only.\n- Free-form patching is not the default maintenance path.\n"
+    },
+    {
+      "path": "docs/memory/crystals/crystal-workspace-memory-keep-derived-files-small.md",
+      "text": "---\nid: 'crystal:workspace-memory-keep-derived-files-small'\nmemory_type: crystal\ntitle: 'Workspace memory keeps derived files small'\nsummary: 'Generated summaries and topic files should stay compact enough for agents to read quickly.'\ncreated_at: 2026-03-25\nupdated_at: 2026-03-27\nknowledge_type: rule\nsource_ids:\n  - 'session:2026-03-25:derived-file-size-review'\ntags:\n  - 'workspace-memory'\napplies_to:\n  - 'docs/memory/summaries/**'\n---\n\n# Crystal: Workspace memory keeps derived files small\n\n## Statement\n- Derived files should stay concise and easy to refresh.\n"
+    },
+    {
+      "path": "docs/memory/crystals/crystal-automation-jobs-use-stable-checkpoints.md",
+      "text": "---\nid: 'crystal:automation-jobs-use-stable-checkpoints'\nmemory_type: crystal\ntitle: 'Automation jobs use stable checkpoints'\nsummary: 'Automation jobs should keep progress markers so reruns are resumable and auditable.'\ncreated_at: 2026-03-25\nupdated_at: 2026-03-27\nknowledge_type: rule\nsource_ids:\n  - 'session:2026-03-25:automation-checkpoint-review'\ntags:\n  - 'automation'\napplies_to:\n  - 'scripts/**'\n---\n\n# Crystal: Automation jobs use stable checkpoints\n\n## Statement\n- Long-running jobs should emit stable checkpoints for resumable execution.\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-24-maintenance-guardrail-review.md",
+      "text": "---\nid: 'session:2026-03-24:maintenance-guardrail-review'\nmemory_type: session\ntitle: 'maintenance-guardrail-review'\nsummary: 'Reviewed the maintenance guardrail that automation should stay schema-scoped when updating workspace memory.'\nsession_date: 2026-03-24\ncreated_at: 2026-03-24\nupdated_at: 2026-03-24\ntags:\n  - 'workspace-memory'\n  - 'automation'\n---\n\n# Session: maintenance-guardrail-review\n\n## Key Decisions\n- Capture the maintenance guardrail in a crystal.\n- Keep the session as provenance for the rule.\n"
+    }
+  ],
+  "expected_candidate_ids": [
+    "crystal:workspace-memory-maintenance-stays-schema-scoped"
+  ],
+  "expected_top_id": "crystal:workspace-memory-maintenance-stays-schema-scoped",
+  "expected_layers": [
+    "crystal"
+  ],
+  "bucket": "norms-tag-filter",
+  "forbidden_candidate_ids": [
+    "crystal:workspace-memory-keep-derived-files-small",
+    "crystal:automation-jobs-use-stable-checkpoints"
+  ]
+}

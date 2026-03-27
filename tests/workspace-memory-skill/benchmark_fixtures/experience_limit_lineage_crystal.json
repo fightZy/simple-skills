@@ -1,0 +1,41 @@
+{
+  "case_id": "experience-limit-prefers-lineage-crystal",
+  "query": {
+    "query_type": "experience",
+    "topic": "feedback",
+    "limit": 1
+  },
+  "memory_files": [
+    {
+      "path": "docs/memory/summaries/recent.md",
+      "text": "---\nid: 'generated-summary:recent'\nmemory_type: generated-summary\ntitle: 'recent memory summary'\nsummary: 'Recent retrieval work includes ranking feedback and benchmark cleanup.'\ncreated_at: 2026-03-27\nupdated_at: 2026-03-27\ngenerator: 'record_session.py'\nsource_ids:\n  - 'session:2026-03-25:ranking-feedback'\n---\n\n# Recent Memory\n\n## Active Context\n- Ranking feedback is still shaping retrieval ordering.\n"
+    },
+    {
+      "path": "docs/memory/summaries/topics/feedback-cleanup.md",
+      "text": "---\nid: 'topic-summary:feedback-cleanup'\nmemory_type: topic-summary\ntitle: 'Feedback cleanup notes'\nsummary: 'Feedback cleanup notes mention feedback repeatedly but do not explain the incident.'\ncreated_at: 2026-03-25\nupdated_at: 2026-03-27\ntopic: 'feedback cleanup'\nsource_ids:\n  - 'session:2026-03-25:cleanup-follow-up'\ntags:\n  - 'workspace-memory'\n---\n\n# Topic Summary: feedback cleanup\n\n## Follow-up\n- Cleanup notes repeated the keyword but did not capture the rule behind the incident.\n"
+    },
+    {
+      "path": "docs/memory/crystals/crystal-derived-promotion-needs-lineage.md",
+      "text": "---\nid: 'crystal:derived-promotion-needs-lineage'\nmemory_type: crystal\ntitle: 'Derived promotion needs lineage'\nsummary: 'Prefer a lineage-backed derived file over keyword-only matches.'\ncreated_at: 2026-03-25\nupdated_at: 2026-03-27\nknowledge_type: rule\nsource_ids:\n  - 'session:2026-03-25:ranking-feedback'\ntags:\n  - 'workspace-memory'\n  - 'retrieval'\n---\n\n# Crystal: Derived promotion needs lineage\n\n## Statement\n- Keyword-only matches should not crowd out derived files with evidence overlap.\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-25-ranking-feedback.md",
+      "text": "---\nid: 'session:2026-03-25:ranking-feedback'\nmemory_type: session\ntitle: 'ranking-feedback'\nsummary: 'Need a better ordering signal for derived files.'\nsession_date: 2026-03-25\ncreated_at: 2026-03-25\nupdated_at: 2026-03-25\ntags:\n  - 'workspace-memory'\n  - 'feedback'\n---\n\n# Session: ranking-feedback\n\n## Goal\nUnderstand why keyword matches are outranking evidence-backed derived files.\n"
+    },
+    {
+      "path": "docs/memory/sessions/2026/03/2026-03-25-cleanup-follow-up.md",
+      "text": "---\nid: 'session:2026-03-25:cleanup-follow-up'\nmemory_type: session\ntitle: 'cleanup-follow-up'\nsummary: 'Captured cleanup notes after the main incident was understood.'\nsession_date: 2026-03-25\ncreated_at: 2026-03-25\nupdated_at: 2026-03-25\ntags:\n  - 'workspace-memory'\n  - 'cleanup'\n---\n\n# Session: cleanup-follow-up\n\n## Follow-up\n- Cleanup notes should not outrank evidence-backed guidance.\n"
+    }
+  ],
+  "expected_candidate_ids": [
+    "crystal:derived-promotion-needs-lineage"
+  ],
+  "expected_top_id": "crystal:derived-promotion-needs-lineage",
+  "expected_layers": [
+    "crystal"
+  ],
+  "bucket": "lineage-cutoff",
+  "forbidden_candidate_ids": [
+    "topic-summary:feedback-cleanup"
+  ]
+}

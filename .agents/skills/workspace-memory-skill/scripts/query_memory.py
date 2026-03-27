@@ -142,9 +142,22 @@ def query_records(
         if recent_record is not None:
             base_results.append((recent_record, "rolling summary of active context"))
 
+        explicit_filters = has_explicit_filters(topic_filter, tag_filters)
+        base_matches = [
+            (record, reason)
+            for record, reason in base_results
+            if matches_topic(record, topic_filter) and matches_tags(record, tag_filters)
+        ]
+
+        if filtered_topics and explicit_filters and not base_matches:
+            extras = [
+                (record, "topic summary matched the current-state filters")
+                for record in filtered_topics[:limit]
+            ]
+            return dedupe_results(extras)
         if filtered_topics:
             extras = [(record, "topic summary matched the current-state filters") for record in filtered_topics[:limit]]
-        elif has_explicit_filters(topic_filter, tag_filters):
+        elif explicit_filters:
             extras = [(record, "session match used because no higher-level file matched") for record in filtered_sessions[:limit]]
         else:
             extras = []
@@ -156,37 +169,30 @@ def query_records(
             base_results.append((recent_record, "recent work summary for experience queries"))
         evidence_ids = session_evidence_ids(filtered_sessions)
         extras = (
-            ranked_derived_results(
+            ranked_experience_derived_results(
                 records,
-                "topic-summary",
                 topic_filter,
                 tag_filters,
                 evidence_ids,
-                "experience",
-            )
-            + ranked_derived_results(
-                records,
-                "crystal",
-                topic_filter,
-                tag_filters,
-                evidence_ids,
-                "experience",
             )
             + [(record, "session matched the experience filters") for record in filtered_sessions]
         )
         return dedupe_results(base_results + extras[:limit])
 
     evidence_ids = session_evidence_ids(filtered_sessions)
+    crystal_results = ranked_derived_results(
+        records,
+        "crystal",
+        topic_filter,
+        tag_filters,
+        evidence_ids,
+        "norms",
+    )
+    if crystal_results:
+        return dedupe_results(crystal_results[:limit])
+
     extras = (
         ranked_derived_results(
-            records,
-            "crystal",
-            topic_filter,
-            tag_filters,
-            evidence_ids,
-            "norms",
-        )
-        + ranked_derived_results(
             records,
             "topic-summary",
             topic_filter,
@@ -225,7 +231,7 @@ def ranked_derived_results(
     evidence_ids: set[str],
     query_label: str,
 ) -> list[tuple[MemoryRecord, str]]:
-    ranked: list[tuple[tuple[int, int, str], MemoryRecord, str]] = []
+    ranked: list[tuple[tuple[int, int, str], int, bool, MemoryRecord, str]] = []
     for record in records:
         if record.memory_type != memory_type:
             continue
@@ -238,12 +244,61 @@ def ranked_derived_results(
         ranked.append(
             (
                 (1 if overlap > 0 else 0, 1 if direct_match else 0, record.title.lower()),
+                overlap,
+                direct_match,
                 record,
                 derived_reason(memory_type, query_label, direct_match, overlap),
             )
         )
+    if any(overlap > 0 for _score, overlap, _direct_match, _record, _reason in ranked):
+        ranked = [
+            item
+            for item in ranked
+            if item[1] > 0 or not item[2]
+        ]
     ranked.sort(reverse=True)
-    return [(record, reason) for _score, record, reason in ranked]
+    return [(record, reason) for _score, _overlap, _direct_match, record, reason in ranked]
+
+
+def ranked_experience_derived_results(
+    records: list[MemoryRecord],
+    topic_filter: str | None,
+    tag_filters: list[str],
+    evidence_ids: set[str],
+) -> list[tuple[MemoryRecord, str]]:
+    ranked: list[tuple[tuple[int, int, int, str], int, bool, MemoryRecord, str]] = []
+    for memory_type, type_priority in [("topic-summary", 1), ("crystal", 0)]:
+        for record in records:
+            if record.memory_type != memory_type:
+                continue
+            if not matches_tags(record, tag_filters):
+                continue
+            direct_match = matches_topic(record, topic_filter)
+            overlap = lineage_overlap(record, evidence_ids)
+            if not direct_match and overlap == 0:
+                continue
+            ranked.append(
+                (
+                    (
+                        1 if overlap > 0 else 0,
+                        1 if direct_match else 0,
+                        type_priority,
+                        record.title.lower(),
+                    ),
+                    overlap,
+                    direct_match,
+                    record,
+                    derived_reason(memory_type, "experience", direct_match, overlap),
+                )
+            )
+    if any(overlap > 0 for _score, overlap, _direct_match, _record, _reason in ranked):
+        ranked = [
+            item
+            for item in ranked
+            if item[1] > 0 or not item[2]
+        ]
+    ranked.sort(reverse=True)
+    return [(record, reason) for _score, _overlap, _direct_match, record, reason in ranked]
 
 
 def matches_topic(record: MemoryRecord, topic_filter: str | None) -> bool:
