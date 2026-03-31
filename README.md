@@ -1,22 +1,24 @@
 # Simple Skills
 
-Reusable AI agent skills for idea validation, startup research, and workspace memory.
+Reusable AI agent skills for idea validation, advanced brainstorming, startup research, and workspace memory.
 
-This repository contains installable skills for the `skills.sh` ecosystem and for coding agents such as Codex, Claude Code, Cursor, Cline, OpenCode, and Goose. The current skills focus on two practical jobs:
+This repository contains installable skills for the `skills.sh` ecosystem and for coding agents such as Codex, Claude Code, Cursor, Cline, OpenCode, and Goose. The current skills focus on three practical jobs:
 
 - validating whether a product, startup, feature, or workflow idea is worth pursuing
+- expanding an idea into broader, less conservative, more imaginative directions
 - preserving durable workspace memory across repeated agent sessions inside a repository
 
 Install from GitHub with `npx skills add fightZy/simple-skills`.
 
 ## Why This Repo Exists
 
-Many agent workflows fail for one of two reasons:
+Many agent workflows fail for one of three reasons:
 
 - teams build ideas before checking whether the market is too crowded or the positioning is too weak
+- teams brainstorm but still collapse too quickly into safe or conventional options
 - teams lose project context between sessions and keep re-explaining the same decisions, conventions, and follow-ups
 
-This repo packages both workflows as reusable agent skills so they can be installed, shared, and reused across projects.
+This repo packages these workflows as reusable agent skills so they can be installed, shared, and reused across projects.
 
 ## Skills
 
@@ -46,6 +48,33 @@ Docs:
 - [`ICA-EN`](./docs/skills/idea-credibility-analyst/README.md): English overview
 - [`ICA-ZH`](./docs/skills/idea-credibility-analyst/README_zh.md): 中文说明
 - [`ICA-SKILL`](./.agents/skills/idea-credibility-analyst/SKILL.md): runtime instructions
+
+### Advanced Brainstorming
+
+A standalone AI agent skill for higher-order brainstorming, frame-breaking ideation, and widening the possibility space around a user proposal.
+
+It is designed for cases where the user does not want the safest recommendation or a polished MVP plan. Instead, they want an agent to push an idea into broader, less obvious, and more imaginative territory while still keeping the output legible.
+
+Core capabilities:
+
+- surface hidden assumptions in the user's current framing
+- strengthen the current direction before replacing it
+- generate frame-breaking alternatives and wildcard directions
+- organize ideas into layers instead of one flat brainstorm dump
+- lightly prioritize the strongest directions without turning into implementation planning
+
+Typical use cases:
+
+- expanding a proposal that feels too narrow or too safe
+- asking for more surprising product directions
+- pushing a vague concept into richer possibility spaces
+- escaping generic brainstorming and shallow feature lists
+
+Docs:
+
+- [`AB-EN`](./docs/skills/advanced-brainstorming/README.md): English overview
+- [`AB-ZH`](./docs/skills/advanced-brainstorming/README_zh.md): 中文说明
+- [`AB-SKILL`](./.agents/skills/advanced-brainstorming/SKILL.md): runtime instructions
 
 ### Workspace Memory Skill
 
@@ -113,6 +142,7 @@ Install a specific skill from the repo:
 
 ```bash
 npx skills add fightZy/simple-skills --skill idea-credibility-analyst
+npx skills add fightZy/simple-skills --skill advanced-brainstorming
 npx skills add fightZy/simple-skills --skill workspace-memory-skill
 npx skills add fightZy/simple-skills --skill workspace-memory-benchmark-authoring
 npx skills add fightZy/simple-skills --skill workspace-memory-benchmark-analysis
@@ -172,6 +202,9 @@ Useful search terms for this repository:
 - Cursor skills
 - Cline skills
 - idea validation skill
+- advanced brainstorming skill
+- ideation skill
+- frame-breaking brainstorming
 - startup research skill
 - competitor analysis skill
 - workspace memory skill
@@ -184,6 +217,7 @@ Useful search terms for this repository:
 Abbreviation guide:
 
 - `ICA` = `Idea Credibility Analyst`
+- `AB` = `Advanced Brainstorming`
 - `WMS` = `Workspace Memory Skill`
 - `EN` = English README
 - `ZH` = Chinese README

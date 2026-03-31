@@ -1,0 +1,4 @@
+interface:
+  display_name: "Advanced Brainstorming"
+  short_description: "Expand ideas beyond conservative defaults with frame-breaking, layered ideation."
+  default_prompt: "Use $advanced-brainstorming to widen the user's idea space, surface hidden assumptions, generate unconventional but intelligible directions, and lightly prioritize the strongest routes without collapsing into execution planning."
