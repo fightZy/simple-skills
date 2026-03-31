@@ -46,22 +46,6 @@ Use it when a repository needs durable memory for decisions, conventions, ration
 
 Docs: [`WMS-EN`](./docs/skills/workspace-memory-skill/README.md), [`WMS-ZH`](./docs/skills/workspace-memory-skill/README_zh.md), [`WMS-SKILL`](./.agents/skills/workspace-memory-skill/SKILL.md)
 
-### Workspace Memory Benchmark Authoring
-
-Add or refine workspace-memory benchmark fixtures safely.
-
-Use it when expanding retrieval benchmark coverage under the benchmark fixture directory without mixing fixture authoring with runtime retrieval changes.
-
-Docs: [`WMBA-EN`](./docs/skills/workspace-memory-benchmark-authoring/README.md), [`WMBA-ZH`](./docs/skills/workspace-memory-benchmark-authoring/README_zh.md), [`WMBA-SKILL`](./.agents/skills/workspace-memory-benchmark-authoring/SKILL.md)
-
-### Workspace Memory Benchmark Analysis
-
-Run workspace-memory benchmarks and interpret failures.
-
-Use it when you need bucket-level retrieval diagnosis and the smallest next optimization step, rather than a flat pass/fail summary.
-
-Docs: [`WMAN-EN`](./docs/skills/workspace-memory-benchmark-analysis/README.md), [`WMAN-ZH`](./docs/skills/workspace-memory-benchmark-analysis/README_zh.md), [`WMAN-SKILL`](./.agents/skills/workspace-memory-benchmark-analysis/SKILL.md)
-
 ## Install
 
 List the installable skills available in this GitHub repository:
@@ -82,8 +66,6 @@ Install a specific skill from the repo:
 npx skills add fightZy/simple-skills --skill idea-credibility-analyst
 npx skills add fightZy/simple-skills --skill advanced-brainstorming
 npx skills add fightZy/simple-skills --skill workspace-memory-skill
-npx skills add fightZy/simple-skills --skill workspace-memory-benchmark-authoring
-npx skills add fightZy/simple-skills --skill workspace-memory-benchmark-analysis
 ```
 
 Repository-level tests live under `tests/`. Installable skill payloads stay under `.agents/skills/` and should not include development-only test files.
@@ -147,8 +129,6 @@ Useful search terms for this repository:
 - competitor analysis skill
 - workspace memory skill
 - workspace memory benchmark
-- retrieval benchmark authoring
-- retrieval benchmark analysis
 - project memory for coding agents
 - reusable prompt engineering workflows
 
