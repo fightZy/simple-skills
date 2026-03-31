@@ -24,105 +24,43 @@ This repo packages these workflows as reusable agent skills so they can be insta
 
 ### Idea Credibility Analyst
 
-A reusable AI agent skill for idea validation, startup research, competitor analysis, and market crowdedness assessment.
+Evaluate whether an idea is worth pursuing before building.
 
-It helps an agent move from vague discussion to structured judgment. The skill is designed for cases where the user does not just want brainstorming, but wants a sharper answer about differentiation, demand, alternatives, and whether there is enough room to continue.
+Use it when you want a sharper answer than brainstorming alone, especially for differentiation, alternatives, market crowdedness, or a `continue` / `pivot` / `stop` call.
 
-Core capabilities:
-
-- focused clarification instead of broad questionnaires
-- competitor research and alternative analysis
-- market crowdedness assessment
-- structured comparison of positioning, maturity, and gaps
-- final `continue` / `pivot` / `stop` recommendation
-
-Typical use cases:
-
-- validating a startup, SaaS, or AI product concept
-- pressure-testing a feature before building it
-- checking whether a workflow automation idea has a real wedge
-- understanding whether a market is too crowded or still has room
-
-Docs:
-
-- [`ICA-EN`](./docs/skills/idea-credibility-analyst/README.md): English overview
-- [`ICA-ZH`](./docs/skills/idea-credibility-analyst/README_zh.md): 中文说明
-- [`ICA-SKILL`](./.agents/skills/idea-credibility-analyst/SKILL.md): runtime instructions
+Docs: [`ICA-EN`](./docs/skills/idea-credibility-analyst/README.md), [`ICA-ZH`](./docs/skills/idea-credibility-analyst/README_zh.md), [`ICA-SKILL`](./.agents/skills/idea-credibility-analyst/SKILL.md)
 
 ### Advanced Brainstorming
 
-A standalone AI agent skill for higher-order brainstorming, frame-breaking ideation, and widening the possibility space around a user proposal.
+Expand a proposal into broader, less conservative, more imaginative directions.
 
-It is designed for cases where the user does not want the safest recommendation or a polished MVP plan. Instead, they want an agent to push an idea into broader, less obvious, and more imaginative territory while still keeping the output legible.
+Use it when the user wants higher-order ideation instead of the safest recommendation, a shallow idea list, or an early MVP plan.
 
-Core capabilities:
-
-- surface hidden assumptions in the user's current framing
-- strengthen the current direction before replacing it
-- generate frame-breaking alternatives and wildcard directions
-- organize ideas into layers instead of one flat brainstorm dump
-- lightly prioritize the strongest directions without turning into implementation planning
-
-Typical use cases:
-
-- expanding a proposal that feels too narrow or too safe
-- asking for more surprising product directions
-- pushing a vague concept into richer possibility spaces
-- escaping generic brainstorming and shallow feature lists
-
-Docs:
-
-- [`AB-EN`](./docs/skills/advanced-brainstorming/README.md): English overview
-- [`AB-ZH`](./docs/skills/advanced-brainstorming/README_zh.md): 中文说明
-- [`AB-SKILL`](./.agents/skills/advanced-brainstorming/SKILL.md): runtime instructions
+Docs: [`AB-EN`](./docs/skills/advanced-brainstorming/README.md), [`AB-ZH`](./docs/skills/advanced-brainstorming/README_zh.md), [`AB-SKILL`](./.agents/skills/advanced-brainstorming/SKILL.md)
 
 ### Workspace Memory Skill
 
-A reusable AI agent skill for repo-local workspace memory, project context preservation, and long-lived team knowledge.
+Preserve repo-local project context across repeated agent sessions.
 
-It is designed for small teams or solo builders who work repeatedly in the same repository and want project context to persist across conversations. Instead of relying on scattered chat history, this skill keeps memory inside the workspace with structured files, summaries, and durable knowledge artifacts.
+Use it when a repository needs durable memory for decisions, conventions, rationale, summaries, and follow-ups instead of re-explaining the same context every time.
 
-Core capabilities:
-
-- initialize workspace memory structure
-- record structured work sessions
-- keep recent context small and archive older material
-- separate source sessions from derived summaries
-- support durable knowledge such as rules, decisions, patterns, and insights
-
-Typical use cases:
-
-- preserving rationale and follow-ups between agent sessions
-- reducing repeated explanation in an active repo
-- maintaining recent summaries and archived history
-- building lightweight long-term project memory without external infrastructure
-- keeping coding agents aligned on decisions, conventions, and prior work
-
-Docs:
-
-- [`WMS-EN`](./docs/skills/workspace-memory-skill/README.md): English overview
-- [`WMS-ZH`](./docs/skills/workspace-memory-skill/README_zh.md): 中文说明
-- [`WMS-SKILL`](./.agents/skills/workspace-memory-skill/SKILL.md): runtime instructions
+Docs: [`WMS-EN`](./docs/skills/workspace-memory-skill/README.md), [`WMS-ZH`](./docs/skills/workspace-memory-skill/README_zh.md), [`WMS-SKILL`](./.agents/skills/workspace-memory-skill/SKILL.md)
 
 ### Workspace Memory Benchmark Authoring
 
-A companion skill for `workspace-memory-skill` that teaches agents how to expand self-built benchmark fixtures safely, including subagent-assisted drafting constrained to the benchmark fixture directory.
+Add or refine workspace-memory benchmark fixtures safely.
 
-Docs:
+Use it when expanding retrieval benchmark coverage under the benchmark fixture directory without mixing fixture authoring with runtime retrieval changes.
 
-- [`WMBA-EN`](./docs/skills/workspace-memory-benchmark-authoring/README.md): English overview
-- [`WMBA-ZH`](./docs/skills/workspace-memory-benchmark-authoring/README_zh.md): 中文说明
-- [`WMBA-SKILL`](./.agents/skills/workspace-memory-benchmark-authoring/SKILL.md): runtime instructions
+Docs: [`WMBA-EN`](./docs/skills/workspace-memory-benchmark-authoring/README.md), [`WMBA-ZH`](./docs/skills/workspace-memory-benchmark-authoring/README_zh.md), [`WMBA-SKILL`](./.agents/skills/workspace-memory-benchmark-authoring/SKILL.md)
 
 ### Workspace Memory Benchmark Analysis
 
-A companion skill for `workspace-memory-skill` that teaches agents how to run benchmark commands, interpret retrieval failures by bucket, and turn those results into targeted optimization guidance.
+Run workspace-memory benchmarks and interpret failures.
 
-Docs:
+Use it when you need bucket-level retrieval diagnosis and the smallest next optimization step, rather than a flat pass/fail summary.
 
-- [`WMAN-EN`](./docs/skills/workspace-memory-benchmark-analysis/README.md): English overview
-- [`WMAN-ZH`](./docs/skills/workspace-memory-benchmark-analysis/README_zh.md): 中文说明
-- [`WMAN-SKILL`](./.agents/skills/workspace-memory-benchmark-analysis/SKILL.md): runtime instructions
+Docs: [`WMAN-EN`](./docs/skills/workspace-memory-benchmark-analysis/README.md), [`WMAN-ZH`](./docs/skills/workspace-memory-benchmark-analysis/README_zh.md), [`WMAN-SKILL`](./.agents/skills/workspace-memory-benchmark-analysis/SKILL.md)
 
 ## Install
 
