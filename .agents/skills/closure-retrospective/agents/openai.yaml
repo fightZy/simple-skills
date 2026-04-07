@@ -1,0 +1,5 @@
+version: 1
+interface:
+  display_name: Closure Retrospective
+  short_description: Review a task at wrap-up and decide whether any reusable lesson should be proposed for codification into skills or project guidance.
+  default_prompt: Use $closure-retrospective when a non-trivial task is reaching closure and you need to decide whether the work exposed durable, reusable guidance worth suggesting for an existing skill, a new skill, or AGENTS.md / CLAUDE.md before final handoff.

@@ -1,21 +1,23 @@
 # Simple Skills
 
-Reusable AI agent skills for idea validation, advanced brainstorming, startup research, and workspace memory.
+Reusable AI agent skills for idea validation, advanced brainstorming, closure retrospectives, startup research, and workspace memory.
 
-This repository contains installable skills for the `skills.sh` ecosystem and for coding agents such as Codex, Claude Code, Cursor, Cline, OpenCode, and Goose. The current skills focus on three practical jobs:
+This repository contains installable skills for the `skills.sh` ecosystem and for coding agents such as Codex, Claude Code, Cursor, Cline, OpenCode, and Goose. The current skills focus on four practical jobs:
 
 - validating whether a product, startup, feature, or workflow idea is worth pursuing
 - expanding an idea into broader, less conservative, more imaginative directions
+- reflecting at task closure to decide whether reusable guidance should be codified
 - preserving durable workspace memory across repeated agent sessions inside a repository
 
 Install from GitHub with `npx skills add fightZy/simple-skills`.
 
 ## Why This Repo Exists
 
-Many agent workflows fail for one of three reasons:
+Many agent workflows fail for one of four reasons:
 
 - teams build ideas before checking whether the market is too crowded or the positioning is too weak
 - teams brainstorm but still collapse too quickly into safe or conventional options
+- teams finish work without converting repeated friction into reusable guidance
 - teams lose project context between sessions and keep re-explaining the same decisions, conventions, and follow-ups
 
 This repo packages these workflows as reusable agent skills so they can be installed, shared, and reused across projects.
@@ -37,6 +39,14 @@ Expand a proposal into broader, less conservative, more imaginative directions.
 Use it when the user wants higher-order ideation instead of the safest recommendation, a shallow idea list, or an early MVP plan.
 
 Docs: [`AB-EN`](./docs/skills/advanced-brainstorming/README.md), [`AB-ZH`](./docs/skills/advanced-brainstorming/README_zh.md), [`AB-SKILL`](./.agents/skills/advanced-brainstorming/SKILL.md)
+
+### Closure Retrospective
+
+Review a task at wrap-up and decide whether any reusable lesson is worth codifying.
+
+Use it when a non-trivial task is reaching closure and the work may justify a suggestion for an existing skill, a new skill, or `AGENTS.md` / `CLAUDE.md`.
+
+Docs: [`CR-EN`](./docs/skills/closure-retrospective/README.md), [`CR-ZH`](./docs/skills/closure-retrospective/README_zh.md), [`CR-SKILL`](./.agents/skills/closure-retrospective/SKILL.md)
 
 ### Workspace Memory Skill
 
@@ -65,6 +75,7 @@ Install a specific skill from the repo:
 ```bash
 npx skills add fightZy/simple-skills --skill idea-credibility-analyst
 npx skills add fightZy/simple-skills --skill advanced-brainstorming
+npx skills add fightZy/simple-skills --skill closure-retrospective
 npx skills add fightZy/simple-skills --skill workspace-memory-skill
 ```
 
@@ -125,6 +136,9 @@ Useful search terms for this repository:
 - advanced brainstorming skill
 - ideation skill
 - frame-breaking brainstorming
+- closure retrospective skill
+- agent wrap-up reflection
+- codify reusable workflow lessons
 - startup research skill
 - competitor analysis skill
 - workspace memory skill
@@ -136,6 +150,7 @@ Abbreviation guide:
 
 - `ICA` = `Idea Credibility Analyst`
 - `AB` = `Advanced Brainstorming`
+- `CR` = `Closure Retrospective`
 - `WMS` = `Workspace Memory Skill`
 - `EN` = English README
 - `ZH` = Chinese README
