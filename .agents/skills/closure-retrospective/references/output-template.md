@@ -23,19 +23,23 @@ Use this structure when at least one codifiable suggestion survives the rubric.
 
 - Durable guidance: [the reusable rule, rubric, or heuristic]
 - Why this generalizes: [why it is likely to recur]
+- Future trigger: [what kind of future task or situation should activate this guidance]
+- Prevented failure: [what mistake, churn, or delay this guidance prevents]
 
 ### Placement
 
-- Recommended target: [existing skill | new skill | AGENTS.md | CLAUDE.md]
-- Existing artifact to update: [file or skill name]
-- Placement decision: [extend existing section | add new section]
-- Target section: [existing heading name, or proposed new heading]
+- Codification action: [Create new skill | Update existing skill | Update existing constraint | Add constraint section]
+- Recommended target: [new skill name | existing skill | AGENTS.md | CLAUDE.md]
+- Existing artifact to update: [file or skill name, or `none - new artifact`]
+- Placement decision: [create new skill | extend existing section | add new section]
+- Target section or proposed artifact: [existing heading, proposed new heading, or proposed skill name]
 - Why this location: [why this is the narrowest clean fit]
 
 ### Impact
 
 - Expected benefit: [maintainability, health, performance, speed, consistency, safety, etc.]
 - Maintenance risk: [what extra burden this adds]
+- Action delta: [how future agent behavior changes after this is codified]
 - Proposed change summary: [one concise sentence]
 
 ## Recommendation 2: [Optional short recommendation title]
@@ -53,8 +57,8 @@ If you approve, I will apply the suggested edits.
 - Keep each item specific and evidence-backed.
 - Rewrite every item into guidance that can stand outside the current task.
 - Match the user's language preference; if none is stated, default to the language used in the user's request.
-- Do not bury the target file decision.
-- Do not omit the placement decision inside the target artifact.
+- Do not bury the codification action or target file decision.
+- Do not omit the placement decision inside the target artifact, or the proposed name when creating a new artifact.
 - Do not include patch text unless the user asks for it.
 - Do not imply edits already happened.
 

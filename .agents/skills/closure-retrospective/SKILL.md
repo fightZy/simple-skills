@@ -1,6 +1,6 @@
 ---
 name: closure-retrospective
-description: Use when wrapping up a non-trivial task and deciding whether durable guidance from the work should be folded into an existing skill, repository instructions, or a new skill before final handoff.
+description: Use when wrapping up a non-trivial task and deciding whether durable guidance from the work should create or update a skill, create or update AGENTS.md / CLAUDE.md project guidance, or be dropped before final handoff.
 ---
 
 # Closure Retrospective
@@ -10,7 +10,8 @@ Use this skill near task closure when the work exposed durable guidance that cou
 This skill is conservative by default:
 
 - If the signal is weak, do nothing and finish normally.
-- Prefer strengthening an existing artifact over creating a new one.
+- Check existing artifacts before creating new ones.
+- Create a new skill or constraint section when the lesson is independent, reusable, and does not fit an existing artifact cleanly.
 - This skill is not a memory system. Do not route output into memory workflows unless the user explicitly asks.
 
 ## Use This Skill For
@@ -19,7 +20,7 @@ This skill is conservative by default:
 - Repeated correction patterns that suggest missing workflow guardrails
 - Tool usage mistakes, command friction, or sequencing loops that future tasks should avoid
 - Stable heuristics that would improve maintainability, health, performance, or delivery quality if reused
-- Deciding whether a lesson belongs in an existing skill, a new skill, or `AGENTS.md` / `CLAUDE.md`
+- Deciding whether a lesson should create a new skill, improve an existing skill, update an existing `AGENTS.md` / `CLAUDE.md` section, add a new constraint section, or be dropped
 
 ## Do Not Use This Skill For
 
@@ -58,6 +59,7 @@ Strong candidates:
 - A missing decision rubric that would prevent future churn
 - A stable review or efficiency heuristic that improves project outcomes
 - A clear scope boundary that prevents over-building or wasted loops
+- An independent workflow with its own trigger conditions that could become a new skill
 
 Weak candidates:
 
@@ -65,6 +67,19 @@ Weak candidates:
 - Vague advice such as `be more careful`
 - Preferences with no durable benefit
 - Optimizations that add maintenance cost without clear payoff
+
+## From Intuition To Evidence
+
+Use intuition as a source of candidates, not as proof.
+
+When a task leaves a vague sense that "future runs should know this," translate it into observable signals before evaluating it:
+
+- What happened in the task that exposed the lesson?
+- What future trigger would make this lesson relevant again?
+- What mistake, churn, or delay would likely happen without it?
+- What would a future agent do differently after reading it?
+
+Drop the candidate if the intuition cannot be tied to evidence, future triggers, and a concrete behavior change.
 
 ## Generalize Before Suggesting
 
@@ -91,20 +106,21 @@ Examples:
 
 ## Integrate With Existing Content First
 
-Do not treat codification as greenfield writing. The recommendation must explain how it fits into what already exists.
+Do not treat codification as greenfield writing. The recommendation must explain whether it fits into what already exists or deserves a new artifact.
 
 For each qualified lesson:
 
 - Identify the narrowest existing artifact that could absorb it
 - Identify the specific existing section to extend when possible
-- Recommend a new section only when no current section can hold the guidance cleanly
+- Recommend a new skill or section when no current artifact can hold the guidance cleanly
 - Reject the change if the placement would be awkward, redundant, or noisy
 
 Placement defaults:
 
 - Existing skill: update the most relevant section first; add a new section only if the concept introduces a genuinely new concern inside that skill
-- `AGENTS.md` / `CLAUDE.md`: map the lesson to an existing heading first; create a new heading only if the rule defines a durable new category of repository-wide guidance
 - New skill: only when the lesson is an independent reusable workflow that does not fit an existing skill
+- Existing `AGENTS.md` / `CLAUDE.md` section: use when the lesson is a repository-wide default behavior, constraint, or preference that fits a current heading
+- New `AGENTS.md` / `CLAUDE.md` section: use when the lesson is repo-wide and no current heading can hold it cleanly
 - No change: when the lesson is real but still too narrow or costly to preserve
 
 ## Workflow
@@ -113,6 +129,8 @@ Placement defaults:
 
 Review the current task only. Extract concrete observations, not generic morals.
 
+Intuition may seed a candidate, but it must be converted into evidence before it survives this step.
+
 Prefer evidence such as:
 
 - Repeated user correction
@@ -120,11 +138,11 @@ Prefer evidence such as:
 - Unnecessary workflow loops
 - Decisions that clearly improved the result
 
-### 2. Score each candidate
+### 2. Evaluate each candidate
 
 Read [references/decision-rubric.md](references/decision-rubric.md).
 
-Drop any candidate that fails the rubric or would likely create more rule weight than benefit.
+Drop any candidate that fails the checklist, duplicates existing guidance, or would likely create more rule weight than benefit.
 
 ### 3. Rewrite the lesson into durable guidance
 
@@ -144,10 +162,11 @@ Use this routing preference:
 
 - Existing skill: workflow-specific improvement to an already-existing capability
 - New skill: an independent, reusable workflow that should stand alone
-- `AGENTS.md` or `CLAUDE.md`: repository-wide default behaviors, constraints, or preferences
+- Existing `AGENTS.md` or `CLAUDE.md` section: repository-wide default behaviors, constraints, or preferences that fit a current heading
+- New `AGENTS.md` or `CLAUDE.md` section: repository-wide guidance that introduces a durable category no current heading covers
 - No change: the lesson is too weak, too narrow, or too expensive to maintain
 
-Prefer strengthening an existing artifact over creating a new one.
+Check existing artifacts first, but do not force an independent workflow or repo-wide category into an awkward existing location.
 
 For `AGENTS.md` or `CLAUDE.md`, also decide:
 
@@ -160,6 +179,12 @@ For an existing skill, also decide:
 - Which current section should be amended
 - Whether a new section is needed or would just fragment the skill
 
+For a new skill, also decide:
+
+- The proposed skill name and trigger conditions
+- Why the workflow should stand alone instead of extending an existing skill
+- The minimum useful content or bundled resources needed to make it actionable
+
 ### 5. Format the recommendation for handoff
 
 Read [references/output-template.md](references/output-template.md).
@@ -168,7 +193,7 @@ The final output must be easy to scan in Markdown and must include:
 
 - A clear yes/no codification result
 - Per-recommendation sections with evidence, generalized guidance, and placement
-- An explicit placement decision such as `extend existing section` or `add new section`
+- An explicit placement decision such as `create new skill`, `extend existing section`, or `add new section`
 - A confirmation request before any edits
 
 ## Output Contract
@@ -179,7 +204,7 @@ When suggestions qualify:
 - State the evidence from the current task
 - Rewrite each suggestion as generalized, reusable guidance
 - Match the user's language preference; if no explicit preference is given, default to the language used in the user's request
-- Name the recommended target
+- Name the recommended codification action and target
 - Explain how the guidance should integrate with existing content
 - Call out expected benefit and maintenance risk
 - End by asking for confirmation before any edits
@@ -193,6 +218,7 @@ When nothing qualifies:
 
 - Do not confuse a single anecdote with a durable rule.
 - Do not create a new skill when a smaller update to an existing skill would work.
+- Do not force a standalone workflow into an existing skill just to avoid creating a new artifact.
 - Do not update `AGENTS.md` or `CLAUDE.md` for narrow workflow details that belong in a skill.
 - Do not recommend repo-level guidance without naming the target section or explaining why a new section is needed.
 - Do not emit task-local advice as if it were a general rule.
