@@ -1,6 +1,6 @@
 ---
 name: idea-credibility-analyst
-description: Use when a user wants to evaluate a product, startup, feature, or workflow idea by clarifying the idea through dialogue, researching similar products and discussions, comparing alternatives, assessing market crowdedness, and deciding whether to continue, pivot, or stop.
+description: Use when a user wants to evaluate a product, startup, feature, or workflow idea by clarifying the idea through dialogue, researching similar products and discussions, comparing alternatives, assessing market crowdedness, deep-diving leading competitors and persistent user complaints in crowded spaces, and deciding whether to continue, pivot, or stop.
 ---
 
 # Idea Credibility Analyst
@@ -13,7 +13,8 @@ The job is to:
 2. Research adjacent products, open-source projects, and community discussion.
 3. Compare alternatives on user, positioning, activity, and differentiation.
 4. Estimate how crowded the space is.
-5. Recommend `continue`, `pivot`, or `stop`.
+5. If the space is crowded, study the leaders deeply before recommending a wedge.
+6. Recommend `continue`, `pivot`, or `stop`.
 
 This skill is for decision support, not for being agreeable. Optimize for truth-seeking and fast reduction of uncertainty.
 
@@ -123,6 +124,7 @@ Look for:
 - discussion communities such as Hacker News, Reddit, product forums, and issue trackers
 - launch directories such as Product Hunt when relevant
 - docs, pricing pages, and changelogs
+- public timelines such as first release, founding announcement, first commit, launch post, release notes, or funding/customer milestones
 
 Search with intent, not just keywords. Try multiple lenses:
 
@@ -131,6 +133,7 @@ Search with intent, not just keywords. Try multiple lenses:
 - alternative or incumbent queries
 - "open source" or GitHub queries
 - complaint or switching-friction queries such as "hate", "alternative", "looking for"
+- leader-specific queries such as "[product] changelog", "[product] release notes", "[product] GitHub issues", "[product] complaints", "[product] alternatives"
 
 For each serious alternative, capture:
 
@@ -139,6 +142,8 @@ For each serious alternative, capture:
 - target user
 - core positioning
 - maturity or traction proxy
+- development timeline or age if visible
+- maintenance or iteration cadence
 - notable strengths
 - notable weaknesses or gaps
 
@@ -161,6 +166,8 @@ Minimum comparison dimensions:
 - positioning
 - pricing model if visible
 - activity or traction proxy
+- age or development timeline
+- release or maintenance cadence
 - differentiator versus the user's idea
 - likely switching friction
 - notable underserved segment
@@ -206,7 +213,38 @@ Signs of a promising opening:
 - open-source adoption is high but polish or workflow fit is weak
 - incumbent pricing, complexity, or onboarding excludes a narrow segment
 
-### 5. Make the call
+### 5. Deep-dive crowded spaces
+
+When the crowdedness estimate is `crowded` or `hyper-competitive`, do not stop at counting competitors. Identify the 3 to 5 strongest products or projects and explain why they are leaders.
+
+For each leader, capture only what is relevant to the decision:
+
+- leadership reason: distribution, brand, community, ecosystem, workflow depth, integrations, data moat, pricing, open-source trust, or another concrete advantage
+- development age: founding date, first public release, first commit, or earliest credible launch signal
+- time-to-maturity signal: when it appears to have gained traction, if visible
+- maintenance cadence: recent releases, changelog frequency, commit frequency, issue response, contributor health, or visible product velocity
+- persistent complaints: repeated issues, forum threads, reviews, or switching posts that remain unresolved across months or years
+- wedge implication: whether the user's idea can exploit a specific underserved segment or whether incumbents can copy it quickly
+
+Use exact dates for timelines and recency. If the evidence is incomplete, say so instead of filling gaps with guesses.
+
+Promising crowded-space wedges usually come from durable dissatisfaction, not generic "better UX":
+
+- a narrow segment incumbents underserve because it is too small, low-budget, regulated, local, or workflow-specific
+- a repeated complaint that appears in issue trackers or forums over a long period
+- an integration, deployment model, pricing model, or trust requirement incumbents are structurally unlikely to prioritize
+- an open-source project with adoption but weak hosted/onboarding/compliance experience
+
+Danger signs in crowded spaces:
+
+- leaders iterate quickly on the same wedge the user proposes
+- complaints are minor preferences rather than painful blockers
+- the proposed differentiation is a feature, not a beachhead
+- the first users would have to switch from a mature workflow with no urgent trigger
+
+If no durable gap appears after the leader deep dive, lean `pivot` or `stop` even when the market is large.
+
+### 6. Make the call
 
 End with one of:
 
@@ -228,6 +266,8 @@ Use `stop` when there is weak pain, no realistic wedge, or the constraints make 
 
 ## Output structure
 
+Adapt the final output language to the user's language. Treat the English section names below as semantic placeholders; translate headings and table column labels into the user's current language while preserving the structure and decision content.
+
 Use this structure for major assessments:
 
 1. Idea snapshot
@@ -235,8 +275,10 @@ Use this structure for major assessments:
 3. Landscape summary
 4. Comparison table
 5. Crowdedness assessment
-6. Verdict: `continue`, `pivot`, or `stop`
-7. Next validation steps
+6. Leader deep dive, when the space is crowded or hyper-competitive
+7. Wedge or persistent user-problem analysis
+8. Verdict: `continue`, `pivot`, or `stop`
+9. Next validation steps
 
 For a reusable report shape, read [references/report-template.md](references/report-template.md).
 
