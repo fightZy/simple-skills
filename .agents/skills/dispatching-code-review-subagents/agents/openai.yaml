@@ -1,0 +1,5 @@
+version: 1
+interface:
+  display_name: "Dispatching Code Review Subagents"
+  short_description: "Split code review across focused subagents."
+  default_prompt: "Use $dispatching-code-review-subagents before assigning code review to one or more subagents."

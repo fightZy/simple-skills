@@ -1,12 +1,13 @@
 # Simple Skills
 
-Reusable AI agent skills for idea validation, advanced brainstorming, closure retrospectives, startup research, and workspace memory.
+Reusable AI agent skills for idea validation, advanced brainstorming, closure retrospectives, code review delegation, startup research, and workspace memory.
 
-This repository contains installable skills for the `skills.sh` ecosystem and for coding agents such as Codex, Claude Code, Cursor, Cline, OpenCode, and Goose. The current skills focus on four practical jobs:
+This repository contains installable skills for the `skills.sh` ecosystem and for coding agents such as Codex, Claude Code, Cursor, Cline, OpenCode, and Goose. The current skills focus on five practical jobs:
 
 - validating whether a product, startup, feature, or workflow idea is worth pursuing
 - expanding an idea into broader, less conservative, more imaginative directions
 - reflecting at task closure to decide whether reusable guidance should be codified
+- deciding how to split code review across focused subagents
 - preserving durable workspace memory across repeated agent sessions inside a repository
 
 Install from GitHub with `npx skills add fightZy/simple-skills`.
@@ -48,6 +49,14 @@ Use it when a non-trivial task is reaching closure and the work may justify a su
 
 Docs: [`CR-EN`](./docs/skills/closure-retrospective/README.md), [`CR-ZH`](./docs/skills/closure-retrospective/README_zh.md), [`CR-SKILL`](./.agents/skills/closure-retrospective/SKILL.md)
 
+### Dispatching Code Review Subagents
+
+Decide whether code review should use one reviewer, multiple themed reviewers, or layered review.
+
+Use it before delegating code review to subagents, especially when a change spans independent risk areas or could benefit from focused review lenses.
+
+Docs: [`DCR-EN`](./docs/skills/dispatching-code-review-subagents/README.md), [`DCR-ZH`](./docs/skills/dispatching-code-review-subagents/README_zh.md), [`DCR-SKILL`](./.agents/skills/dispatching-code-review-subagents/SKILL.md)
+
 ### Workspace Memory Skill
 
 Preserve repo-local project context across repeated agent sessions.
@@ -76,6 +85,7 @@ Install a specific skill from the repo:
 npx skills add fightZy/simple-skills --skill idea-credibility-analyst
 npx skills add fightZy/simple-skills --skill advanced-brainstorming
 npx skills add fightZy/simple-skills --skill closure-retrospective
+npx skills add fightZy/simple-skills --skill dispatching-code-review-subagents
 npx skills add fightZy/simple-skills --skill workspace-memory-skill
 ```
 
@@ -139,6 +149,9 @@ Useful search terms for this repository:
 - closure retrospective skill
 - agent wrap-up reflection
 - codify reusable workflow lessons
+- code review subagents
+- delegated code review
+- parallel code review
 - startup research skill
 - competitor analysis skill
 - workspace memory skill
@@ -151,6 +164,7 @@ Abbreviation guide:
 - `ICA` = `Idea Credibility Analyst`
 - `AB` = `Advanced Brainstorming`
 - `CR` = `Closure Retrospective`
+- `DCR` = `Dispatching Code Review Subagents`
 - `WMS` = `Workspace Memory Skill`
 - `EN` = English README
 - `ZH` = Chinese README
