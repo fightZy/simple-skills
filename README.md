@@ -1,24 +1,26 @@
 # Simple Skills
 
-Reusable AI agent skills for idea validation, advanced brainstorming, closure retrospectives, code review delegation, startup research, and workspace memory.
+Reusable AI agent skills for idea validation, advanced brainstorming, closure retrospectives, code review delegation, formal change orchestration, startup research, and workspace memory.
 
-This repository contains installable skills for the `skills.sh` ecosystem and for coding agents such as Codex, Claude Code, Cursor, Cline, OpenCode, and Goose. The current skills focus on five practical jobs:
+This repository contains installable skills for the `skills.sh` ecosystem and for coding agents such as Codex, Claude Code, Cursor, Cline, OpenCode, and Goose. The current skills focus on six practical jobs:
 
 - validating whether a product, startup, feature, or workflow idea is worth pursuing
 - expanding an idea into broader, less conservative, more imaginative directions
 - reflecting at task closure to decide whether reusable guidance should be codified
 - deciding how to split code review across focused subagents
+- orchestrating formal changes with OpenSpec artifacts, approval gates, and superpower discipline layers
 - preserving durable workspace memory across repeated agent sessions inside a repository
 
 Install from GitHub with `npx skills add fightZy/simple-skills`.
 
 ## Why This Repo Exists
 
-Many agent workflows fail for one of four reasons:
+Many agent workflows fail for one of six reasons:
 
 - teams build ideas before checking whether the market is too crowded or the positioning is too weak
 - teams brainstorm but still collapse too quickly into safe or conventional options
 - teams finish work without converting repeated friction into reusable guidance
+- teams lack a unified workflow for formal changes, letting multiple planning systems compete and create confusion
 - teams lose project context between sessions and keep re-explaining the same decisions, conventions, and follow-ups
 
 This repo packages these workflows as reusable agent skills so they can be installed, shared, and reused across projects.
@@ -65,6 +67,14 @@ Use it when a repository needs durable memory for decisions, conventions, ration
 
 Docs: [`WMS-EN`](./docs/skills/workspace-memory-skill/README.md), [`WMS-ZH`](./docs/skills/workspace-memory-skill/README_zh.md), [`WMS-SKILL`](./.agents/skills/workspace-memory-skill/SKILL.md)
 
+### OpenSpec Superpower Orchestration
+
+Orchestrate formal changes using OpenSpec artifacts plus superpower skill discipline layers.
+
+Use it when work requires formal specs (`proposal.md`, `design.md`, `spec.md`, `tasks.md`), approval gates, and coordinated implementation without creating parallel planning systems.
+
+Docs: [`OSO-EN`](./docs/skills/openspec-superpower-orchestration/README.md), [`OSO-ZH`](./docs/skills/openspec-superpower-orchestration/README_zh.md), [`OSO-SKILL`](./.agents/skills/openspec-superpower-orchestration/SKILL.md)
+
 ## Install
 
 List the installable skills available in this GitHub repository:
@@ -87,6 +97,7 @@ npx skills add fightZy/simple-skills --skill advanced-brainstorming
 npx skills add fightZy/simple-skills --skill closure-retrospective
 npx skills add fightZy/simple-skills --skill dispatching-code-review-subagents
 npx skills add fightZy/simple-skills --skill workspace-memory-skill
+npx skills add fightZy/simple-skills --skill openspec-superpower-orchestration
 ```
 
 Repository-level tests live under `tests/`. Installable skill payloads stay under `.agents/skills/` and should not include development-only test files.
@@ -152,6 +163,10 @@ Useful search terms for this repository:
 - code review subagents
 - delegated code review
 - parallel code review
+- openspec orchestration skill
+- formal change workflow
+- spec-driven development
+- approval gate workflow
 - startup research skill
 - competitor analysis skill
 - workspace memory skill
@@ -166,6 +181,7 @@ Abbreviation guide:
 - `CR` = `Closure Retrospective`
 - `DCR` = `Dispatching Code Review Subagents`
 - `WMS` = `Workspace Memory Skill`
+- `OSO` = `OpenSpec Superpower Orchestration`
 - `EN` = English README
 - `ZH` = Chinese README
 
