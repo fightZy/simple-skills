@@ -34,8 +34,10 @@ This skill depends on two layers:
 - `OpenSpec`
   - `openspec/changes/<change-name>/` is the only formal artifact system
   - `proposal.md`, `design.md`, `spec.md`, `tasks.md`, and optional `plan.md` live there
+  - scaffolding: `openspec-new-change` (CLI: `openspec new change`)
+  - artifact generation: `openspec-propose` (CLI: `openspec instructions` + write)
 - superpower skills
-  - exploration: `brainstorming`, `openspec-explore`
+  - discovery: `openspec-discovery`
   - implementation entry: `openspec-apply-change`
   - discipline layers: `test-driven-development`, `executing-plans`, `subagent-driven-development`
   - quality gates: `requesting-code-review`, `receiving-code-review`, `verification-before-completion`, `openspec-verify-change`
@@ -46,7 +48,7 @@ This skill does not replace those skills. It defines when to use them, in what o
 
 - `OpenSpec` artifacts are the only formal source of truth. Do not create a parallel proposal / design / tasks / spec system outside `openspec/changes/<change-name>/`.
 - OpenSpec artifacts are required only for formal changes that affect capability, visible workflow, contract, state semantics, architecture, or persisted data shape. For local implementation optimization with unchanged semantics, skip artifacts and use the normal code-change, targeted-test, and verification loop.
-- For any new or materially underspecified change request, do a lightweight discovery/brainstorming pass before creating OpenSpec artifacts. OpenSpec is the artifact system, not a substitute for requirement discovery.
+- For any new or materially underspecified change request, do a lightweight discovery pass with `openspec-discovery` before creating OpenSpec artifacts. OpenSpec is the artifact system, not a substitute for requirement discovery.
 - Do not create or update `proposal.md`, `design.md`, `spec.md`, or `tasks.md` until the user's key decisions are stable enough to make the artifact meaningful. If the request says "plan", "design", "architecture", "based on research", "start a change", or otherwise leaves product/technical direction open, treat scope as unstable by default.
 - In planning or design stages, any unresolved `Open Questions` item is an artifact-readiness blocker by default. Do not treat the scope as stable unless the question is resolved, explicitly deferred as out of scope, or confirmed as non-blocking, and you have at least 95% confidence that you understand the user's intent.
 - Unless the user explicitly requests it, do not write the default superpower artifact files as formal specs.
@@ -58,16 +60,18 @@ This skill does not replace those skills. It defines when to use them, in what o
 ## Workflow
 
 1. Clarify the stage first.
-If scope is still unstable, explore with `brainstorming` or `openspec-explore`, but do not let their default artifact flow override this orchestration. This discovery step is mandatory for new architecture/planning/design requests unless the user has already provided explicit decisions that make the scope stable.
+   If scope is still unstable, explore with `openspec-discovery`. This discovery step is mandatory for new architecture/planning/design requests unless the user has already provided explicit decisions that make the scope stable.
 
 During discovery:
-- Invoke and follow the appropriate exploration skill for mechanics: use `brainstorming` for user-facing design/architecture decisions and any unresolved `Open Questions`; use `openspec-explore` for open investigation or reframing that does not yet require a user decision.
+
+- Use `openspec-discovery` for investigation, codebase exploration, comparing options, surfacing open questions, and iterating with the user until scope crystallizes.
 - When judging artifact readiness, include existing OpenSpec state, research docs, and local workflow overrides as inputs.
 - Identify the open decisions that would materially change `proposal.md`, `design.md`, `spec.md`, or `tasks.md`.
 - Get explicit user confirmation that those artifact-shaping decisions are stable before creating or updating OpenSpec artifacts.
-- If an artifact draft would contain an `Open Questions` section with unresolved items, pause artifact progression and discuss those questions through `brainstorming`. Only write "no blocking questions" after the user has confirmed the relevant decisions or explicitly accepted the remaining uncertainty as non-blocking.
+- If an artifact draft would contain an `Open Questions` section with unresolved items, pause artifact progression and return to `openspec-discovery` to resolve them. Only write "no blocking questions" after the user has confirmed the relevant decisions or explicitly accepted the remaining uncertainty as non-blocking.
 
 At minimum, for architecture or planning work confirm:
+
 - primary user / entrypoint
 - in-scope and out-of-scope capabilities
 - output or integration target
@@ -78,23 +82,20 @@ Do not treat existing research documents as approval. Research docs are evidence
 
 2. If the repo has local workflow overrides in `AGENTS.md` or `CLAUDE.md`, apply them before following generic skill defaults.
 
-3. Once scope is stable and the user has confirmed the direction, draft the full formal spec set in `openspec/changes/<change-name>/`:
-- `proposal.md`
-- `design.md`
-- related `spec.md`
+3. Once scope is stable and the user has confirmed the direction, delegate to `openspec-propose` to generate the complete artifact set. The CLI schema defines which artifacts to create and in what order. `openspec-propose` handles scaffolding (`openspec new change`) and artifact generation (`openspec instructions` + write).
 
 4. Present the full draft at once.
-Do not use section-by-section design approval. Do not create `tasks.md` or `plan.md` before the user reviews the full draft.
-Skip the generic `Offer visual companion` step unless the user explicitly asks for one.
+   Do not use section-by-section design approval. Do not proceed to `tasks.md` (or equivalent) before the user reviews the full draft.
+   Skip the generic `Offer visual companion` step unless the user explicitly asks for one.
 
-5. After the user approves the draft, create `tasks.md`.
-Create `plan.md` only when execution orchestration is genuinely needed, such as multi-agent work, high-risk migration, long-running recovery, or complex debugging.
+5. After the user approves the draft, finalize `tasks.md` (created by `openspec-propose` as part of the artifact set).
+   Create `plan.md` only when execution orchestration is genuinely needed, such as multi-agent work, high-risk migration, long-running recovery, or complex debugging.
 
 6. Before implementation, self-review `proposal.md`, `design.md`, `spec.md`, `tasks.md`, and `plan.md` if present.
-Check for placeholders, contradictions, scope drift, spec-to-task traceability, executable tasks, and whether `plan.md` is only carrying execution orchestration.
+   Check for placeholders, contradictions, scope drift, spec-to-task traceability, executable tasks, and whether `plan.md` is only carrying execution orchestration.
 
 7. Only after that review and user confirmation, enter implementation.
-Use `tasks.md` as the progress baseline. Prefer `openspec-apply-change` when approved tasks already exist.
+   Use `tasks.md` as the progress baseline. Prefer `openspec-apply-change` when approved tasks already exist.
 
 ## Execution Rules
 
@@ -171,8 +172,9 @@ When using subagents:
 
 ## Routing Notes
 
-- `brainstorming` is for exploration, not the final artifact sequence.
-- `openspec-explore` is for open investigation or reframing.
-- `openspec-apply-change` is for implementation after approved tasks exist.
+- `openspec-discovery` is for discovery: investigation, codebase exploration, comparing options, and iterating with the user until scope crystallizes. It is the only discovery entrypoint in this orchestration.
+- `openspec-new-change` is for scaffolding only (`openspec new change`); it does not create artifacts.
+- `openspec-propose` is for CLI-driven full artifact generation after scope is stable.
+- `openspec-apply-change` is for implementation after approved tasks exist. If it reports `state: "blocked"` (missing artifacts) and suggests `openspec-continue-change`, redirect to `openspec-propose` instead — this orchestration does not use `openspec-continue-change`.
 - `executing-plans` or `subagent-driven-development` are optional discipline layers, not replacements for `tasks.md`.
 - Repo-local `AGENTS.md` or `CLAUDE.md` may tighten or narrow this workflow; treat those as higher-priority supplements.
