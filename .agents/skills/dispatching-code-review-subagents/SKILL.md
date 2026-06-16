@@ -78,6 +78,75 @@ Return one consolidated review:
 - Separate disagreements and missing context.
 - Keep cleanup suggestions non-blocking unless they create real risk.
 
+## Verification Phase
+
+Reviewers produce hypotheses, not facts. Before acting on findings, run a verification phase to filter false positives and assess fix priority.
+
+### When to Verify
+
+Always verify when:
+
+- Findings will drive code changes.
+- Reviewers had limited context (could not read all related files).
+- Multiple reviewers produced conflicting findings.
+
+Skip verification when:
+
+- All findings are trivially confirmable from the diff alone (e.g., missing import, typo).
+- The reviewer already cited exact code lines that are self-evidently wrong.
+
+### Decide Verifier Count
+
+Use a **single verifier** (batch all findings into one subagent) when:
+
+- Total findings ≤ 10.
+- Findings span ≤ 3 files or a single package.
+- Findings are mostly independent (verifying one does not require results from another).
+
+Use **multiple verifiers in parallel** when:
+
+- Total findings > 10.
+- Findings span multiple packages or domains requiring different expertise.
+- Some findings are deep (need to trace call chains) while others are shallow (line-level checks) — split by depth.
+
+### Verifier Prompt Shape
+
+Each verifier receives a structured checklist. The verifier must read actual source code (not the diff) and confirm or reject each finding.
+
+```text
+You are verifying code review findings. For each finding, read the actual source code and confirm:
+1. Does the issue actually exist? (cite exact file:line + code snippet)
+2. Is it worth fixing? (real-world impact, likelihood, effort)
+
+**Project root:** [path]
+
+### Finding N: [title]
+- **Claim:** [what the reviewer said]
+- **Read:** [specific files to check]
+
+**For each finding, return:**
+- **Exists?** Yes/No with exact code evidence
+- **Worth fixing?** Yes/No with reasoning (1-2 sentences)
+- **Priority if worth fixing:** Critical / High / Medium / Low / Skip
+```
+
+### Verifier Output Classification
+
+Group verified findings into three buckets:
+
+- **Must Fix** — confirmed real, high impact, worth the effort.
+- **Nice to Fix** — confirmed real but low impact or optional.
+- **Skip / Not an Issue** — false positive, already handled, or not worth the cost.
+
+### Post-Verification
+
+After fixes are applied, run a final verification subagent to confirm:
+
+- Each fix is correctly implemented.
+- All call sites are updated.
+- No new issues introduced by the fix.
+- Tests pass.
+
 ## Red Flags
 
 Stop and resize the review plan when:
