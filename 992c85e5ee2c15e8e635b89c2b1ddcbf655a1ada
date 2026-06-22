@@ -1,0 +1,24 @@
+.agents/skills/dispatching-code-review-subagents/SKILL.md
+  77689667d13fd342 3,10,12,14-20,22,24-26,28,30,32,34,36,38,40,44,46,53,55,59-60,70,72,74,76,78,80-83,85,87,89,91,93,95-96,98,100,103,105,114-117,120-143,145-147,149,151-155,157,159,161-172,176,178,180,182
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.3",
+  "base_commit_sha": "992c85e5ee2c15e8e635b89c2b1ddcbf655a1ada",
+  "prompts": {
+    "77689667d13fd342": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_12675fb10ffeL2Z180eMWDXIs0",
+        "model": "cch/glm-5.2"
+      },
+      "human_author": "zhangye <zhangye12436@cvte.com>",
+      "messages": [],
+      "total_additions": 103,
+      "total_deletions": 78,
+      "accepted_lines": 103,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/1d5439e5164a3c126ebfaa8fd84536f5c935052ebb9b4bb73397e964238dadca"
+    }
+  }
+}
