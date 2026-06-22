@@ -1,0 +1,24 @@
+.agents/skills/receiving-feedback/SKILL.md
+  77689667d13fd342 1-196
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.3",
+  "base_commit_sha": "d25df3c026f03826e7f7f5cd2d84858198a1ab51",
+  "prompts": {
+    "77689667d13fd342": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_12675fb10ffeL2Z180eMWDXIs0",
+        "model": "cch/glm-5.2"
+      },
+      "human_author": "zhangye <zhangye12436@cvte.com>",
+      "messages": [],
+      "total_additions": 196,
+      "total_deletions": 0,
+      "accepted_lines": 196,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/a3af98528cbb21108ede891cb1568cc89f1e544454d8c8f6153531b85d75c0e1"
+    }
+  }
+}
