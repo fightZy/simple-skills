@@ -1,226 +1,44 @@
 ---
 name: closure-retrospective
-description: Use when wrapping up a non-trivial task and deciding whether durable guidance from the work should create or update a skill, create or update AGENTS.md / CLAUDE.md project guidance, or be dropped before final handoff.
+description: Use when a non-trivial task is substantively complete and end-of-task evidence may justify durable guidance in a skill or applicable AGENTS.md / CLAUDE.md, especially after repeated corrections, tool friction, sequencing loops, or stable scope boundaries surface near closure.
 ---
 
 # Closure Retrospective
 
-Use this skill near task closure when the work exposed durable guidance that could improve future runs.
+## Core Principle
 
-This skill is conservative by default:
-
-- If the signal is weak, do nothing and finish normally.
-- Check existing artifacts before creating new ones.
-- Create a new skill or constraint section when the lesson is independent, reusable, and does not fit an existing artifact cleanly.
-- This skill is not a memory system. Do not route output into memory workflows unless the user explicitly asks.
-
-## Use This Skill For
-
-- End-of-task reflection on whether the conversation exposed durable, reusable guidance
-- Repeated correction patterns that suggest missing workflow guardrails
-- Tool usage mistakes, command friction, or sequencing loops that future tasks should avoid
-- Stable heuristics that would improve maintainability, health, performance, or delivery quality if reused
-- Deciding whether a lesson should create a new skill, improve an existing skill, update an existing `AGENTS.md` / `CLAUDE.md` section, add a new constraint section, or be dropped
-
-## Do Not Use This Skill For
-
-- Trivial tasks or casual chat
-- One-off user preferences with no broader reuse
-- Temporary debugging notes
-- Speculative improvements without evidence from the current task
-- Silently editing rules or skills before user approval
+Codify only evidence-backed guidance that is reusable, actionable, and worth its maintenance cost. Prefer the narrowest existing artifact. This skill is not a memory workflow; do not propose or update memory unless the user explicitly requests it.
 
 ## Closure Gate
 
-Only run this skill when the task is substantively done or clearly entering wrap-up.
+Run the retrospective only after the substantive task is complete or clearly entering final handoff. If implementation, debugging, or research remains unresolved, stop the retrospective and finish the task first.
 
-Good signals:
-
-- The requested implementation, analysis, or answer is already complete
-- Remaining work is limited to summary, verification, or handoff
-- Blockers and open risks are already known
-
-Bad signals:
-
-- Core implementation is still in progress
-- Key debugging is unresolved
-- Major research questions are still open
-
-If the task is not actually at closure, stop and finish the task first.
-
-## What Counts As Codifiable
-
-Promote a lesson only when it is both reusable and worth carrying.
-
-Strong candidates:
-
-- A repeated workflow mistake or correction pattern
-- A recurring tool rule that should become default behavior
-- A missing decision rubric that would prevent future churn
-- A stable review or efficiency heuristic that improves project outcomes
-- A clear scope boundary that prevents over-building or wasted loops
-- An independent workflow with its own trigger conditions that could become a new skill
-
-Weak candidates:
-
-- A lesson that only mattered because of one unusual file or environment
-- Vague advice such as `be more careful`
-- Preferences with no durable benefit
-- Optimizations that add maintenance cost without clear payoff
-
-## From Intuition To Evidence
-
-Use intuition as a source of candidates, not as proof.
-
-When a task leaves a vague sense that "future runs should know this," translate it into observable signals before evaluating it:
-
-- What happened in the task that exposed the lesson?
-- What future trigger would make this lesson relevant again?
-- What mistake, churn, or delay would likely happen without it?
-- What would a future agent do differently after reading it?
-
-Drop the candidate if the intuition cannot be tied to evidence, future triggers, and a concrete behavior change.
-
-## Generalize Before Suggesting
-
-Every surviving lesson must be rewritten into guidance that is:
-
-- General: future agents can apply it outside the current task
-- Durable: likely to stay useful beyond the immediate files and moment
-- Actionable: phrased as a rule, rubric, routing decision, or placement heuristic
-
-Rewrite candidates before presenting them:
-
-- Strip task-local trivia unless it is essential to the rule
-- Prefer workflow language over narrative retelling
-- Convert a specific incident into a reusable constraint or decision rule
-
-Reject the candidate if it only makes sense with current-task context.
-
-Examples:
-
-- Too specific: `When closing skill X, update section Y because this task needed it`
-- Better: `When a retrospective reveals a repo-wide default, extend the matching AGENTS.md section before creating a new section`
-- Too specific: `Mention command Z because it failed here`
-- Better: `Codify repeated command pitfalls only when they are likely to recur across the repo workflow`
-
-## Integrate With Existing Content First
-
-Do not treat codification as greenfield writing. The recommendation must explain whether it fits into what already exists or deserves a new artifact.
-
-For each qualified lesson:
-
-- Identify the narrowest existing artifact that could absorb it
-- Identify the specific existing section to extend when possible
-- Recommend a new skill or section when no current artifact can hold the guidance cleanly
-- Reject the change if the placement would be awkward, redundant, or noisy
-
-Placement defaults:
-
-- Existing skill: update the most relevant section first; add a new section only if the concept introduces a genuinely new concern inside that skill
-- New skill: only when the lesson is an independent reusable workflow that does not fit an existing skill
-- Existing `AGENTS.md` / `CLAUDE.md` section: use when the lesson is a repository-wide default behavior, constraint, or preference that fits a current heading
-- New `AGENTS.md` / `CLAUDE.md` section: use when the lesson is repo-wide and no current heading can hold it cleanly
-- No change: when the lesson is real but still too narrow or costly to preserve
+Drop trivial work, one-off preferences, temporary debugging notes, and speculative lessons.
 
 ## Workflow
 
-### 1. Gather candidate lessons
+1. Gather observable evidence from the current task: repeated corrections, repeated command or tool friction, unnecessary loops, or decisions that clearly improved the result.
+2. Read [references/decision-rubric.md](references/decision-rubric.md). Drop candidates that fail any required gate.
+3. Inspect only the narrowest plausible targets:
+   - For workflow guidance, shortlist skills by name and description, then inspect the most relevant sections.
+   - For repository-wide guidance, inspect the `AGENTS.md` or `CLAUDE.md` files applicable to the current working directory.
+   - If both project files exist, follow the repository's authority or synchronization convention. Do not duplicate guidance across them without an explicit convention.
+   - Use the current task as evidence. Use existing artifacts only to check coverage and choose placement.
+4. Rewrite each surviving lesson as guidance that is general, durable, and actionable. Include its future trigger and the concrete failure, churn, or delay it prevents.
+5. Assign the rubric verdict and name the exact target artifact and insertion point. Reject recommendations with no clean placement.
+6. If at least one candidate survives, read [references/output-template.md](references/output-template.md) and present at most three recommendations. Match the user's language.
 
-Review the current task only. Extract concrete observations, not generic morals.
+## Output Behavior
 
-Intuition may seed a candidate, but it must be converted into evidence before it survives this step.
+- When the user explicitly requests a retrospective and nothing qualifies, output only this compact shape: title, `Worth codifying: no`, and one sentence naming the failed gate or reason.
+- When the retrospective is implicit and nothing qualifies, surface no retrospective section.
+- Keep the retrospective phase read-only. Present suggestions and wait for explicit approval before editing any skill or project guidance. A later approval begins a separate edit phase.
 
-Prefer evidence such as:
+## Hard Boundaries
 
-- Repeated user correction
-- Repeated tool misuse or failed command patterns
-- Unnecessary workflow loops
-- Decisions that clearly improved the result
-
-### 2. Evaluate each candidate
-
-Read [references/decision-rubric.md](references/decision-rubric.md).
-
-Drop any candidate that fails the checklist, duplicates existing guidance, or would likely create more rule weight than benefit.
-
-### 3. Rewrite the lesson into durable guidance
-
-Before routing the lesson, rewrite it so the output is not tied to this one task.
-
-The recommendation should describe:
-
-- The generalized rule or heuristic
-- Why it is likely to recur
-- What type of future mistake or churn it prevents
-
-If the wording still depends on this task's local details, reject it.
-
-### 4. Choose the correct target and insertion point
-
-Use this routing preference:
-
-- Existing skill: workflow-specific improvement to an already-existing capability
-- New skill: an independent, reusable workflow that should stand alone
-- Existing `AGENTS.md` or `CLAUDE.md` section: repository-wide default behaviors, constraints, or preferences that fit a current heading
-- New `AGENTS.md` or `CLAUDE.md` section: repository-wide guidance that introduces a durable category no current heading covers
-- No change: the lesson is too weak, too narrow, or too expensive to maintain
-
-Check existing artifacts first, but do not force an independent workflow or repo-wide category into an awkward existing location.
-
-For `AGENTS.md` or `CLAUDE.md`, also decide:
-
-- Which existing section should absorb the guidance
-- Whether the existing section can be extended cleanly
-- Whether a new section is justified because no current section matches
-
-For an existing skill, also decide:
-
-- Which current section should be amended
-- Whether a new section is needed or would just fragment the skill
-
-For a new skill, also decide:
-
-- The proposed skill name and trigger conditions
-- Why the workflow should stand alone instead of extending an existing skill
-- The minimum useful content or bundled resources needed to make it actionable
-
-### 5. Format the recommendation for handoff
-
-Read [references/output-template.md](references/output-template.md).
-
-The final output must be easy to scan in Markdown and must include:
-
-- A clear yes/no codification result
-- Per-recommendation sections with evidence, generalized guidance, and placement
-- An explicit placement decision such as `create new skill`, `extend existing section`, or `add new section`
-- A confirmation request before any edits
-
-## Output Contract
-
-When suggestions qualify:
-
-- Provide at most 3 suggestions
-- State the evidence from the current task
-- Rewrite each suggestion as generalized, reusable guidance
-- Match the user's language preference; if no explicit preference is given, default to the language used in the user's request
-- Name the recommended codification action and target
-- Explain how the guidance should integrate with existing content
-- Call out expected benefit and maintenance risk
-- End by asking for confirmation before any edits
-
-When nothing qualifies:
-
-- If the user explicitly asked for a retrospective, say that no codifiable lesson met the bar
-- Otherwise, do not surface a retrospective section; finish the task normally
-
-## Hard Rules
-
-- Do not confuse a single anecdote with a durable rule.
-- Do not create a new skill when a smaller update to an existing skill would work.
-- Do not force a standalone workflow into an existing skill just to avoid creating a new artifact.
-- Do not update `AGENTS.md` or `CLAUDE.md` for narrow workflow details that belong in a skill.
-- Do not recommend repo-level guidance without naming the target section or explaining why a new section is needed.
-- Do not emit task-local advice as if it were a general rule.
-- Do not make edits during the retrospective phase. Suggest first. Wait for approval.
-- Optimize for long-term signal, not for documenting every interesting thought.
+- Do not turn a single anecdote into a durable rule.
+- Do not create a new skill when an existing skill can absorb the guidance cleanly.
+- Do not put narrow workflow details in repository-wide guidance.
+- Do not recommend repository guidance without naming the target file and section.
+- Do not route retrospective output into memory workflows unless the user explicitly asks.
+- Optimize for long-term signal, not exhaustive documentation.

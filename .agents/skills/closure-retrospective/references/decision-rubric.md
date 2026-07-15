@@ -1,124 +1,39 @@
 # Decision Rubric
 
-Use this rubric to decide whether a closure-stage lesson is worth codifying.
+Apply every required gate. If a candidate fails one, use `Drop`.
 
-## Gate 1: Evidence
+## Required Gates
 
-Ask:
+| Gate | Pass when | Drop when |
+| --- | --- | --- |
+| Evidence | Observable behavior in the current task supports the lesson | The lesson depends on intuition, speculation, or post-hoc storytelling |
+| Repeatability | Another agent or future task could plausibly encounter the same situation | It depends on an unusual file, environment, or one-off preference |
+| Action delta | The guidance would change a future agent's behavior and prevent a named failure, churn loop, or delay | It only says to be more careful or has no concrete effect |
+| Net benefit | Expected maintainability, safety, consistency, or delivery benefit exceeds maintenance cost | It adds rule weight without clear payoff |
+| Existing coverage | Relevant skills and applicable project guidance were checked for duplication or a clean extension point | Existing guidance already covers it completely |
+| Placement fit | The narrowest target artifact and exact insertion point are clear | Placement would be redundant, fragmented, or awkward |
 
-- Did the lesson come from observable behavior in the current task?
-- Is there concrete evidence such as repeated correction, repeated friction, or a clear before/after improvement?
+Existing artifacts establish coverage and placement; they do not replace evidence from the current task.
 
-Intuition can start a candidate, but it is not evidence. Reject if the lesson cannot be tied to observable task behavior or becomes post-hoc storytelling.
-
-## Gate 2: Repeatability
-
-Ask:
-
-- Is this likely to recur across future tasks?
-- Would another agent or contributor plausibly hit the same issue?
-
-Reject if the lesson depends on one unusual environment or a narrow one-off circumstance.
-
-## Gate 3: Net Benefit
-
-Ask:
-
-- Would codifying this improve maintainability, project health, performance, safety, consistency, or delivery speed?
-- Is the expected benefit larger than the ongoing maintenance cost?
-- Would a future agent behave differently because this guidance exists?
-- What specific failure, churn, or delay does this prevent?
-
-Reject if the lesson creates process weight without clear future payoff.
-
-## Gate 4: Existing Coverage
-
-Check whether the lesson is already covered.
-
-Ask:
-
-- Does an existing skill, `AGENTS.md`, or `CLAUDE.md` already say this?
-- Could the existing wording be tightened instead of adding new guidance?
-- Is the candidate really new, or only a task-local example of an existing rule?
-
-Reject duplicates. If the existing rule is close but incomplete, route the candidate as an update to that artifact.
-
-## Gate 5: Correct Placement
-
-Choose the narrowest useful action and target.
+## Verdicts
 
 | Verdict | Use when |
 | --- | --- |
-| Create new skill | The lesson defines an independent, reusable workflow with its own trigger conditions |
-| Update existing skill | The lesson improves a known workflow already covered by a skill |
-| Update existing constraint | The lesson is repo-wide and fits an existing `AGENTS.md` / `CLAUDE.md` section |
-| Add constraint section | The lesson is repo-wide and introduces a durable category no current section covers |
-| Drop | The lesson does not justify standing guidance |
+| `Update existing skill` | The lesson improves a workflow already covered by a skill |
+| `Create new skill` | The lesson is an independent reusable workflow with its own trigger conditions |
+| `Update existing constraint` | The lesson is repository-wide and fits an existing `AGENTS.md` or `CLAUDE.md` section |
+| `Add constraint section` | The lesson is repository-wide and introduces a durable category no current section covers |
+| `Drop` | Any required gate fails |
 
-Check existing artifacts first, but do not force a standalone workflow or repo-wide category into an awkward location.
+For a new skill, name the proposed skill, triggers, and minimum useful contents. For project guidance, name the authoritative file and existing or proposed section. Do not mirror the same rule across `AGENTS.md` and `CLAUDE.md` unless the repository explicitly requires synchronization.
 
-## Gate 6: Integration Fit
+## Final Check
 
-Ask:
+Before suggesting a change, verify:
 
-- Can this be added to an existing section or heading without creating clutter?
-- If the target is `AGENTS.md` or `CLAUDE.md`, which current section should absorb it?
-- If proposing a new section, is that section introducing a durable new category rather than a one-off note?
-- If proposing a new skill, what trigger conditions make it discoverable and independent?
-- Would the resulting placement still be easy for future agents to discover and maintain?
+- The evidence, future trigger, prevented failure, and action delta are explicit.
+- The recommendation is generalized beyond the current task.
+- The target and insertion point are named.
+- The proposal is smaller and cleaner than creating another artifact.
 
-Reject if the recommendation lacks a clear update location, proposed new artifact, or target artifact, or would fragment the existing structure.
-
-## Checklist And Holistic Verdict
-
-Before suggesting a codified change, verify:
-
-- The candidate comes from current-task evidence, not only intuition.
-- The candidate has a future trigger that another agent could recognize.
-- The candidate prevents a concrete failure, churn loop, or delivery delay.
-- The candidate would change future agent behavior.
-- Existing guidance has been checked for duplication or absorption.
-- The chosen target, proposed artifact, or update location is clear.
-- The maintenance burden is smaller than the expected benefit.
-
-Then choose one verdict:
-
-- `Create new skill`
-- `Update existing skill`
-- `Update existing constraint`
-- `Add constraint section`
-- `Drop`
-
-Use `Drop` when the lesson is real but still too narrow, redundant, expensive, or weakly evidenced.
-
-## Optional Scoring
-
-Score each candidate from `0` to `2` on each axis:
-
-- `Evidence`
-- `Repeatability`
-- `Benefit`
-- `Existing coverage check`
-- `Placement clarity`
-- `Integration fit`
-
-Interpretation:
-
-- `0-5`: reject
-- `6-7`: usually reject unless the user explicitly wants a broad retrospective
-- `8-12`: eligible to suggest
-
-Use scoring only as a backstop. A high score should still be rejected if the holistic verdict is `Drop`.
-
-## Anti-Overfitting Checks
-
-Before suggesting a codified change, ask:
-
-- Am I reacting to a single mistake rather than a pattern?
-- Would this still look useful a month from now?
-- Does this create a rule someone will have to remember forever for a tiny gain?
-- Could I solve the problem by strengthening an existing instruction instead of adding another artifact?
-- Am I avoiding a new skill even though the lesson is actually an independent workflow?
-- Do I know exactly where this should be inserted, or am I inventing a new section too early?
-
-If these checks raise doubt, do not suggest the change.
+When in doubt, use `Drop`.
