@@ -1,4 +1,4 @@
 interface:
   display_name: "Closure Retrospective"
-  short_description: "Review task closure for reusable guidance"
-  default_prompt: "Use $closure-retrospective to decide whether a completed task produced reusable guidance worth codifying."
+  short_description: "Extract reusable mechanisms at task closure"
+  default_prompt: "Use $closure-retrospective to extract evidence-backed reusable mechanisms from this completed task and decide whether and where to codify them."

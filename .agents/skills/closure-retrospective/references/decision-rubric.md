@@ -6,14 +6,16 @@ Apply every required gate. If a candidate fails one, use `Drop`.
 
 | Gate | Pass when | Drop when |
 | --- | --- | --- |
-| Evidence | Observable behavior in the current task supports the lesson | The lesson depends on intuition, speculation, or post-hoc storytelling |
-| Repeatability | Another agent or future task could plausibly encounter the same situation | It depends on an unusual file, environment, or one-off preference |
-| Action delta | The guidance would change a future agent's behavior and prevent a named failure, churn loop, or delay | It only says to be more careful or has no concrete effect |
+| Evidence | Observable behavior in the current task supports the stated relationship between a decision and outcome | The candidate depends on intuition, correlation, speculation, or post-hoc storytelling |
+| Mechanism | The candidate passes every required test in `mechanism-tests.md` and explains why the action affects the outcome | It restates an incident, cause label, preference, or result without an evidence-supported mechanism |
+| Recurring decision point | The same decision structure recurs within the proposed target artifact's scope | Recurrence depends on the same unusual file, command, environment, or error text |
+| Transfer and boundary | Two materially different in-scope situations can use the guidance, and a limiting or non-applicable situation is explicit | Transfer relies on surface similarity, or the guidance has no defensible boundary |
+| Action delta | The trigger is observable before the outcome and the action changes a future decision with a verification signal | It only changes what an agent might consider, says to be more careful, or explains the outcome afterward |
 | Net benefit | Expected maintainability, safety, consistency, or delivery benefit exceeds maintenance cost | It adds rule weight without clear payoff |
 | Existing coverage | Relevant skills and applicable project guidance were checked for duplication or a clean extension point | Existing guidance already covers it completely |
 | Placement fit | The narrowest target artifact and exact insertion point are clear | Placement would be redundant, fragmented, or awkward |
 
-Existing artifacts establish coverage and placement; they do not replace evidence from the current task.
+Existing artifacts establish coverage and placement; they do not supply evidence or prove the mechanism.
 
 ## Verdicts
 
@@ -31,8 +33,9 @@ For a new skill, name the proposed skill, triggers, and minimum useful contents.
 
 Before suggesting a change, verify:
 
-- The evidence, future trigger, prevented failure, and action delta are explicit.
-- The recommendation is generalized beyond the current task.
+- The evidence and reusable mechanism are stated separately.
+- The trigger, action, verification signal, expected outcome, and boundary are explicit.
+- The recommendation transfers beyond the incident at the abstraction level of its target artifact.
 - The target and insertion point are named.
 - The proposal is smaller and cleaner than creating another artifact.
 
