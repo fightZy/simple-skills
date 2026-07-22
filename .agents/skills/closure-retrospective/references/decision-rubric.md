@@ -23,11 +23,11 @@ Existing artifacts establish coverage and placement; they do not supply evidence
 | --- | --- |
 | `Update existing skill` | The lesson improves a workflow already covered by a skill |
 | `Create new skill` | The lesson is an independent reusable workflow with its own trigger conditions |
-| `Update existing constraint` | The lesson is repository-wide and fits an existing `AGENTS.md` or `CLAUDE.md` section |
-| `Add constraint section` | The lesson is repository-wide and introduces a durable category no current section covers |
+| `Update existing project guidance` | The lesson is repository-wide and fits an authoritative section in `AGENTS.md`, `CLAUDE.md`, or an artifact reached through their explicit authority pointers |
+| `Add project guidance section` | The lesson is repository-wide and introduces a durable category no existing authoritative section covers |
 | `Drop` | Any required gate fails |
 
-For a new skill, name the proposed skill, triggers, and minimum useful contents. For project guidance, name the authoritative file and existing or proposed section. Do not mirror the same rule across `AGENTS.md` and `CLAUDE.md` unless the repository explicitly requires synchronization.
+For a new skill, name the proposed skill, triggers, and minimum useful contents. For project guidance, name the authoritative file and existing or proposed section, plus any index update required to keep the route discoverable. Do not mirror the same rule across project-guidance artifacts unless the repository explicitly requires synchronization.
 
 ## Final Check
 

@@ -1,6 +1,6 @@
 ---
 name: closure-retrospective
-description: Extract reusable mechanisms when a non-trivial task is substantively complete and evidence may justify durable guidance in a skill or applicable AGENTS.md / CLAUDE.md, especially after repeated corrections, tool friction, sequencing loops, stable scope boundaries, or decisions that clearly improved results.
+description: Extract reusable mechanisms when a non-trivial task is substantively complete and evidence may justify durable guidance in a skill or applicable project guidance, including AGENTS.md / CLAUDE.md and authoritative artifacts they delegate to, especially after repeated corrections, tool friction, sequencing loops, stable scope boundaries, or decisions that clearly improved results.
 ---
 
 # Closure Retrospective
@@ -22,7 +22,8 @@ Drop trivial work, one-off preferences, temporary debugging notes, and unsupport
 3. **Extract the reusable mechanism.** Explain the supported relationship between the decision and outcome. For every candidate reaching this step, read [references/mechanism-tests.md](references/mechanism-tests.md) and apply every test. Complete this step only when the candidate can be expressed as `trigger -> action -> verification` and passes every test.
 4. **Inspect only the narrowest plausible targets after the mechanism survives:**
    - For workflow guidance, shortlist skills by name and description, then inspect the most relevant sections.
-   - For repository-wide guidance, inspect the `AGENTS.md` or `CLAUDE.md` files applicable to the current working directory.
+   - For repository-wide guidance, start with the `AGENTS.md` or `CLAUDE.md` files applicable to the current working directory. When they explicitly delegate the candidate's category, follow the chain of explicit authority pointers until reaching the authoritative artifact. Inspect only artifacts on that relevant chain.
+   - Stop traversal on a cycle, ambiguity, or missing target; use `Drop` or recommend clarification instead of guessing the authority.
    - If both project files exist, follow the repository's authority or synchronization convention. Do not duplicate guidance across them without an explicit convention.
    - Use existing artifacts only to check coverage and choose placement; do not use them as evidence for the mechanism.
 5. **Decide whether to codify.** Read [references/decision-rubric.md](references/decision-rubric.md), apply every required gate, and assign the verdict. Complete this step when every surviving candidate has one exact target and insertion point; use `Drop` otherwise.
@@ -32,13 +33,13 @@ Drop trivial work, one-off preferences, temporary debugging notes, and unsupport
 
 - When the user explicitly requests a retrospective and nothing qualifies, output only this compact shape: title, `Worth codifying: no`, and one sentence naming the failed gate or reason.
 - When the retrospective is implicit and nothing qualifies, surface no retrospective section.
-- Keep the retrospective phase read-only. Present suggestions and wait for explicit approval before editing any skill or project guidance. A later approval begins a separate edit phase.
+- Keep the retrospective phase read-only. Present suggestions and wait for explicit approval before editing any skill or project guidance. A later approval begins a separate edit phase limited to only the artifacts and insertion points named in the approved recommendation.
 
 ## Hard Boundaries
 
 - Promote a single observed event only when its evidence supports a reusable mechanism and recurring decision point; otherwise treat it as an incident fact and drop it.
 - Do not create a new skill when an existing skill can absorb the guidance cleanly.
 - Do not put narrow workflow details in repository-wide guidance.
-- Do not recommend repository guidance without naming the target file and section.
+- Do not recommend project guidance without naming the authoritative target file and section.
 - Do not route retrospective output into memory workflows unless the user explicitly asks.
 - Prefer zero recommendations over incident-specific or vague guidance.
