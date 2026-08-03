@@ -2,21 +2,30 @@
 
 Read this file only after at least one candidate survives the decision rubric.
 
+Default to a two-layer response: make the recommendation and its reason immediately visible, then separate any decision-useful analysis. Keep internal qualification fields out of the main result.
+
 ```markdown
-# Closure Retrospective
+# [conclusion-led title]
 
-## [short title]
+**Recommendation**
 
-- Evidence: [corroborated observable decision, trajectory, and outcome]
-- Mechanism: [why the decision caused, protected, or improved the outcome]
-- Intervention: [verdict -> authoritative owner, target, and exact ownership point]
-- Backfill / Ratchet: [existing population and future recurrence; use Not applicable only with a reason]
-- Follow-up proof: [intervention hypothesis, fresh-run claim boundary, and evidence that would support or weaken it]
-- Lifecycle: [Provisional plus owner, reconsideration trigger, and retirement condition]
-- Boundary: [include only when omitting a limit could cause misapplication]
-- Tradeoff: [include only when carrying cost or risk is non-obvious]
+[State what should change, including the target and action, in one short paragraph.]
+
+**Why**
+
+[Explain the decisive evidence, problem, or expected benefit in one or two sentences.]
+
+## Supporting analysis
+
+[Include only details that help the user evaluate or apply the recommendation. Organize them around the content rather than a fixed field list. Omit this section when the recommendation and reason are sufficient.]
 
 If you approve, I will apply only the named intervention and target.
 ```
 
-Omit `Boundary` and `Tradeoff` when their conditions do not apply. Keep `Backfill / Ratchet` and `Follow-up proof` concise; they may refer to a separate approved campaign or later validation rather than expanding the immediate edit. Use an unnumbered heading for one candidate and number headings only when several independent candidates survive. Include at most three. Do not include patch text, claim later effect is already proven, or imply edits happened during the read-only retrospective.
+Use a title that states the recommended direction; do not use a generic retrospective title. Match headings and labels to the user's language.
+
+For one candidate, use the conclusion-led title directly without a wrapper. For several independent candidates, use one shared theme as the top-level title and give each candidate a numbered conclusion-led heading. Include at most three.
+
+Keep the main layer limited to `Recommendation` and `Why`. When supporting analysis is needed, select only the relevant evidence and mechanism, scope and boundary, delivery and verification, or follow-up and lifecycle information. Use natural prose or content-specific subheadings; do not emit empty fields, `Not applicable`, or internal rubric labels.
+
+Do not include patch text, claim later effect is already proven, or imply edits happened during the read-only retrospective.

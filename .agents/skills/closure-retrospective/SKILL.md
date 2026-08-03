@@ -25,12 +25,13 @@ Drop trivial work, one-off preferences, temporary debugging notes, unsupported i
 4. **Route the intervention.** Read [references/intervention-routing.md](references/intervention-routing.md). Match lesson maturity and consequence to the earliest semantic owner; do not default to prose. For repository guidance, begin with applicable `AGENTS.md` or `CLAUDE.md` files and follow only relevant explicit authority pointers to the final authoritative artifact. Stop on cycles, ambiguity, or missing ownership.
 5. **Design for system convergence.** Name the backward path for the existing population, the forward ratchet for later work, and any weaker guidance or controls that the proposed owner could make redundant. Use `Not applicable` only with a concrete reason.
 6. **Decide and bound the lifecycle.** Apply every gate in [references/decision-rubric.md](references/decision-rubric.md), then read [references/lifecycle-tests.md](references/lifecycle-tests.md). State the intervention hypothesis, current evidence level, follow-up proof, owner, carrying cost, reconsideration trigger, and retirement condition. A newly proposed intervention is `Provisional` until later evidence supports retention.
-7. **Present the result.** If at least one candidate survives, read [references/output-template.md](references/output-template.md) and present at most three independent recommendations. Match the user's language.
+7. **Present the result.** If at least one candidate survives, read [references/output-template.md](references/output-template.md). Lead with what should change and why it should change before any supporting analysis. Present at most three independent recommendations and match the user's language.
 
 ## Output Behavior
 
-- When the user explicitly requests a retrospective and nothing qualifies, output only a title, `Worth codifying: no`, and one sentence naming the failed gate.
+- When the user explicitly requests a retrospective and nothing qualifies, output only a conclusion-led title, a recommendation not to codify, and one brief reason naming the failed gate. Match the user's language and do not use a fixed retrospective title.
 - When the retrospective is implicit and nothing qualifies, surface no retrospective section.
+- Do not expose rubric field names, empty fields, or the literal text Not applicable in the user-facing result. Put only decision-useful evidence, boundaries, delivery, proof, or lifecycle material in optional supporting analysis.
 - Keep this phase read-only. Present proposed interventions and wait for explicit approval before editing. Later approval authorizes only the named targets and insertion points.
 
 ## Hard Boundaries
