@@ -1,4 +1,4 @@
 interface:
   display_name: "Closure Retrospective"
-  short_description: "Distill evidence into durable interventions"
-  default_prompt: "Use $closure-retrospective to turn this completed task's evidence into a durable intervention with a validation and lifecycle plan."
+  short_description: "Improve context for future decisions"
+  default_prompt: "Use $closure-retrospective to improve the context shaping a recurring future decision from this completed task's evidence, route the smallest durable change to its earliest semantic owner, and define later proof."
