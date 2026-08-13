@@ -25,6 +25,16 @@ Step 5: Report      — Assemble verifier output into report table, no re-judgme
 - No subagent dispatch capability is available.
 - A single localized change with no cross-domain risk — one quick self-review suffices.
 
+## Review Baseline Gate
+
+Before choosing reviewer count or lenses, identify the authoritative baseline for judging correctness: explicit requirements, specifications, contracts, established behavior, repository rules, or user decisions.
+
+Ask whether correctness can be determined from that baseline without inventing unstated intent.
+
+- If yes, include the relevant baseline in every reviewer brief.
+- If no, mark the affected scope as `Baseline Blocked`, name the missing decision and its owner, and pause review for that scope.
+- Do not ask reviewers to choose among multiple valid intended outcomes.
+
 ## Decide Reviewer Count
 
 **One reviewer** when the diff is small, localized, or owned by one domain. **Multiple in parallel** when the change spans independent domains, distinct lenses would produce different findings, or the diff is large enough that one reviewer would sample instead of inspect.
@@ -65,6 +75,7 @@ Return one consolidated review:
 - Merge duplicates under the strongest rationale.
 - Preserve file/line references.
 - Separate disagreements and missing context.
+- Separate `Baseline Gaps`: concerns that require choosing the intended behavior rather than checking code against an explicit baseline. Do not assign them severity or send them to Step 4; route them to the owning decision process and resume the affected review scope only after the baseline is resolved.
 - Keep cleanup suggestions non-blocking unless they create real risk.
 
 Note: Preserve reviewer severity assessments through synthesis — they are grounded initial judgments, not placeholders. Verifier (Step 4b) re-checks against actual source code and may confirm or correct.
