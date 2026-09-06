@@ -1,71 +1,39 @@
 # Closure Retrospective
 
-This document is for maintainers of the skill, not for runtime routing. The runtime entrypoint remains `SKILL.md`.
+This maintainer overview is outside the runtime package. The authoritative entrypoint is [SKILL.md](../../../.agents/skills/closure-retrospective/SKILL.md).
 
-## What This Skill Is
+## Purpose and scope
 
-`closure-retrospective` is a lightweight wrap-up skill for deciding whether a finished task produced guidance worth codifying.
+Use existing work evidence to improve durable guidance and the future decisions it supports. Retaining, deleting, merging, clarifying, narrowing, relocating, and supplementing guidance are all valid outcomes. Generalize the decision method while keeping each recommendation within its supported scope.
 
-It is designed to make an agent:
+The default trigger is non-trivial task closure. An explicit retrospective or context review can also examine a stable work unit while other work remains open. Unresolved diagnosis limits only conclusions that depend on it; the retrospective does not take over unfinished work or run new domain experiments.
 
-- notice repeated correction and friction patterns near task closure
-- separate durable lessons from one-off anecdotes
-- choose the right landing zone for a suggestion
-- ask for approval before changing any skill or instruction file
+Anchor the review in the current task. Consult relevant, traceable prior evidence only when needed and within existing access and scope. This skill does not compress conversations. Do not route its output into memory workflows unless the user explicitly asks.
 
-## Purpose
+## Decision process
 
-Use this skill when a non-trivial task is essentially done and there may be a reusable lesson worth carrying forward.
+1. Identify an evidenced context problem and the future decision a change could improve. Failure alone does not justify more instructions.
+2. Inspect existing guidance, authority, and availability. Existing coverage prevents redundant additions while still allowing useful cleanup.
+3. Determine scope and loading time before choosing the smallest effective edit and its exact target.
+4. Use independent review only for material unresolved questions or an applicable review requirement. Keep evidence uncertainty, dispatch authorization, and capability separate.
+5. Present a proportionate recommendation with its evidence, boundary, benefit, cost, and any relevant reconsideration condition.
 
-This skill is not for:
+A new skill needs an independently invocable workflow. Project guidance belongs at its matching scope; neither file type takes precedence over the other.
 
-- project memory capture
-- generic end-of-task summaries
-- automatic rule editing without approval
+## Approval and output
 
-## Design Principles
+Propose edits before applying them. Approval of a concrete scope authorizes its edits and appropriate verification without repeated confirmation. Subagent review requires an explicit user request or standing project authorization.
 
-- Closure first: do not run it while core work is still unresolved.
-- Conservative by default: weak signals should not create new rules.
-- Suggestion before mutation: the first pass proposes changes but does not apply them.
-- Narrowest useful target: prefer strengthening an existing artifact over adding a new one.
-- Net-benefit filter: codify only when long-term value outweighs maintenance cost.
+Prefer zero or one recommendation when sufficient, with no quota or fixed cap. If nothing qualifies, explain briefly when the user explicitly requested a review; otherwise finish without a retrospective section.
 
-## Trigger Model
+For guidance that depends on changing tools, environments, processes, or responsibilities, identify what would make it obsolete or require reconsideration. This does not start a monitoring workflow.
 
-The runtime skill should activate only when both are true:
+## Runtime resources
 
-- the task is reaching final handoff
-- there is evidence of a reusable lesson, not just an interesting observation
-
-Typical signals:
-
-- repeated user corrections
-- repeated tool or command friction
-- avoidable workflow loops
-- a decision rule that clearly improved the outcome
-
-## Target Selection
-
-Use the narrowest correct destination:
-
-- existing skill for workflow-local guidance
-- new skill for an independent reusable workflow
-- `AGENTS.md` or `CLAUDE.md` for repo-wide defaults or constraints
-
-If none of these clearly win, the skill should recommend no change.
+- [Decision rubric](../../../.agents/skills/closure-retrospective/references/decision-rubric.md): read after existing coverage has been inspected and a candidate survives.
+- [Independent review](../../../.agents/skills/closure-retrospective/references/independent-review.md): read only when review could materially change an unresolved consequential decision.
+- [Output guidance](../../../.agents/skills/closure-retrospective/references/output-template.md): read for surviving proposals or pending review.
 
 ## Verification
 
-Good verification should include wrap-up scenarios that tempt the agent to over-codify:
-
-- a task with one interesting but narrow issue
-- a task with repeated correction that does justify a rule suggestion
-- a task that should produce no retrospective output at all
-
-Good outputs should show:
-
-- explicit evidence from the current task
-- a clear reusable benefit
-- correct target selection
-- approval-first behavior instead of silent edits
+Repository checks cover package layout and documentation discovery. Format and reference checks establish structural validity; they do not prove better decisions in later tasks. Report applied edits, completed checks, and observed behavioral effects separately.

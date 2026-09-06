@@ -1,47 +1,57 @@
 ---
 name: closure-retrospective
-description: Improve the context that shapes future decisions using evidence from a substantively completed non-trivial task. Use when completed-task evidence shows that changing what later workers encounter at a recurring decision point could improve their action before the outcome, or that effective context should be preserved. Route the smallest durable context change to the earliest semantic owner and define how later behavior will validate or retire it.
+description: "Review durable guidance at task closure, or when explicitly asked to optimize reusable context using existing work evidence; propose changes to content, scope, or loading."
 ---
 
 # Closure Retrospective
 
-## Core Principle
+Use stable work evidence to decide whether durable guidance should be retained, removed, merged, clarified, scoped, relocated, or supplemented. Improve future decisions at justified context and maintenance cost. Generalize the decision method, not every resulting rule.
 
-Use completed-task evidence to improve the context that shapes future decisions. Determine how the current context influenced the run, define the desired future context at the same decision point, and route the smallest durable change to the earliest semantic owner. Optimize decision quality and system coherence, not artifact count.
+## Boundaries
 
-Treat context as everything the worker can legitimately use at the decision point: governing facts, boundaries, judgment criteria, authority, feedback, and executable structure. Do not equate context with prose. Treat an observed outcome as evidence, not as a rule.
-
-Raw trajectory material and agent self-reports are low-trust telemetry. Keep them attached to the run, corroborate them against diffs, tool output, checks, review, runtime evidence, and accepted outcomes, and never inject them directly into future context.
-
-## Closure Gate
-
-Run this skill only after the substantive task is complete or clearly entering final handoff. If implementation, debugging, research, product intent, architecture, or the acceptance boundary remains unresolved, finish or escalate that work first.
-
-Drop trivial work, one-off preferences, temporary debugging notes, unsupported interpretations, and findings whose only evidence is an agent self-report.
+- Default to non-trivial task closure. An explicit retrospective or context review may examine a stable work unit even when other work remains open.
+- Use existing evidence. Do not expand the task, change evidence access, or run new domain experiments to justify a lesson.
+- Anchor the review in the current task. When necessary, consult only relevant, traceable prior evidence within existing access and task scope; distinguish its source and applicability. Do not default to broad history searches.
+- Unresolved diagnosis limits only conclusions that depend on it. This skill does not resume or take over unfinished work.
+- This skill governs durable guidance, not conversation compression or memory. Do not route output into memory workflows unless the user explicitly asks.
+- Propose guidance edits before applying them. Explicit approval of the proposed scope authorizes those edits and appropriate verification; reuse that approval while it remains applicable. Invoking a retrospective alone does not authorize edits.
 
 ## Workflow
 
-1. **Build an evidence packet.** Record the promised outcome, observable trajectory, intervention or decision, result, proof, human steering, and accepted or rejected status. Preserve provenance and separate observation from interpretation.
-2. **Reconstruct the decision context.** Locate the recurring controllable decision before the outcome. Identify what context was legitimately available then, how it influenced the action, and which boundary materially constrained the decision. Search for structurally related sibling cases and separate context effects from worker variance, external failure, and a bad premise.
-3. **Define the desired context and smallest change.** Read [references/mechanism-tests.md](references/mechanism-tests.md) and apply every test before inspecting possible targets. Describe the causal context effect rather than starting from a defect label or the incident's nouns. Continue only when the candidate can be expressed as `evidence -> context influence -> desired future context -> smallest durable change -> boundary`.
-4. **Route the context change.** Read [references/intervention-routing.md](references/intervention-routing.md). Match lesson maturity and consequence to the earliest semantic owner; do not default to prose. For repository guidance, begin with applicable `AGENTS.md` or `CLAUDE.md` files and follow only relevant explicit authority pointers to the final authoritative artifact. Stop on cycles, ambiguity, or missing ownership.
-5. **Design for system convergence.** Name the backward path for the existing population, the forward ratchet for later work, and anything the proposed owner could make redundant. Do not add an artifact when changing or retiring an existing owner would create the desired context more directly.
-6. **Decide and bound the lifecycle.** Apply every gate in [references/decision-rubric.md](references/decision-rubric.md), then read [references/lifecycle-tests.md](references/lifecycle-tests.md). State the context-change hypothesis, current evidence level, follow-up proof, owner, carrying cost, reconsideration trigger, and retirement condition. A newly proposed change is `Provisional` until later evidence supports retention.
-7. **Present the result.** If at least one candidate survives, read [references/output-template.md](references/output-template.md). Lead with what should change and why it should change before any supporting analysis. State the desired future context and its smallest owning change, then explain why the observed context effect justifies it. Present at most three independent recommendations and match the user's language.
+### 1. Identify a context problem
 
-## Output Behavior
+Look for evidence that context influenced a decision that could recur. Common signals include missing, repeated, conflicting, stale, overly broad, or poorly timed guidance. Ask what helped, what obstructed, and what was missing.
 
-- When the user explicitly requests a retrospective and nothing qualifies, output only a conclusion-led title, a recommendation not to codify, and one brief reason naming the failed gate. Match the user's language and do not use a fixed retrospective title.
-- When the retrospective is implicit and nothing qualifies, surface no retrospective section.
-- Do not expose rubric field names, empty fields, or the literal text Not applicable in the user-facing result. Put only decision-useful evidence, boundaries, delivery, proof, or lifecycle material in optional supporting analysis.
-- Keep this phase read-only. Present proposed context changes and wait for explicit approval before editing. Later approval authorizes only the named targets and insertion points.
+For each candidate, connect the observation, the suspected or demonstrated contribution of context, and a specific future decision that a change would improve. A failed outcome, tool limitation, or execution mistake alone does not justify more instructions.
 
-## Hard Boundaries
+Completion criterion: every surviving candidate has evidence and a concrete decision improvement; otherwise use the no-change outcome in step 5.
 
-- Do not treat raw telemetry, memory, existing guidance, or the proposed repair as evidence for the mechanism. Do not propose or update memory unless the user explicitly requests it.
-- Do not assume improvement means addition; optimize the context state encountered at the decision point and retire anything the chosen owner makes redundant.
-- Do not create a new skill when an existing owner can absorb the mechanism cleanly.
-- Do not encode contextual judgment as a deterministic control merely because it can be checked mechanically.
-- Do not recommend a maintenance loop until the desired condition, signal, proof, authority, durable state, and retirement condition are settled.
-- Do not claim a context change works because it was written, built, or locally validated; later behavior and claim-boundary evidence decide retention.
-- Prefer `Retain as evidence` or `Drop` over incident-specific guidance and prefer consolidation over accumulating parallel controls.
+### 2. Inspect existing coverage
+
+Read the exact relevant guidance, its authority, and when it is available to the agent. Distinguish a content gap from a scope, discoverability, or execution problem before proposing a remedy.
+
+Retain effective guidance. Existing coverage rules out redundant additions, but does not by itself rule out cleanup of duplication, conflict, or stale content. Identify the authoritative content to adjust; drop changes unlikely to improve the decision.
+
+Completion criterion: every surviving candidate names an evidenced context problem and its existing coverage, including absence of a suitable artifact when verified.
+
+### 3. Calibrate scope and choose the smallest change
+
+Read [references/decision-rubric.md](references/decision-rubric.md) for surviving candidates. Determine supported scope and loading time before choosing the artifact and edit. Deletion, consolidation, relocation, and additions are all valid outcomes.
+
+Completion criterion: each proposal has bounded wording, an exact target and change, a justified benefit over its costs, and a reconsideration condition when it depends on changeable assumptions.
+
+### 4. Resolve material uncertainty
+
+After coverage and scope are clear, decide whether independent review could materially change an unresolved, consequential decision. Read [references/independent-review.md](references/independent-review.md) only then; routine retention, relocation, or clarification normally needs no such review.
+
+Dispatch subagents only when the user explicitly asks for subagent review or standing project instructions authorize it. Record review need, authorization, and availability separately. Evidence uncertainty limits conclusions; unavailable or unauthorized review is a process status, not evidence against an established fact.
+
+Completion criterion: each proposal is ready, pending required review, or dropped. Narrowing may resolve uncertainty, but cannot waive an independently required review.
+
+### 5. Present the decision
+
+When nothing qualifies, finish normally; if the user explicitly requested the review, briefly explain why no change is warranted.
+
+For surviving proposals or pending review, read [references/output-template.md](references/output-template.md). Present enough detail to review the proposed change and determine the next authorized action. Keep proposed guidance, applied edits, and completed verification distinct.
+
+Completion criterion: the user can assess the concrete change, its boundaries and costs, and any unresolved decision without reading the internal checklist.

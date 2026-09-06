@@ -1,33 +1,20 @@
-# Output Template
+# Output Guidance
 
-Read this file only after at least one candidate survives the decision rubric.
+Use for surviving proposals or pending review. Match the user's language. Prefer zero or one recommendation when sufficient; scale to genuinely independent changes without a quota or fixed cap.
 
-Default to a two-layer response: make the recommendation and its reason immediately visible, then separate any decision-useful analysis. Keep internal qualification fields out of the main result.
+## Ready proposal
 
-```markdown
-# [conclusion-led title]
+Use a short paragraph or list containing:
 
-**Recommendation**
+- **Finding:** the observable context problem and the evidence limitation that matters.
+- **Change:** the exact target and section, plus proposed wording or a concrete description of the edit.
+- **Boundary:** supported scope, loading condition, and any relevant reconsideration condition.
+- **Value:** the expected decision improvement and material context or maintenance cost.
 
-[State the recurring decision point, desired context state, smallest durable change, and owning target in one short paragraph. Keep task-specific evidence out of this paragraph unless it defines a real scope boundary.]
+Mention independent review only when it materially affected the verdict or remains required. Keep internal checks out of the report unless they explain a consequential decision. Include patch text only when requested.
 
-**Why**
+Apply the entrypoint's approval boundary: request approval for a ready proposal when it has not been approved; otherwise continue the authorized edits and verification. Report what actually changed and what was checked separately from expected benefits.
 
-[Explain how the current context influenced the observed decision and why the desired context would improve or preserve later behavior in one or two sentences.]
+## Pending proposal
 
-## Supporting analysis
-
-[Include only details that help the user evaluate or apply the recommendation. Organize them around the content rather than a fixed field list. Omit this section when the recommendation and reason are sufficient.]
-
-If you approve, I will apply only the named context change and target.
-```
-
-Use a title that states the recommended direction; do not use a generic retrospective title. Match headings and labels to the user's language.
-
-Generalize around the recurring decision and context effect, not the incident's nouns or a closed list of observed symptoms. Keep concrete task details in `Why` or supporting analysis as evidence. Stop abstracting when removing a term would erase a real scope boundary or actionable instruction.
-
-For one candidate, use the conclusion-led title directly without a wrapper. For several independent candidates, use one shared theme as the top-level title and give each candidate a numbered conclusion-led heading. Include at most three.
-
-Keep the main layer limited to `Recommendation` and `Why`. When supporting analysis is needed, select only the relevant evidence and context effect, scope and boundary, delivery and verification, or follow-up and lifecycle information. Use natural prose or content-specific subheadings; do not emit empty fields, `Not applicable`, or internal rubric labels.
-
-Do not include patch text, claim later effect is already proven, or imply edits happened during the read-only retrospective.
+State the unresolved question, why its answer matters, what the evidence currently supports, and the authorization or capability needed next. Keep evidence uncertainty separate from dispatch status. Follow [independent-review.md](independent-review.md) for the next action; do not imply review or edits already happened.

@@ -1,4 +1,5 @@
+version: 1
 interface:
-  display_name: "Closure Retrospective"
-  short_description: "Improve context for future decisions"
-  default_prompt: "Use $closure-retrospective to improve the context shaping a recurring future decision from this completed task's evidence, route the smallest durable change to its earliest semantic owner, and define later proof."
+  display_name: "收尾上下文优化"
+  short_description: "基于已有工作证据，审阅长期指导的保留、删改、适用范围与加载时机"
+  default_prompt: "使用 $closure-retrospective，基于当前任务已有的稳定证据，审阅长期指导是否需要保留、删减、合并或调整范围与加载时机，并在编辑前提出最小必要变更建议。"

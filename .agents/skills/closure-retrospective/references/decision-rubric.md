@@ -1,49 +1,54 @@
 # Decision Rubric
 
-Apply every required gate. If a candidate fails one, use `Retain as evidence` when the run remains useful telemetry; otherwise use `Drop`.
+Use after inspecting existing coverage, for candidates that could improve a future decision.
 
-## Required Gates
+## Evidence and transfer
 
-| Gate | Pass when | Do not promote when |
-| --- | --- | --- |
-| Evidence | Corroborated observable behavior supports the relationship between a decision and outcome | The claim depends on self-report, intuition, correlation, or post-hoc storytelling |
-| Mechanism | Every test in `mechanism-tests.md` passes | The candidate restates an incident, preference, result, or cause label |
-| Recurring decision point | The same decision structure can recur within the intended owner's scope | Recurrence depends on one unusual file, command, environment, or error text |
-| Transfer and boundary | Two materially different in-scope situations share the structure and a non-applicable case is explicit | Transfer relies on surface similarity or lacks a defensible limit |
-| Action delta | An observable trigger changes a controllable pre-outcome action with a verification signal | The lesson only changes explanation after the outcome |
-| Intervention maturity | The lesson's stability and consequence justify the proposed degree of constraint | Unsettled judgment is forced into a deterministic control or settled behavior remains vague prose |
-| Earliest semantic owner | One authoritative context, example, review, domain, executable, architectural, or maintenance surface owns the decision | Placement defaults to a convenient document or creates a parallel owner |
-| System convergence | The proposal addresses the existing population, future recurrence, and redundant controls proportionally | It adds another defense while contradictory precedent or weaker duplicates remain |
-| Effect proof | Current evidence or a proportionate follow-up can test later behavior at the claim boundary | Success would mean only that a file exists or a proxy check passes |
-| Lifecycle | An owner, carrying cost, reconsideration trigger, and retirement condition are named | The intervention would persist without maintenance responsibility |
-| Net benefit | Expected safety, coherence, maintainability, or delivery gain exceeds attention and maintenance cost | Rule weight and latency exceed the supported benefit |
-| Existing coverage | Relevant owners were checked for full coverage, extension, consolidation, or replacement | Existing behavior already covers the class completely |
+Separate direct observations, inference, and intuition. Describe actual breadth across occurrences, tasks, or contexts, and distinguish contemporaneous records from later explanations. Reject intuition or retrospective storytelling as the sole basis for durable guidance.
 
-Existing artifacts establish coverage, ownership, and placement; they do not supply evidence for the mechanism.
+Identify the mechanism, decision structure, ownership boundary, or recurring constraint that explains the proposed improvement. Strip incidental filenames, tools, values, and chronology unless the rule depends on them. Similar symptoms alone do not establish a shared mechanism.
 
-## Verdicts
+A single direct observation may support a narrow conditional reminder. Broader empirical claims need broader evidence; reviewer agreement over the same records and hypothetical substitutions do not increase observed coverage. A demonstrated logical invariant or an existing authoritative requirement can justify firm wording without repeated incidents.
 
-| Verdict | Use when |
+## Scope and boundaries
+
+Choose the narrowest useful scope supported by the evidence. Consider relevant substitutions, such as actor, domain, lifecycle stage, tool, reversibility, or evidence availability. Ask when the proposed guidance would help, become unnecessary, or cause harm.
+
+State the governing condition, any known counterexample or failure boundary, and material unknowns. Uncertain boundaries call for narrower scope or softer wording, not universal application.
+
+## Wording strength
+
+| Wording | Basis |
 | --- | --- |
-| `Retain as evidence` | The trajectory is useful telemetry but recurrence, mechanism, maturity, or effect evidence is insufficient |
-| `Context intervention` | Stable knowledge must be retrieved at a decision point through a routing document, skill, or runbook |
-| `Judgment intervention` | A blessed example, reviewer or evaluation must carry qualitative or still-evolving judgment |
-| `Executable intervention` | A type, API, domain tool, lint, test, or policy check can own a settled invariant |
-| `Architecture / migration` | Repeated defects expose the wrong representation, owner, dependency direction, or existing population |
-| `Continuous maintenance` | A settled condition must remain true while repository or external state changes across runs |
-| `Drop` | The candidate is trivial, unsupported, non-transferable, fully covered, or not worth its carrying cost |
+| must / never | An applicable safety, permission, integrity, or logical invariant requires it, or strong cross-context evidence supports the stated scope without a reasonable exception |
+| Conditional rule | The behavior is required when an explicit predicate holds |
+| default / should | The behavior usually helps but legitimate exceptions exist |
+| consider / example | Evidence is narrow, exploratory, or mainly diagnostic |
 
-Each promoted verdict must name one exact authoritative target, insertion or ownership point, backward path, forward ratchet, follow-up proof, lifecycle owner, and retirement condition. Use `Not applicable` only with a concrete reason. Do not mirror one rule across artifacts unless the repository explicitly requires synchronization.
+Use open discovery and explicit decisions: examples may illustrate a defined governing criterion, but actions, edits, permissions, and hard gates need explicit scope or predicates. Open-ended examples never expand authorization.
 
-## Final Check
+## Placement: scope, loading, then action
 
-Before suggesting an intervention, verify:
+Choose ownership from applicability, not from a ranking of file types:
 
-- Evidence, mechanism, repair, and later effect claim remain separate.
-- The recommendation changes behavior before the outcome.
-- The owner matches the lesson's maturity and consequence.
-- Existing precedent and future recurrence are both addressed.
-- Stronger ownership can consolidate or retire weaker controls.
-- The proposal is smaller and more coherent than adding another artifact.
+| Supported scope | Suitable home |
+| --- | --- |
+| Current task only | Keep it local; no durable change |
+| A reusable workflow | Its existing skill or supporting reference |
+| A project or part of one | Existing project guidance at the matching scope, such as AGENTS.md / CLAUDE.md |
 
-When in doubt, retain the run as evidence rather than promoting it.
+Then choose when the agent needs it. Keep guidance needed throughout its scope readily available; put workflow steps in the entrypoint and branch-specific detail behind an explicit loading condition. Shared definitions should have one maintained source that callers can find.
+
+Only then choose the smallest effective action: retain, delete, merge, clarify, narrow, strengthen, move, or add. Prefer an appropriate existing artifact. A new skill requires an independently invocable workflow; a new project section requires a matching gap in project guidance. Neither file type takes precedence over the other.
+
+Name the exact file and section, or justify a new artifact. Preserve the intent and applicability of established approval requirements and operational invariants when simplifying content.
+
+## Benefit, cost, and useful lifetime
+
+Explain which future decision improves and whether the guidance prevents an error, detects it earlier, limits a claim, or improves interpretation. Do not claim prevention when the evidence supports only detection or explanation.
+
+Compare that benefit with context and maintenance cost, false triggering, unnecessary approvals, slower work, ownership conflicts, and constraints on exploration. Shorter wording alone is not proof of improvement. Reject changes whose expected benefit does not justify their costs.
+
+Use existing cases and counterexample reasoning to check what should improve, what must remain valid, and what would overturn the recommendation. Distinguish this reasoning from observed behavioral validation; a numerical score cannot replace an unresolved qualitative condition.
+
+When guidance depends on changeable tools, environments, processes, or responsibilities, state what change would make it obsolete or require reconsideration. Stable invariants need no arbitrary expiry date, and recording this condition does not start a monitoring workflow.
