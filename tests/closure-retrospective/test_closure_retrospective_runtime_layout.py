@@ -10,6 +10,7 @@ def test_closure_retrospective_skill_layout() -> None:
     assert skill_dir.exists()
     assert (skill_dir / "SKILL.md").exists()
     assert (skill_dir / "agents" / "openai.yaml").exists()
+    assert (skill_dir / "references" / "context-trace.md").exists()
     assert (skill_dir / "references" / "decision-rubric.md").exists()
     assert (skill_dir / "references" / "output-template.md").exists()
     assert not (skill_dir / "tests").exists()

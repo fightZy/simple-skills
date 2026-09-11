@@ -12,11 +12,12 @@ Anchor the review in the current task. Consult relevant, traceable prior evidenc
 
 ## Decision process
 
-1. Identify an evidenced context problem and the future decision a change could improve. Failure alone does not justify more instructions.
-2. Inspect existing guidance, authority, and availability. Existing coverage prevents redundant additions while still allowing useful cleanup.
-3. Determine scope and loading time before choosing the smallest effective edit and its exact target.
-4. Use independent review only for material unresolved questions or an applicable review requirement. Keep evidence uncertainty, dispatch authorization, and capability separate.
-5. Present a proportionate recommendation with its evidence, boundary, benefit, cost, and any relevant reconsideration condition.
+1. Set the review frame around the outcome or decision, the minimum complete decision span needed to explain it, and the outer evidence boundary. If the final state is insufficient, trace only the earlier context that could change the conclusion.
+2. Identify an evidenced context problem and the future decision a change could improve. Failure alone does not justify more instructions.
+3. Inspect existing guidance, authority, availability, actionability, consistency, and handoffs. Suitable wording alone does not prove an execution problem.
+4. Determine scope and loading time before choosing the smallest effective edit and its exact target.
+5. Use independent review only for material unresolved questions or an applicable review requirement. Keep evidence uncertainty, dispatch authorization, and capability separate.
+6. Present a proportionate recommendation with its evidence, boundary, benefit, cost, and any relevant reconsideration condition.
 
 A new skill needs an independently invocable workflow. Project guidance belongs at its matching scope; neither file type takes precedence over the other.
 
@@ -30,6 +31,7 @@ For guidance that depends on changing tools, environments, processes, or respons
 
 ## Runtime resources
 
+- [Context trace](../../../.agents/skills/closure-retrospective/references/context-trace.md): read when the final state alone cannot explain how context affected the decision.
 - [Decision rubric](../../../.agents/skills/closure-retrospective/references/decision-rubric.md): read after existing coverage has been inspected and a candidate survives.
 - [Independent review](../../../.agents/skills/closure-retrospective/references/independent-review.md): read only when review could materially change an unresolved consequential decision.
 - [Output guidance](../../../.agents/skills/closure-retrospective/references/output-template.md): read for surviving proposals or pending review.

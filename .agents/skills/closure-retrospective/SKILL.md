@@ -18,29 +18,39 @@ Use stable work evidence to decide whether durable guidance should be retained, 
 
 ## Workflow
 
-### 1. Identify a context problem
+### 1. Set the review frame
+
+Identify the outcome or decision under review, the minimum complete decision span needed to explain it without omitting materially relevant prior context, and the outer evidence boundary. Completeness sets the lower bound; material relevance sets the upper bound. Do not assume that the latest change represents the whole context problem. When competing review frames would materially change the conclusion and cannot be resolved from the request or existing evidence, ask the user; otherwise state the chosen frame and proceed.
+
+When the final state alone cannot explain how context affected the decision—for example, a relevant decision changed, explanations conflict, or the relationship between guidance and outcome remains unclear—read [references/context-trace.md](references/context-trace.md). Keep the trace limited to decisions and evidence that could change the retrospective conclusion.
+
+Completion criterion: the review has an explicit subject, a justified evidence span, and enough history to assess context without broadening into an unrestricted task history.
+
+### 2. Identify a context problem
 
 Look for evidence that context influenced a decision that could recur. Common signals include missing, repeated, conflicting, stale, overly broad, or poorly timed guidance. Ask what helped, what obstructed, and what was missing.
 
 For each candidate, connect the observation, the suspected or demonstrated contribution of context, and a specific future decision that a change would improve. A failed outcome, tool limitation, or execution mistake alone does not justify more instructions.
 
-Completion criterion: every surviving candidate has evidence and a concrete decision improvement; otherwise use the no-change outcome in step 5.
+Completion criterion: every surviving candidate has evidence and a concrete decision improvement; otherwise use the no-change outcome in step 6.
 
-### 2. Inspect existing coverage
+### 3. Inspect existing coverage
 
 Read the exact relevant guidance, its authority, and when it is available to the agent. Distinguish a content gap from a scope, discoverability, or execution problem before proposing a remedy.
+
+The existence of suitable wording does not by itself establish an execution problem. Check whether the guidance was available at the decision point, concrete enough to act on, consistent with other applicable context, and carried through relevant workflow handoffs.
 
 Retain effective guidance. Existing coverage rules out redundant additions, but does not by itself rule out cleanup of duplication, conflict, or stale content. Identify the authoritative content to adjust; drop changes unlikely to improve the decision.
 
 Completion criterion: every surviving candidate names an evidenced context problem and its existing coverage, including absence of a suitable artifact when verified.
 
-### 3. Calibrate scope and choose the smallest change
+### 4. Calibrate scope and choose the smallest change
 
 Read [references/decision-rubric.md](references/decision-rubric.md) for surviving candidates. Determine supported scope and loading time before choosing the artifact and edit. Deletion, consolidation, relocation, and additions are all valid outcomes.
 
 Completion criterion: each proposal has bounded wording, an exact target and change, a justified benefit over its costs, and a reconsideration condition when it depends on changeable assumptions.
 
-### 4. Resolve material uncertainty
+### 5. Resolve material uncertainty
 
 After coverage and scope are clear, decide whether independent review could materially change an unresolved, consequential decision. Read [references/independent-review.md](references/independent-review.md) only then; routine retention, relocation, or clarification normally needs no such review.
 
@@ -48,7 +58,7 @@ Dispatch subagents only when the user explicitly asks for subagent review or sta
 
 Completion criterion: each proposal is ready, pending required review, or dropped. Narrowing may resolve uncertainty, but cannot waive an independently required review.
 
-### 5. Present the decision
+### 6. Present the decision
 
 When nothing qualifies, finish normally; if the user explicitly requested the review, briefly explain why no change is warranted.
 
