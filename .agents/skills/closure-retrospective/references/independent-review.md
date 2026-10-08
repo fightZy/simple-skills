@@ -16,7 +16,7 @@ Missing authorization or capability does not change the observations. An unresol
 
 ## Prepare and sequence the review
 
-Give each reviewer one bounded question and the minimum relevant packet: source evidence and limitations, exact existing guidance, proposed scope or wording, and the issue to resolve. Ask for evidence, counterexamples, and decision implications without prescribing the desired verdict. Keep the retrospective's evidence boundary intact.
+Give each reviewer one bounded question and the minimum relevant packet: source evidence and limitations, exact existing guidance or mechanisms, proposed scope and change, and the issue to resolve. Ask for evidence, counterexamples, and decision or execution implications without prescribing the desired verdict. Keep the retrospective's evidence boundary intact.
 
 Use multiple reviewers only for distinct questions or expertise. Run independent questions in parallel and dependent questions sequentially, such as evidence correctness before transfer or integration. Do not duplicate a question to collect votes.
 

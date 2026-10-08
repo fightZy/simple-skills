@@ -6,7 +6,7 @@ This repository contains installable skills for the `skills.sh` ecosystem and fo
 
 - validating whether a product, startup, feature, or workflow idea is worth pursuing
 - expanding an idea into broader, less conservative, more imaginative directions
-- using task evidence to improve durable guidance, its scope, and when it is loaded
+- using task evidence to optimize agent environment context for future decisions or execution
 - deciding how to split code review across focused subagents
 - orchestrating formal changes with OpenSpec artifacts, approval gates, and superpower discipline layers
 
@@ -18,7 +18,7 @@ Many agent workflows fail for recurring reasons:
 
 - teams build ideas before checking whether the market is too crowded or the positioning is too weak
 - teams brainstorm but still collapse too quickly into safe or conventional options
-- teams accumulate guidance without checking whether it improves later decisions or adds unnecessary context
+- teams accumulate guidance while leaving context hard to find or feedback disconnected from the work
 - teams lack a unified workflow for formal changes, letting multiple planning systems compete and create confusion
 
 This repo packages these workflows as reusable agent skills so they can be installed, shared, and reused across projects.
@@ -43,9 +43,9 @@ Docs: [`AB-EN`](./docs/skills/advanced-brainstorming/README.md), [`AB-ZH`](./doc
 
 ### Closure Retrospective
 
-Use existing work evidence to decide whether durable guidance should be retained, cleaned up, clarified, relocated, or supplemented.
+Use existing work evidence to optimize how an agent obtains, finds, interprets, and uses context and execution feedback.
 
-Use it at non-trivial task closure, or when explicitly reviewing reusable context from a stable work unit. Determine scope and loading time before choosing the smallest change to skills or applicable project guidance; propose edits before applying them.
+Use it at non-trivial task closure, or when explicitly reviewing environment context from a stable work unit. Assess candidates by their problem mechanism and expected decision or execution improvement; select the smallest justified change to guidance or an environment mechanism, and propose changes before applying them.
 
 Docs: [`CR-EN`](./docs/skills/closure-retrospective/README.md), [`CR-ZH`](./docs/skills/closure-retrospective/README_zh.md), [`CR-SKILL`](./.agents/skills/closure-retrospective/SKILL.md)
 
@@ -122,7 +122,7 @@ Useful search terms for this repository:
 - frame-breaking brainstorming
 - closure retrospective skill
 - agent wrap-up reflection
-- durable context optimization
+- agent environment context optimization
 - code review subagents
 - delegated code review
 - parallel code review

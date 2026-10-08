@@ -6,14 +6,14 @@ Use for surviving proposals or pending review. Match the user's language. Prefer
 
 Use a short paragraph or list containing:
 
-- **Finding:** the observable context problem and the evidence limitation that matters.
-- **Change:** the exact target and section, plus proposed wording or a concrete description of the edit.
-- **Boundary:** supported scope, loading condition, and any relevant reconsideration condition.
-- **Value:** the expected decision improvement and material context or maintenance cost.
+- **Finding:** the observable environment context problem and the evidence limitation that matters.
+- **Change:** the exact target and section or interface, plus proposed wording or a concrete description of the change.
+- **Boundary:** supported scope, loading or activation condition, and any relevant reconsideration condition.
+- **Value:** the expected decision or execution improvement and material context or maintenance cost.
 
 Mention independent review only when it materially affected the verdict or remains required. Keep internal checks out of the report unless they explain a consequential decision. Include patch text only when requested.
 
-Apply the entrypoint's approval boundary: request approval for a ready proposal when it has not been approved; otherwise continue the authorized edits and verification. Report what actually changed and what was checked separately from expected benefits.
+Apply the entrypoint's approval boundary: request approval for a ready proposal when it has not been approved; otherwise continue the authorized changes and verification. Report what actually changed and what was checked separately from expected benefits.
 
 ## Pending proposal
 
