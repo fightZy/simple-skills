@@ -1,0 +1,5 @@
+interface:
+  display_name: "My Writing"
+  short_description: "我的通用写作偏好：围绕读者用途，组织清楚，表达直接、精炼、准确"
+policy:
+  allow_implicit_invocation: false
