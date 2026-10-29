@@ -144,6 +144,20 @@ Abbreviation guide:
 - `EN` = English README
 - `ZH` = Chinese README
 
+## 飞书文档本地补丁
+
+[排版判断补丁](./patches/lark-doc-content-layout.patch)用于本机已安装的 `lark-doc` 技能：按内容关系选择段落、列表或表格，便于分别确认需求、职责、操作和验收事项。
+
+补丁独立应用，不随本仓库的技能安装命令自动执行。在本仓库根目录运行：
+
+```bash
+simple_skills_repo="$(pwd)"
+git -C "$HOME/.agents/skills" apply --check "$simple_skills_repo/patches/lark-doc-content-layout.patch"
+git -C "$HOME/.agents/skills" apply "$simple_skills_repo/patches/lark-doc-content-layout.patch"
+```
+
+已应用时可用 `git apply --reverse --check` 核对状态。外部工具更新可能覆盖本地修改；更新后先检查补丁与当前版本是否兼容。
+
 ## License
 
 This repository is licensed under the [MIT License](./LICENSE).
